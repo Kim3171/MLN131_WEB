@@ -592,94 +592,155 @@ function App() {
                         }}></div>
                     </div>
 
-                    <div className="relative z-20 container mx-auto px-8 py-16">
-                        {/* Tiêu đề chính - Adjusted spacing */}
-                        <div className="text-center mb-16">
-                            <h1 className="text-5xl md:text-6xl font-bold text-yellow-400 mb-6 tracking-wide">
+                    <div className="relative z-20 container mx-auto px-4 sm:px-6 md:px-8 py-8 md:py-16">
+                        {/* Tiêu đề chính - Adjusted spacing for mobile */}
+                        <div className="text-center mb-8 md:mb-16 px-2">
+                            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-yellow-400 mb-4 md:mb-6 tracking-wide">
                                 QUAN ĐIỂM & CHÍNH SÁCH VỀ TÔN GIÁO
                             </h1>
-                            <div className="w-32 h-1 bg-yellow-400 mx-auto mt-6"></div>
+                            <div className="w-24 md:w-32 h-1 bg-yellow-400 mx-auto mt-4 md:mt-6"></div>
                         </div>
 
-                        {/* Content Layout - Moved content upward and increased spacing */}
-                        <div className="relative max-w-6xl mx-auto min-h-[650px] px-6 mt-4">
+                        {/* Content Layout - Responsive adjustments */}
+                        <div className="relative max-w-6xl mx-auto min-h-[300px] md:min-h-[650px] px-2 md:px-6 mt-2 md:mt-4">
 
-                            {/* CƠ SỞ LÝ LUẬN - Moved upward */}
-                            <div className="absolute top-20 left-0">
-                                <div className="flex items-center gap-10 mb-20">
-                                    <div className="w-[360px]">
-                                        <h3 className="text-4xl font-bold text-yellow-400 mb-6" style={{ textAlign: 'right' }}>CƠ SỞ LÝ LUẬN TỪ CNXH KHOA HỌC</h3>
-                                        <p className="text-white text-base leading-8" style={{ textAlign: 'right', lineHeight: '1.6' }}>
-                                            Tôn giáo là hình thái ý thức xã hội có tính lịch sử, phát sinh từ những điều kiện kinh tế-xã hội cụ thể. Nó tồn tại lâu dài vì những nguyên nhân sinh ra nó chưa thể khắc phục ngay trong thời kỳ quá độ.
-                                        </p>
+                            {/* Desktop layout (hidden on mobile) */}
+                            <div className="hidden md:block">
+                                {/* CƠ SỞ LÝ LUẬN */}
+                                <div className="absolute top-20 left-[-60px]">
+                                    <div className="flex items-center gap-10 mb-20">
+                                        <div className="w-[360px]">
+                                            <h3 className="text-4xl font-bold text-yellow-400 mb-6" style={{ textAlign: 'right' }}>CƠ SỞ LÝ LUẬN TỪ CNXH KHOA HỌC</h3>
+                                            <p className="text-white text-base leading-8" style={{ textAlign: 'right', lineHeight: '1.6' }}>
+                                                Tôn giáo là hình thái ý thức xã hội có tính lịch sử, phát sinh từ những điều kiện kinh tế-xã hội cụ thể. Nó tồn tại lâu dài vì những nguyên nhân sinh ra nó chưa thể khắc phục ngay trong thời kỳ quá độ.
+                                            </p>
+                                        </div>
+                                        <div className="w-48 h-48 rounded-full overflow-hidden shadow-xl border-4 border-yellow-400 hover:scale-105 transition-all duration-300 flex-shrink-0 animate-float">
+                                            <img src="/5.1.1.png" alt="Cơ sở lý luận" className="w-full h-full object-cover scale-125" />
+                                        </div>
                                     </div>
-                                    <div className="w-48 h-48 rounded-full overflow-hidden shadow-xl border-4 border-yellow-400 hover:scale-105 transition-all duration-300 flex-shrink-0 animate-float">
-                                        <img src="/5.1.1.png" alt="Cơ sở lý luận" className="w-full h-full object-cover scale-125" />
+                                </div>
+
+                                {/* TÍNH HAI MẶT */}
+                                <div className="absolute top-[60px] left-1/2 translate-x-[60px]">
+                                    <div className="flex items-center gap-10 mb-20">
+                                        {/* Image */}
+                                        <div className="w-56 h-56 rounded-full overflow-hidden shadow-xl border-[3px] border-yellow-400 hover:scale-105 transition-all duration-300 flex-shrink-0 animate-float-delay">
+                                            <img
+                                                src="/5.1.2.png"
+                                                alt="Tính hai mặt"
+                                                className="w-full h-full object-cover scale-110"
+                                            />
+                                        </div>
+
+                                        {/* Text */}
+                                        <div className="w-[380px] text-left">
+                                            <h3 className="text-4xl font-bold text-yellow-400 mb-6">
+                                                TÍNH HAI MẶT
+                                            </h3>
+                                            <p className="text-white text-base leading-7">
+                                                Tôn giáo mang hai mặt đối lập thống nhất: mặt tích cực (giá trị đạo đức, văn hóa) và mặt tiêu cực (có thể trở thành công cụ mê hoặc, cản trở nhận thức khoa học). Chính sách cần dựa trên sự nhìn nhận toàn diện này.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* TIẾP CẬN BẰNG GIÁO DỤC */}
+                                <div className="absolute top-[380px] left-[-150px]">
+                                    <div className="flex items-center gap-14 mb-20">
+                                        <div className="w-[420px]">
+                                            <h3 className="text-3xl font-bold text-yellow-400 mb-6" style={{ textAlign: 'right' }}>TIẾP CẬN BẰNG GIÁO DỤC</h3>
+                                            <div className="text-white text-base leading-7 space-y-3" style={{ textAlign: 'right', lineHeight: '1.6' }}>
+                                                <p>Không thể dùng mệnh lệnh hành chính để xóa bỏ tôn giáo. Cần nâng cao đời sống vật chất và tinh thần, phát triển giáo dục khoa học - những điều kiện cơ bản để tôn giáo dần mất đi cơ sở tồn tại một cách tự nhiên.</p>
+                                            </div>
+                                        </div>
+                                        <div className="w-56 h-56 rounded-full overflow-hidden shadow-xl border-4 border-yellow-400 hover:scale-105 transition-all duration-300 flex-shrink-0 animate-float-slow">
+                                            <img src="/5.1.3.png" alt="Tiếp cận bằng giáo dục" className="w-full h-full object-cover" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* NGUYÊN TẮC CHÍNH SÁCH */}
+                                <div className="absolute bottom-12 right-[-205px]">
+                                    <div className="flex items-center gap-9 flex-row-reverse mb-8">
+                                        <div className="w-[480px]">
+                                            <h3 className="text-4xl font-bold text-yellow-400 mb-6" style={{ textAlign: 'left' }}>NGUYÊN TẮC CHÍNH SÁCH VIỆT NAM</h3>
+                                            <div className="text-white text-base leading-7 space-y-4" style={{ textAlign: 'left', lineHeight: '1.7' }}>
+                                                <p>1. Tôn trọng và bảo đảm quyền tự do tín ngưỡng, tôn giáo.<br />
+                                                    2. Quản lý bằng pháp luật, phân biệt rõ hoạt động hợp pháp và lợi dụng tôn giáo.<br />
+                                                    3. Đoàn kết giữa đồng bào có đạo và không có đạo.<br />
+                                                    4. Phát huy các giá trị văn hóa, đạo đức tốt đẹp của tôn giáo.</p>
+                                            </div>
+                                        </div>
+                                        <div className="w-52 h-52 rounded-full overflow-hidden shadow-xl border-4 border-yellow-400 hover:scale-105 transition-all duration-300 flex-shrink-0 animate-float-gentle">
+                                            <img src="/5.1.4.png" alt="Nguyên tắc chính sách" className="w-full h-full object-cover scale-125" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            {/* TÍNH HAI MẶT - Moved UPWARD significantly */}
-                            <div className="absolute top-[60px] left-1/2 translate-x-[60px]">
-                                <div className="flex items-center gap-10 mb-20">
-                                    {/* Image */}
-                                    <div className="w-56 h-56 rounded-full overflow-hidden shadow-xl border-[3px] border-yellow-400 hover:scale-105 transition-all duration-300 flex-shrink-0 animate-float-delay">
-                                        <img
-                                            src="/5.1.2.png"
-                                            alt="Tính hai mặt"
-                                            className="w-full h-full object-cover scale-110"
-                                        />
+                            {/* Mobile layout (shown only on mobile) */}
+                            <div className="md:hidden space-y-12 pt-4">
+                                {/* CƠ SỞ LÝ LUẬN - Mobile */}
+                                <div className="flex flex-col items-center text-center">
+                                    <div className="w-40 h-40 rounded-full overflow-hidden shadow-xl border-4 border-yellow-400 mb-6">
+                                        <img src="/5.1.1.png" alt="Cơ sở lý luận" className="w-full h-full object-cover scale-125" />
                                     </div>
+                                    <div className="max-w-xs mx-auto">
+                                        <h3 className="text-2xl font-bold text-yellow-400 mb-4">CƠ SỞ LÝ LUẬN TỪ CNXH KHOA HỌC</h3>
+                                        <p className="text-white text-sm leading-relaxed">
+                                            Tôn giáo là hình thái ý thức xã hội có tính lịch sử, phát sinh từ những điều kiện kinh tế-xã hội cụ thể. Nó tồn tại lâu dài vì những nguyên nhân sinh ra nó chưa thể khắc phục ngay trong thời kỳ quá độ.
+                                        </p>
+                                    </div>
+                                </div>
 
-                                    {/* Text */}
-                                    <div className="w-[320px] text-left">
-                                        <h3 className="text-4xl font-bold text-yellow-400 mb-6">
-                                            TÍNH HAI MẶT
-                                        </h3>
-                                        <p className="text-white text-base leading-7">
+                                {/* TÍNH HAI MẶT - Mobile */}
+                                <div className="flex flex-col items-center text-center">
+                                    <div className="w-40 h-40 rounded-full overflow-hidden shadow-xl border-[3px] border-yellow-400 mb-6">
+                                        <img src="/5.1.2.png" alt="Tính hai mặt" className="w-full h-full object-cover scale-110" />
+                                    </div>
+                                    <div className="max-w-xs mx-auto">
+                                        <h3 className="text-2xl font-bold text-yellow-400 mb-4">TÍNH HAI MẶT</h3>
+                                        <p className="text-white text-sm leading-relaxed">
                                             Tôn giáo mang hai mặt đối lập thống nhất: mặt tích cực (giá trị đạo đức, văn hóa) và mặt tiêu cực (có thể trở thành công cụ mê hoặc, cản trở nhận thức khoa học). Chính sách cần dựa trên sự nhìn nhận toàn diện này.
                                         </p>
                                     </div>
                                 </div>
-                            </div>
 
-                            {/* TIẾP CẬN BẰNG GIÁO DỤC - Moved upward and increased spacing from top circles */}
-                            <div className="absolute top-[380px] left-[-150px]">
-                                <div className="flex items-center gap-14 mb-20">
-                                    <div className="w-[420px]">
-                                        <h3 className="text-3xl font-bold text-yellow-400 mb-6" style={{ textAlign: 'right' }}>TIẾP CẬN BẰNG GIÁO DỤC</h3>
-                                        <div className="text-white text-base leading-7 space-y-3" style={{ textAlign: 'right', lineHeight: '1.6' }}>
-                                            <p>Không thể dùng mệnh lệnh hành chính để xóa bỏ tôn giáo. Cần nâng cao đời sống vật chất và tinh thần, phát triển giáo dục khoa học - những điều kiện cơ bản để tôn giáo dần mất đi cơ sở tồn tại một cách tự nhiên.</p>
-                                        </div>
-                                    </div>
-                                    <div className="w-56 h-56 rounded-full overflow-hidden shadow-xl border-4 border-yellow-400 hover:scale-105 transition-all duration-300 flex-shrink-0 animate-float-slow">
+                                {/* TIẾP CẬN BẰNG GIÁO DỤC - Mobile */}
+                                <div className="flex flex-col items-center text-center">
+                                    <div className="w-40 h-40 rounded-full overflow-hidden shadow-xl border-4 border-yellow-400 mb-6">
                                         <img src="/5.1.3.png" alt="Tiếp cận bằng giáo dục" className="w-full h-full object-cover" />
                                     </div>
-                                </div>
-                            </div>
-
-                            {/* NGUYÊN TẮC CHÍNH SÁCH - Moved upward */}
-                            <div className="absolute bottom-12 right-[-205px]">
-                                <div className="flex items-center gap-9 flex-row-reverse mb-8">
-                                    <div className="w-[480px]">
-                                        <h3 className="text-4xl font-bold text-yellow-400 mb-6" style={{ textAlign: 'left' }}>NGUYÊN TẮC CHÍNH SÁCH VIỆT NAM</h3>
-                                        <div className="text-white text-base leading-7 space-y-4" style={{ textAlign: 'left', lineHeight: '1.7' }}>
-                                            <p>1. Tôn trọng và bảo đảm quyền tự do tín ngưỡng, tôn giáo.<br />
-                                                2. Quản lý bằng pháp luật, phân biệt rõ hoạt động hợp pháp và lợi dụng tôn giáo.<br />
-                                                3. Đoàn kết giữa đồng bào có đạo và không có đạo.<br />
-                                                4. Phát huy các giá trị văn hóa, đạo đức tốt đẹp của tôn giáo.</p>
-                                        </div>
+                                    <div className="max-w-xs mx-auto">
+                                        <h3 className="text-xl font-bold text-yellow-400 mb-4">TIẾP CẬN BẰNG GIÁO DỤC</h3>
+                                        <p className="text-white text-sm leading-relaxed">
+                                            Không thể dùng mệnh lệnh hành chính để xóa bỏ tôn giáo. Cần nâng cao đời sống vật chất và tinh thần, phát triển giáo dục khoa học - những điều kiện cơ bản để tôn giáo dần mất đi cơ sở tồn tại một cách tự nhiên.
+                                        </p>
                                     </div>
-                                    <div className="w-52 h-52 rounded-full overflow-hidden shadow-xl border-4 border-yellow-400 hover:scale-105 transition-all duration-300 flex-shrink-0 animate-float-gentle">
+                                </div>
+
+                                {/* NGUYÊN TẮC CHÍNH SÁCH - Mobile */}
+                                <div className="flex flex-col items-center text-center">
+                                    <div className="w-40 h-40 rounded-full overflow-hidden shadow-xl border-4 border-yellow-400 mb-6">
                                         <img src="/5.1.4.png" alt="Nguyên tắc chính sách" className="w-full h-full object-cover scale-125" />
+                                    </div>
+                                    <div className="max-w-xs mx-auto">
+                                        <h3 className="text-2xl font-bold text-yellow-400 mb-4">NGUYÊN TẮC CHÍNH SÁCH VIỆT NAM</h3>
+                                        <div className="text-white text-sm leading-relaxed space-y-2">
+                                            <p>1. Tôn trọng và bảo đảm quyền tự do tín ngưỡng, tôn giáo.</p>
+                                            <p>2. Quản lý bằng pháp luật, phân biệt rõ hoạt động hợp pháp và lợi dụng tôn giáo.</p>
+                                            <p>3. Đoàn kết giữa đồng bào có đạo và không có đạo.</p>
+                                            <p>4. Phát huy các giá trị văn hóa, đạo đức tốt đẹp của tôn giáo.</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
 
-                        {/* Nút mũi tên xuống để chuyển section - Adjusted position */}
-                        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                        {/* Nút mũi tên xuống để chuyển section - Adjusted position for mobile */}
+                        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce">
                             <button
                                 onClick={() => scrollToNextSection('quan-diem-chinh-sach')}
                                 className="text-yellow-300 hover:text-yellow-400 transition-colors duration-300 hover:scale-110 transform"
@@ -692,7 +753,7 @@ function App() {
                 </section>
 
                 {/* Giá trị thực tiễn của tôn giáo */}
-                <section id="gia-tri-thuc-tien" className="relative overflow-hidden bg-red-900 py-20 min-h-[1400px]">
+                <section id="gia-tri-thuc-tien" className="relative overflow-hidden bg-red-900 py-12 md:py-20 min-h-[1000px] md:min-h-[1400px]">
                     {/* Video nền */}
                     <video
                         className="absolute inset-0 w-full h-full object-cover opacity-30"
@@ -710,88 +771,174 @@ function App() {
                     <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
                     {/* Tiêu đề */}
-                    <div className="relative z-10 text-center mb-12 pt-8">
-                        <h2 className="text-5xl font-bold text-yellow-400 uppercase mb-4 tracking-wide">
+                    <div className="relative z-10 text-center mb-8 md:mb-12 pt-4 md:pt-8 px-4">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-yellow-400 uppercase mb-3 md:mb-4 tracking-wide">
                             GIÁ TRỊ THỰC TIỄN CỦA TÔN GIÁO
                         </h2>
-                        <p className="text-white text-lg opacity-90">
+                        <p className="text-white text-sm md:text-lg opacity-90 px-2">
                             Từ thiện, nhân đạo • Thi đua yêu nước • Bảo vệ môi trường • Phòng chống dịch bệnh
                         </p>
-                        <div className="w-32 h-1 bg-yellow-400 mx-auto mt-6"></div>
+                        <div className="w-24 md:w-32 h-1 bg-yellow-400 mx-auto mt-4 md:mt-6"></div>
                     </div>
 
                     {/* Container */}
-                    <div className="relative z-10 max-w-7xl mx-auto px-8 min-h-[1200px] mt-12">
+                    <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 min-h-[800px] md:min-h-[1200px] mt-8 md:mt-12">
 
-                        {/* TRONG HOẠT ĐỘNG TỪ THIỆN, NHÂN ĐẠO - Moved downward */}
-                        <div className="absolute top-[180px] left-[-50px] flex items-center gap-10">
-                            <div className="w-56 h-56 rounded-full overflow-hidden shadow-2xl border-4 border-yellow-400 flex-shrink-0 hover:scale-105 transition-all duration-500 animate-float">
-                                <img
-                                    src="/5.2.1.png"
-                                    alt="Từ thiện, nhân đạo"
-                                    className="w-full h-full object-cover scale-110 transform hover:scale-125 transition-transform duration-300"
-                                />
+                        {/* Desktop layout (hidden on mobile) */}
+                        <div className="hidden md:block">
+                            {/* TRONG HOẠT ĐỘNG TỪ THIỆN, NHÂN ĐẠO */}
+                            <div className="absolute top-[180px] left-[-50px] flex items-center gap-10">
+                                <div className="w-56 h-56 rounded-full overflow-hidden shadow-2xl border-4 border-yellow-400 flex-shrink-0 hover:scale-105 transition-all duration-500 animate-float">
+                                    <img
+                                        src="/5.2.1.png"
+                                        alt="Từ thiện, nhân đạo"
+                                        className="w-full h-full object-cover scale-110 transform hover:scale-125 transition-transform duration-300"
+                                    />
+                                </div>
+                                <div className="w-[450px] text-left">
+                                    <h3 className="text-4xl font-bold text-yellow-300 mb-5">Từ thiện, nhân đạo</h3>
+                                    <p className="text-white leading-9 text-xl mb-4">
+                                        Nhiều tôn giáo có giáo lý khuyến khích từ bi, bác ái. Trong điều kiện Việt Nam, những giáo lý này được chuyển hóa thành các hoạt động cụ thể: xây nhà tình nghĩa, cứu trợ thiên tai, chăm sóc người yếu thế.
+                                    </p>
+                                    <p className="text-yellow-200 font-semibold">Ý nghĩa xã hội: Bổ sung cho hệ thống an sinh xã hội, góp phần thực hiện mục tiêu công bằng và nhân văn.</p>
+                                </div>
                             </div>
-                            <div className="w-[450px] text-left">
-                                <h3 className="text-4xl font-bold text-yellow-300 mb-5">Từ thiện, nhân đạo</h3>
-                                <p className="text-white leading-9 text-xl mb-4">
-                                    Nhiều tôn giáo có giáo lý khuyến khích từ bi, bác ái. Trong điều kiện Việt Nam, những giáo lý này được chuyển hóa thành các hoạt động cụ thể: xây nhà tình nghĩa, cứu trợ thiên tai, chăm sóc người yếu thế.
-                                </p>
-                                <p className="text-yellow-200 font-semibold">Ý nghĩa xã hội: Bổ sung cho hệ thống an sinh xã hội, góp phần thực hiện mục tiêu công bằng và nhân văn.</p>
+
+                            {/* TRONG PHONG TRÀO THI ĐUA YÊU NƯỚC */}
+                            <div className="absolute top-[650px] left-[30px] flex items-center gap-8">
+                                <div className="w-44 h-44 rounded-full overflow-hidden shadow-2xl border-4 border-yellow-400 flex-shrink-0 hover:scale-105 transition-all duration-500 animate-float-delay">
+                                    <img
+                                        src="/5.2.2.png"
+                                        alt="Thi đua yêu nước"
+                                        className="w-full h-full object-cover scale-110 transform hover:scale-125 transition-transform duration-300"
+                                    />
+                                </div>
+                                <div className="w-[480px] text-left">
+                                    <h3 className="text-3xl font-bold text-yellow-300 mb-4">Thi đua yêu nước</h3>
+                                    <p className="text-white text-lg mb-4">
+                                        Phương châm 'Người Công giáo tốt cũng là công dân tốt' thể hiện sự gắn kết giữa đức tin và trách nhiệm công dân. Khi giáo dân tích cực tham gia xây dựng quê hương, họ đang đồng thời thực hành giáo lý và đóng góp vào sự phát triển chung.
+                                    </p>
+                                    <p className="text-yellow-200 font-semibold">Ý nghĩa xã hội: Củng cố mối liên hệ giữa tôn giáo và cộng đồng, tăng cường sự đồng thuận xã hội.</p>
+                                </div>
+                            </div>
+
+                            {/* TRONG BẢO VỆ MÔI TRƯỜNG */}
+                            <div className="absolute top-[80px] right-[-40px] flex items-center gap-12">
+                                <div className="w-48 h-48 rounded-full overflow-hidden shadow-2xl border-4 border-yellow-400 flex-shrink-0 hover:scale-105 transition-all duration-500 animate-float-slow">
+                                    <img
+                                        src="/5.2.3.png"
+                                        alt="Bảo vệ môi trường"
+                                        className="w-full h-full object-cover scale-110 transform hover:scale-125 transition-transform duration-300"
+                                    />
+                                </div>
+                                <div className="w-[400px] text-left">
+                                    <h3 className="text-3xl font-bold text-yellow-300 mb-4">Bảo vệ môi trường</h3>
+                                    <p className="text-white text-lg mb-4">
+                                        Các tôn giáo thường có quan niệm về mối quan hệ giữa con người và tự nhiên. Phật giáo nói đến lòng từ bi với chúng sinh, Công giáo nhấn mạnh trách nhiệm quản lý thiên nhiên.
+                                    </p>
+                                    <p className="text-yellow-200 font-semibold">Chuyển hóa thành hành động: Các phong trào 'chùa xanh', 'giáo xứ xanh' biến những quan niệm này thành hoạt động bảo vệ môi trường cụ thể.</p>
+                                </div>
+                            </div>
+
+                            {/* TRONG PHÒNG CHỐNG DỊCH BỆNH, THIÊN TAI */}
+                            <div className="absolute top-[400px] right-[20px] flex items-center gap-9">
+                                <div className="w-48 h-48 rounded-full overflow-hidden shadow-2xl border-4 border-yellow-400 flex-shrink-0 hover:scale-105 transition-all duration-500 animate-float-gentle">
+                                    <img
+                                        src="/5.2.4.png"
+                                        alt="Phòng chống dịch bệnh"
+                                        className="w-full h-full object-cover scale-100 transform hover:scale-115 transition-transform duration-300"
+                                    />
+                                </div>
+                                <div className="w-[420px] text-left">
+                                    <h3 className="text-4xl font-bold text-yellow-300 mb-5">Phòng chống dịch bệnh, thiên tai</h3>
+                                    <p className="text-white text-xl mb-4">
+                                        Đại dịch COVID-19 trở thành 'bài kiểm tra' thực tế về khả năng phối hợp giữa Nhà nước và các tổ chức tôn giáo. Nhiều cơ sở tôn giáo đã trở thành điểm cứu trợ, phân phát nhu yếu phẩm, vận động tuân thủ biện pháp phòng dịch.
+                                    </p>
+                                    <p className="text-yellow-200 font-semibold">Ý nghĩa xã hội: Thể hiện tiềm năng của tôn giáo như một kênh vận động xã hội hiệu quả trong những tình huống khẩn cấp.</p>
+                                </div>
                             </div>
                         </div>
 
-                        {/* TRONG PHONG TRÀO THI ĐUA YÊU NƯỚC - Moved downward */}
-                        <div className="absolute top-[650px] left-[30px] flex items-center gap-8">
-                            <div className="w-44 h-44 rounded-full overflow-hidden shadow-2xl border-4 border-yellow-400 flex-shrink-0 hover:scale-105 transition-all duration-500 animate-float-delay">
-                                <img
-                                    src="/5.2.2.png"
-                                    alt="Thi đua yêu nước"
-                                    className="w-full h-full object-cover scale-110 transform hover:scale-125 transition-transform duration-300"
-                                />
+                        {/* Mobile layout (shown only on mobile) */}
+                        <div className="md:hidden space-y-10 pt-4">
+                            {/* BẢO VỆ MÔI TRƯỜNG - Mobile */}
+                            <div className="flex flex-col items-center text-center">
+                                <div className="w-36 h-36 rounded-full overflow-hidden shadow-2xl border-4 border-yellow-400 mb-4">
+                                    <img
+                                        src="/5.2.3.png"
+                                        alt="Bảo vệ môi trường"
+                                        className="w-full h-full object-cover scale-110"
+                                    />
+                                </div>
+                                <div className="max-w-xs mx-auto">
+                                    <h3 className="text-xl font-bold text-yellow-300 mb-3">Bảo vệ môi trường</h3>
+                                    <p className="text-white text-sm leading-relaxed mb-3">
+                                        Các tôn giáo thường có quan niệm về mối quan hệ giữa con người và tự nhiên. Phật giáo nói đến lòng từ bi với chúng sinh, Công giáo nhấn mạnh trách nhiệm quản lý thiên nhiên.
+                                    </p>
+                                    <p className="text-yellow-200 font-semibold text-sm">
+                                        Chuyển hóa thành hành động: Các phong trào 'chùa xanh', 'giáo xứ xanh' biến những quan niệm này thành hoạt động bảo vệ môi trường cụ thể.
+                                    </p>
+                                </div>
                             </div>
-                            <div className="w-[480px] text-left">
-                                <h3 className="text-3xl font-bold text-yellow-300 mb-4">Thi đua yêu nước</h3>
-                                <p className="text-white text-lg mb-4">
-                                    Phương châm 'Người Công giáo tốt cũng là công dân tốt' thể hiện sự gắn kết giữa đức tin và trách nhiệm công dân. Khi giáo dân tích cực tham gia xây dựng quê hương, họ đang đồng thời thực hành giáo lý và đóng góp vào sự phát triển chung.
-                                </p>
-                                <p className="text-yellow-200 font-semibold">Ý nghĩa xã hội: Củng cố mối liên hệ giữa tôn giáo và cộng đồng, tăng cường sự đồng thuận xã hội.</p>
-                            </div>
-                        </div>
 
-                        {/* TRONG BẢO VỆ MÔI TRƯỜNG - Moved downward */}
-                        <div className="absolute top-[80px] right-[-40px] flex items-center gap-12">
-                            <div className="w-48 h-48 rounded-full overflow-hidden shadow-2xl border-4 border-yellow-400 flex-shrink-0 hover:scale-105 transition-all duration-500 animate-float-slow">
-                                <img
-                                    src="/5.2.3.png"
-                                    alt="Bảo vệ môi trường"
-                                    className="w-full h-full object-cover scale-110 transform hover:scale-125 transition-transform duration-300"
-                                />
+                            {/* TỪ THIỆN, NHÂN ĐẠO - Mobile */}
+                            <div className="flex flex-col items-center text-center">
+                                <div className="w-40 h-40 rounded-full overflow-hidden shadow-2xl border-4 border-yellow-400 mb-4">
+                                    <img
+                                        src="/5.2.1.png"
+                                        alt="Từ thiện, nhân đạo"
+                                        className="w-full h-full object-cover scale-110"
+                                    />
+                                </div>
+                                <div className="max-w-xs mx-auto">
+                                    <h3 className="text-2xl font-bold text-yellow-300 mb-3">Từ thiện, nhân đạo</h3>
+                                    <p className="text-white text-sm leading-relaxed mb-3">
+                                        Nhiều tôn giáo có giáo lý khuyến khích từ bi, bác ái. Trong điều kiện Việt Nam, những giáo lý này được chuyển hóa thành các hoạt động cụ thể: xây nhà tình nghĩa, cứu trợ thiên tai, chăm sóc người yếu thế.
+                                    </p>
+                                    <p className="text-yellow-200 font-semibold text-sm">
+                                        Ý nghĩa xã hội: Bổ sung cho hệ thống an sinh xã hội, góp phần thực hiện mục tiêu công bằng và nhân văn.
+                                    </p>
+                                </div>
                             </div>
-                            <div className="w-[400px] text-left">
-                                <h3 className="text-3xl font-bold text-yellow-300 mb-4">Bảo vệ môi trường</h3>
-                                <p className="text-white text-lg mb-4">
-                                    Các tôn giáo thường có quan niệm về mối quan hệ giữa con người và tự nhiên. Phật giáo nói đến lòng từ bi với chúng sinh, Công giáo nhấn mạnh trách nhiệm quản lý thiên nhiên.
-                                </p>
-                                <p className="text-yellow-200 font-semibold">Chuyển hóa thành hành động: Các phong trào 'chùa xanh', 'giáo xứ xanh' biến những quan niệm này thành hoạt động bảo vệ môi trường cụ thể.</p>
-                            </div>
-                        </div>
 
-                        {/* TRONG PHÒNG CHỐNG DỊCH BỆNH, THIÊN TAI - Moved downward */}
-                        <div className="absolute top-[400px] right-[20px] flex items-center gap-9">
-                            <div className="w-48 h-48 rounded-full overflow-hidden shadow-2xl border-4 border-yellow-400 flex-shrink-0 hover:scale-105 transition-all duration-500 animate-float-gentle">
-                                <img
-                                    src="/5.2.4.png"
-                                    alt="Phòng chống dịch bệnh"
-                                    className="w-full h-full object-cover scale-100 transform hover:scale-115 transition-transform duration-300"
-                                />
+                            {/* PHÒNG CHỐNG DỊCH BỆNH, THIÊN TAI - Mobile */}
+                            <div className="flex flex-col items-center text-center">
+                                <div className="w-36 h-36 rounded-full overflow-hidden shadow-2xl border-4 border-yellow-400 mb-4">
+                                    <img
+                                        src="/5.2.4.png"
+                                        alt="Phòng chống dịch bệnh"
+                                        className="w-full h-full object-cover scale-100"
+                                    />
+                                </div>
+                                <div className="max-w-xs mx-auto">
+                                    <h3 className="text-xl font-bold text-yellow-300 mb-3">Phòng chống dịch bệnh, thiên tai</h3>
+                                    <p className="text-white text-sm leading-relaxed mb-3">
+                                        Đại dịch COVID-19 trở thành 'bài kiểm tra' thực tế về khả năng phối hợp giữa Nhà nước và các tổ chức tôn giáo. Nhiều cơ sở tôn giáo đã trở thành điểm cứu trợ, phân phát nhu yếu phẩm, vận động tuân thủ biện pháp phòng dịch.
+                                    </p>
+                                    <p className="text-yellow-200 font-semibold text-sm">
+                                        Ý nghĩa xã hội: Thể hiện tiềm năng của tôn giáo như một kênh vận động xã hội hiệu quả trong những tình huống khẩn cấp.
+                                    </p>
+                                </div>
                             </div>
-                            <div className="w-[420px] text-left">
-                                <h3 className="text-4xl font-bold text-yellow-300 mb-5">Phòng chống dịch bệnh, thiên tai</h3>
-                                <p className="text-white text-xl mb-4">
-                                    Đại dịch COVID-19 trở thành 'bài kiểm tra' thực tế về khả năng phối hợp giữa Nhà nước và các tổ chức tôn giáo. Nhiều cơ sở tôn giáo đã trở thành điểm cứu trợ, phân phát nhu yếu phẩm, vận động tuân thủ biện pháp phòng dịch.
-                                </p>
-                                <p className="text-yellow-200 font-semibold">Ý nghĩa xã hội: Thể hiện tiềm năng của tôn giáo như một kênh vận động xã hội hiệu quả trong những tình huống khẩn cấp.</p>
+
+                            {/* THI ĐUA YÊU NƯỚC - Mobile */}
+                            <div className="flex flex-col items-center text-center">
+                                <div className="w-32 h-32 rounded-full overflow-hidden shadow-2xl border-4 border-yellow-400 mb-4">
+                                    <img
+                                        src="/5.2.2.png"
+                                        alt="Thi đua yêu nước"
+                                        className="w-full h-full object-cover scale-110"
+                                    />
+                                </div>
+                                <div className="max-w-xs mx-auto">
+                                    <h3 className="text-lg font-bold text-yellow-300 mb-3">Thi đua yêu nước</h3>
+                                    <p className="text-white text-sm leading-relaxed mb-3">
+                                        Phương châm 'Người Công giáo tốt cũng là công dân tốt' thể hiện sự gắn kết giữa đức tin và trách nhiệm công dân. Khi giáo dân tích cực tham gia xây dựng quê hương, họ đang đồng thời thực hành giáo lý và đóng góp vào sự phát triển chung.
+                                    </p>
+                                    <p className="text-yellow-200 font-semibold text-sm">
+                                        Ý nghĩa xã hội: Củng cố mối liên hệ giữa tôn giáo và cộng đồng, tăng cường sự đồng thuận xã hội.
+                                    </p>
+                                </div>
                             </div>
                         </div>
 
@@ -1993,7 +2140,7 @@ function App() {
                 </section>
 
                 {/* AI Transparency Section - Traditional Vietnamese Style */}
-                <section id="tinh-minh-bach-ai" className="relative bg-gradient-to-br from-red-800 via-red-900 to-black py-20" data-reveal>
+                <section id="tinh-minh-bach-ai" className="relative bg-gradient-to-br from-red-800 via-red-900 to-black py-10 md:py-20" data-reveal>
                     {/* Video nền động */}
                     <video
                         className="absolute inset-0 w-full h-full object-cover opacity-20"
@@ -2016,61 +2163,61 @@ function App() {
                         }}></div>
                     </div>
 
-                    <div className="relative z-20 max-w-7xl mx-auto px-6">
+                    <div className="relative z-20 max-w-7xl mx-auto px-4 md:px-6">
                         {/* Header section */}
-                        <div className="text-center mb-16">
-                            <div className="inline-flex items-center gap-4 mb-6 px-8 py-3 bg-yellow-400/20 backdrop-blur-sm rounded-full border-2 border-yellow-400/50">
-                                <span className="text-3xl">🤖</span>
-                                <span className="text-yellow-300 text-lg font-bold tracking-wide font-mono">
+                        <div className="text-center mb-10 md:mb-16">
+                            <div className="inline-flex items-center gap-2 md:gap-4 mb-4 md:mb-6 px-4 md:px-8 py-2 md:py-3 bg-yellow-400/20 backdrop-blur-sm rounded-full border-2 border-yellow-400/50">
+                                <span className="text-xl md:text-3xl">🤖</span>
+                                <span className="text-yellow-300 text-sm md:text-lg font-bold tracking-wide font-mono">
                                     TÍNH MINH BẠCH KHI SỬ DỤNG AI
                                 </span>
-                                <span className="text-3xl">📋</span>
+                                <span className="text-xl md:text-3xl">📋</span>
                             </div>
 
-                            <h2 className="text-5xl md:text-6xl font-bold text-yellow-400 mb-4 tracking-wide">
+                            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-yellow-400 mb-3 md:mb-4 tracking-wide px-2">
                                 Công cụ AI trong Học thuật
                             </h2>
-                            <p className="text-xl text-white/90 max-w-3xl mx-auto">
+                            <p className="text-base md:text-xl text-white/90 max-w-3xl mx-auto px-3">
                                 Cam kết minh bạch về việc sử dụng AI trong tạo hình ảnh minh họa cho bài thuyết trình
                             </p>
-                            <div className="w-32 h-1 bg-yellow-400 mx-auto mt-6"></div>
+                            <div className="w-24 md:w-32 h-1 bg-yellow-400 mx-auto mt-4 md:mt-6"></div>
                         </div>
 
                         {/* 8 ô nội dung - phong cách truyền thống */}
-                        <div className="max-w-6xl mx-auto space-y-8">
+                        <div className="max-w-6xl mx-auto space-y-6 md:space-y-8">
                             {/* Ô 1 - Công cụ AI đã sử dụng */}
-                            <div className="w-full mx-auto bg-gradient-to-r from-yellow-50 to-orange-50 border-4 border-yellow-400 p-8 rounded-3xl shadow-2xl hover:shadow-yellow-400/20 transition-all duration-300">
-                                <h3 className="text-3xl font-bold text-red-800 mb-6 flex items-center">
-                                    <span className="bg-red-800 text-yellow-400 rounded-full w-12 h-12 flex items-center justify-center text-xl font-black mr-6">1</span>
+                            <div className="w-full mx-auto bg-gradient-to-r from-yellow-50 to-orange-50 border-3 md:border-4 border-yellow-400 p-4 md:p-6 lg:p-8 rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl hover:shadow-yellow-400/20 transition-all duration-300">
+                                <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-red-800 mb-4 md:mb-6 flex items-center">
+                                    <span className="bg-red-800 text-yellow-400 rounded-full w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 flex items-center justify-center text-base md:text-lg lg:text-xl font-black mr-3 md:mr-6">1</span>
                                     Công cụ AI đã sử dụng
                                 </h3>
-                                <div className="space-y-6">
-                                    <div className="bg-white/80 rounded-2xl p-6 border-2 border-red-200">
-                                        <h4 className="text-red-700 font-bold text-xl mb-3 flex items-center gap-3">
-                                            <span className="text-2xl">🎥</span>
+                                <div className="space-y-4 md:space-y-6">
+                                    <div className="bg-white/80 rounded-xl md:rounded-2xl p-4 md:p-6 border-2 border-red-200">
+                                        <h4 className="text-red-700 font-bold text-lg md:text-xl mb-2 md:mb-3 flex items-center gap-2 md:gap-3">
+                                            <span className="text-xl md:text-2xl">🎥</span>
                                             Runway Gen-2
                                         </h4>
-                                        <p className="text-red-600 text-lg leading-relaxed">Tạo video minh họa chính từ prompt mô tả chi tiết, chuyển cảnh mượt mà.</p>
+                                        <p className="text-red-600 text-sm md:text-base lg:text-lg leading-relaxed">Tạo video minh họa chính từ prompt mô tả chi tiết, chuyển cảnh mượt mà.</p>
                                     </div>
-                                    <div className="bg-white/80 rounded-2xl p-6 border-2 border-red-200">
-                                        <h4 className="text-red-700 font-bold text-xl mb-3 flex items-center gap-3">
-                                            <span className="text-2xl">🎨</span>
+                                    <div className="bg-white/80 rounded-xl md:rounded-2xl p-4 md:p-6 border-2 border-red-200">
+                                        <h4 className="text-red-700 font-bold text-lg md:text-xl mb-2 md:mb-3 flex items-center gap-2 md:gap-3">
+                                            <span className="text-xl md:text-2xl">🎨</span>
                                             GPT (OpenAI)
                                         </h4>
-                                        <p className="text-red-600 text-lg leading-relaxed">Tạo minh họa, biểu tượng, texture và background theo prompt chi tiết.</p>
+                                        <p className="text-red-600 text-sm md:text-base lg:text-lg leading-relaxed">Tạo minh họa, biểu tượng, texture và background theo prompt chi tiết.</p>
                                     </div>
-                                    <div className="bg-white/80 rounded-2xl p-6 border-2 border-red-200">
-                                        <h4 className="text-red-700 font-bold text-xl mb-3 flex items-center gap-3">
-                                            <span className="text-2xl">🌟</span>
+                                    <div className="bg-white/80 rounded-xl md:rounded-2xl p-4 md:p-6 border-2 border-red-200">
+                                        <h4 className="text-red-700 font-bold text-lg md:text-xl mb-2 md:mb-3 flex items-center gap-2 md:gap-3">
+                                            <span className="text-xl md:text-2xl">🌟</span>
                                             Gemini (Google)
                                         </h4>
-                                        <p className="text-red-600 text-lg leading-relaxed">Tạo ảnh/đồ họa bổ sung và biến thể để đa dạng hóa trải nghiệm.</p>
+                                        <p className="text-red-600 text-sm md:text-base lg:text-lg leading-relaxed">Tạo ảnh/đồ họa bổ sung và biến thể để đa dạng hóa trải nghiệm.</p>
                                     </div>
-                                    <div className="bg-gradient-to-r from-yellow-400/20 to-orange-400/20 rounded-xl p-6 border-l-4 border-yellow-400">
-                                        <p className="text-red-700 font-semibold text-lg">
+                                    <div className="bg-gradient-to-r from-yellow-400/20 to-orange-400/20 rounded-lg md:rounded-xl p-4 md:p-6 border-l-4 border-yellow-400">
+                                        <p className="text-red-700 font-semibold text-sm md:text-base lg:text-lg">
                                             → Nội dung video được tạo bằng AI để minh họa khái niệm, timeline, poster mô phỏng phong cách cổ động.
                                         </p>
-                                        <p className="text-red-700 font-semibold text-lg mt-3">
+                                        <p className="text-red-700 font-semibold text-sm md:text-base lg:text-lg mt-2 md:mt-3">
                                             → Các hình ảnh AI được sử dụng để làm cho bài giảng về tôn giáo trong thời kỳ quá độ trở nên hấp dẫn và trực quan hơn.
                                         </p>
                                     </div>
@@ -2078,28 +2225,28 @@ function App() {
                             </div>
 
                             {/* Ô 2 - Mục đích sử dụng AI */}
-                            <div className="w-full mx-auto bg-gradient-to-r from-red-50 to-pink-50 border-4 border-red-400 p-10 rounded-3xl shadow-2xl hover:shadow-red-400/20 transition-all duration-300">
-                                <h3 className="text-4xl font-bold text-red-800 mb-8 flex items-center">
-                                    <span className="bg-red-800 text-yellow-400 rounded-full w-14 h-14 flex items-center justify-center text-2xl font-black mr-8">2</span>
+                            <div className="w-full mx-auto bg-gradient-to-r from-red-50 to-pink-50 border-3 md:border-4 border-red-400 p-4 md:p-8 lg:p-10 rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl hover:shadow-red-400/20 transition-all duration-300">
+                                <h3 className="text-xl md:text-3xl lg:text-4xl font-bold text-red-800 mb-4 md:mb-6 lg:mb-8 flex items-center">
+                                    <span className="bg-red-800 text-yellow-400 rounded-full w-8 h-8 md:w-10 md:h-10 lg:w-14 lg:h-14 flex items-center justify-center text-base md:text-xl lg:text-2xl font-black mr-3 md:mr-6 lg:mr-8">2</span>
                                     Mục đích sử dụng AI trong Học thuật
                                 </h3>
-                                <div className="space-y-6">
-                                    <div className="bg-white/95 rounded-2xl p-8 border-3 border-red-200 shadow-lg">
-                                        <div className="flex items-start gap-6">
-                                            <div className="text-6xl flex-shrink-0">📈</div>
+                                <div className="space-y-4 md:space-y-6">
+                                    <div className="bg-white/95 rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 border-2 md:border-3 border-red-200 shadow-md md:shadow-lg">
+                                        <div className="flex items-start gap-3 md:gap-6">
+                                            <div className="text-3xl md:text-4xl lg:text-6xl flex-shrink-0">📈</div>
                                             <div className="flex-1">
-                                                <h4 className="text-red-700 font-bold text-2xl mb-4">Nâng cao trải nghiệm người dùng (UX)</h4>
-                                                <ul className="text-red-600 text-lg space-y-2">
-                                                    <li className="flex items-start gap-3">
-                                                        <span className="text-red-500 text-xl mt-1">•</span>
+                                                <h4 className="text-red-700 font-bold text-lg md:text-xl lg:text-2xl mb-2 md:mb-4">Nâng cao trải nghiệm người dùng (UX)</h4>
+                                                <ul className="text-red-600 text-sm md:text-base lg:text-lg space-y-1 md:space-y-2">
+                                                    <li className="flex items-start gap-2 md:gap-3">
+                                                        <span className="text-red-500 text-base md:text-xl mt-0.5">•</span>
                                                         <span>Tạo hình ảnh trực quan cho các khái niệm học thuật</span>
                                                     </li>
-                                                    <li className="flex items-start gap-3">
-                                                        <span className="text-red-500 text-xl mt-1">•</span>
+                                                    <li className="flex items-start gap-2 md:gap-3">
+                                                        <span className="text-red-500 text-base md:text-xl mt-0.5">•</span>
                                                         <span>Sơ đồ hóa các mối quan hệ phức tạp thành hình ảnh dễ hiểu</span>
                                                     </li>
-                                                    <li className="flex items-start gap-3">
-                                                        <span className="text-red-500 text-xl mt-1">•</span>
+                                                    <li className="flex items-start gap-2 md:gap-3">
+                                                        <span className="text-red-500 text-base md:text-xl mt-0.5">•</span>
                                                         <span>Thiết kế layout và background phù hợp với chủ đề</span>
                                                     </li>
                                                 </ul>
@@ -2107,22 +2254,22 @@ function App() {
                                         </div>
                                     </div>
 
-                                    <div className="bg-white/95 rounded-2xl p-8 border-3 border-red-200 shadow-lg">
-                                        <div className="flex items-start gap-6">
-                                            <div className="text-6xl flex-shrink-0">🎨</div>
+                                    <div className="bg-white/95 rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 border-2 md:border-3 border-red-200 shadow-md md:shadow-lg">
+                                        <div className="flex items-start gap-3 md:gap-6">
+                                            <div className="text-3xl md:text-4xl lg:text-6xl flex-shrink-0">🎨</div>
                                             <div className="flex-1">
-                                                <h4 className="text-red-700 font-bold text-2xl mb-4">Tạo minh họa chuyên biệt</h4>
-                                                <ul className="text-red-600 text-lg space-y-2">
-                                                    <li className="flex items-start gap-3">
-                                                        <span className="text-red-500 text-xl mt-1">•</span>
+                                                <h4 className="text-red-700 font-bold text-lg md:text-xl lg:text-2xl mb-2 md:mb-4">Tạo minh họa chuyên biệt</h4>
+                                                <ul className="text-red-600 text-sm md:text-base lg:text-lg space-y-1 md:space-y-2">
+                                                    <li className="flex items-start gap-2 md:gap-3">
+                                                        <span className="text-red-500 text-base md:text-xl mt-0.5">•</span>
                                                         <span>Tạo biểu tượng và icon phù hợp với nội dung học thuật</span>
                                                     </li>
-                                                    <li className="flex items-start gap-3">
-                                                        <span className="text-red-500 text-xl mt-1">•</span>
+                                                    <li className="flex items-start gap-2 md:gap-3">
+                                                        <span className="text-red-500 text-base md:text-xl mt-0.5">•</span>
                                                         <span>Thiết kế poster và banner theo phong cách cổ động</span>
                                                     </li>
-                                                    <li className="flex items-start gap-3">
-                                                        <span className="text-red-500 text-xl mt-1">•</span>
+                                                    <li className="flex items-start gap-2 md:gap-3">
+                                                        <span className="text-red-500 text-base md:text-xl mt-0.5">•</span>
                                                         <span>Tạo texture và pattern nền phù hợp với theme</span>
                                                     </li>
                                                 </ul>
@@ -2130,22 +2277,22 @@ function App() {
                                         </div>
                                     </div>
 
-                                    <div className="bg-white/95 rounded-2xl p-8 border-3 border-red-200 shadow-lg">
-                                        <div className="flex items-start gap-6">
-                                            <div className="text-6xl flex-shrink-0">⚖️</div>
+                                    <div className="bg-white/95 rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 border-2 md:border-3 border-red-200 shadow-md md:shadow-lg">
+                                        <div className="flex items-start gap-3 md:gap-6">
+                                            <div className="text-3xl md:text-4xl lg:text-6xl flex-shrink-0">⚖️</div>
                                             <div className="flex-1">
-                                                <h4 className="text-red-700 font-bold text-2xl mb-4">Đảm bảo tính chính xác và đạo đức</h4>
-                                                <ul className="text-red-600 text-lg space-y-2">
-                                                    <li className="flex items-start gap-3">
-                                                        <span className="text-red-500 text-xl mt-1">•</span>
+                                                <h4 className="text-red-700 font-bold text-lg md:text-xl lg:text-2xl mb-2 md:mb-4">Đảm bảo tính chính xác và đạo đức</h4>
+                                                <ul className="text-red-600 text-sm md:text-base lg:text-lg space-y-1 md:space-y-2">
+                                                    <li className="flex items-start gap-2 md:gap-3">
+                                                        <span className="text-red-500 text-base md:text-xl mt-0.5">•</span>
                                                         <span>Chỉ mang tính minh họa, không thay thế tài liệu gốc</span>
                                                     </li>
-                                                    <li className="flex items-start gap-3">
-                                                        <span className="text-red-500 text-xl mt-1">•</span>
+                                                    <li className="flex items-start gap-2 md:gap-3">
+                                                        <span className="text-red-500 text-base md:text-xl mt-0.5">•</span>
                                                         <span>Không tạo giả mạo tư liệu lịch sử hay chứng cứ</span>
                                                     </li>
-                                                    <li className="flex items-start gap-3">
-                                                        <span className="text-red-500 text-xl mt-1">•</span>
+                                                    <li className="flex items-start gap-2 md:gap-3">
+                                                        <span className="text-red-500 text-base md:text-xl mt-0.5">•</span>
                                                         <span>Tuân thủ nguyên tắc học thuật và bản quyền</span>
                                                     </li>
                                                 </ul>
@@ -2156,50 +2303,50 @@ function App() {
                             </div>
 
                             {/* Ô 3 - Vai trò hỗ trợ */}
-                            <div className="w-full mx-auto bg-gradient-to-r from-green-50 to-emerald-50 border-4 border-green-500 p-8 rounded-3xl shadow-2xl hover:shadow-green-400/20 transition-all duration-300">
-                                <h3 className="text-3xl font-bold text-red-800 mb-6 flex items-center">
-                                    <span className="bg-red-800 text-yellow-400 rounded-full w-12 h-12 flex items-center justify-center text-xl font-black mr-6">3</span>
+                            <div className="w-full mx-auto bg-gradient-to-r from-green-50 to-emerald-50 border-3 md:border-4 border-green-500 p-4 md:p-6 lg:p-8 rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl hover:shadow-green-400/20 transition-all duration-300">
+                                <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-red-800 mb-4 md:mb-6 flex items-center">
+                                    <span className="bg-red-800 text-yellow-400 rounded-full w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 flex items-center justify-center text-base md:text-lg lg:text-xl font-black mr-3 md:mr-6">3</span>
                                     Vai trò hỗ trợ – không thay thế
                                 </h3>
-                                <ul className="space-y-4 text-lg">
-                                    <li className="flex items-start bg-white/80 rounded-xl p-4 border-2 border-green-200">
-                                        <span className="text-green-500 mr-4 mt-1 text-2xl">✓</span>
+                                <ul className="space-y-3 md:space-y-4 text-sm md:text-base lg:text-lg">
+                                    <li className="flex items-start bg-white/80 rounded-lg md:rounded-xl p-3 md:p-4 border-2 border-green-200">
+                                        <span className="text-green-500 mr-3 md:mr-4 mt-0.5 md:mt-1 text-lg md:text-2xl">✓</span>
                                         <span className="text-red-700">AI chỉ hỗ trợ tạo minh họa/đồ họa; nội dung học thuật do sinh viên biên soạn.</span>
                                     </li>
-                                    <li className="flex items-start bg-white/80 rounded-xl p-4 border-2 border-green-200">
-                                        <span className="text-green-500 mr-4 mt-1 text-2xl">✓</span>
+                                    <li className="flex items-start bg-white/80 rounded-lg md:rounded-xl p-3 md:p-4 border-2 border-green-200">
+                                        <span className="text-green-500 mr-3 md:mr-4 mt-0.5 md:mt-1 text-lg md:text-2xl">✓</span>
                                         <span className="text-red-700">Text, trích dẫn, lập luận đều trải qua biên tập thủ công và đối chiếu nguồn.</span>
                                     </li>
-                                    <li className="flex items-start bg-white/80 rounded-xl p-4 border-2 border-green-200">
-                                        <span className="text-green-500 mr-4 mt-1 text-2xl">✓</span>
+                                    <li className="flex items-start bg-white/80 rounded-lg md:rounded-xl p-3 md:p-4 border-2 border-green-200">
+                                        <span className="text-green-500 mr-3 md:mr-4 mt-0.5 md:mt-1 text-lg md:text-2xl">✓</span>
                                         <span className="text-red-700">Không dùng AI để tạo giả mạo tư liệu lịch sử hay thay đổi ngữ cảnh tài liệu.</span>
                                     </li>
                                 </ul>
                             </div>
 
                             {/* Ô 4 - Quy trình kiểm tra */}
-                            <div className="w-full mx-auto bg-gradient-to-r from-blue-50 to-indigo-50 border-4 border-blue-500 p-10 rounded-3xl shadow-2xl hover:shadow-blue-400/20 transition-all duration-300">
-                                <h3 className="text-4xl font-bold text-red-800 mb-8 flex items-center">
-                                    <span className="bg-red-800 text-yellow-400 rounded-full w-14 h-14 flex items-center justify-center text-2xl font-black mr-8">4</span>
+                            <div className="w-full mx-auto bg-gradient-to-r from-blue-50 to-indigo-50 border-3 md:border-4 border-blue-500 p-4 md:p-8 lg:p-10 rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl hover:shadow-blue-400/20 transition-all duration-300">
+                                <h3 className="text-xl md:text-3xl lg:text-4xl font-bold text-red-800 mb-4 md:mb-6 lg:mb-8 flex items-center">
+                                    <span className="bg-red-800 text-yellow-400 rounded-full w-8 h-8 md:w-10 md:h-10 lg:w-14 lg:h-14 flex items-center justify-center text-base md:text-xl lg:text-2xl font-black mr-3 md:mr-6 lg:mr-8">4</span>
                                     Quy trình kiểm tra và đảm bảo chất lượng
                                 </h3>
-                                <div className="space-y-6">
-                                    <div className="bg-white/95 rounded-2xl p-8 border-3 border-blue-200 shadow-lg">
-                                        <div className="flex items-start gap-6">
-                                            <div className="text-6xl flex-shrink-0">🏷️</div>
+                                <div className="space-y-4 md:space-y-6">
+                                    <div className="bg-white/95 rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 border-2 md:border-3 border-blue-200 shadow-md md:shadow-lg">
+                                        <div className="flex items-start gap-3 md:gap-6">
+                                            <div className="text-3xl md:text-4xl lg:text-6xl flex-shrink-0">🏷️</div>
                                             <div className="flex-1">
-                                                <h4 className="text-blue-700 font-bold text-2xl mb-4">Ghi nhãn và đánh dấu nguồn gốc</h4>
-                                                <ul className="text-blue-600 text-lg space-y-2">
-                                                    <li className="flex items-start gap-3">
-                                                        <span className="text-blue-500 text-xl mt-1">•</span>
+                                                <h4 className="text-blue-700 font-bold text-lg md:text-xl lg:text-2xl mb-2 md:mb-4">Ghi nhãn và đánh dấu nguồn gốc</h4>
+                                                <ul className="text-blue-600 text-sm md:text-base lg:text-lg space-y-1 md:space-y-2">
+                                                    <li className="flex items-start gap-2 md:gap-3">
+                                                        <span className="text-blue-500 text-base md:text-xl mt-0.5">•</span>
                                                         <span>Gắn tag "AI-generated" trong metadata của tệp hình ảnh</span>
                                                     </li>
-                                                    <li className="flex items-start gap-3">
-                                                        <span className="text-blue-500 text-xl mt-1">•</span>
+                                                    <li className="flex items-start gap-2 md:gap-3">
+                                                        <span className="text-blue-500 text-base md:text-xl mt-0.5">•</span>
                                                         <span>Thêm watermark hoặc chú thích góc ảnh khi cần thiết</span>
                                                     </li>
-                                                    <li className="flex items-start gap-3">
-                                                        <span className="text-blue-500 text-xl mt-1">•</span>
+                                                    <li className="flex items-start gap-2 md:gap-3">
+                                                        <span className="text-blue-500 text-base md:text-xl mt-0.5">•</span>
                                                         <span>Ghi rõ alt text để phân biệt với hình ảnh thật</span>
                                                     </li>
                                                 </ul>
@@ -2207,22 +2354,22 @@ function App() {
                                         </div>
                                     </div>
 
-                                    <div className="bg-white/95 rounded-2xl p-8 border-3 border-blue-200 shadow-lg">
-                                        <div className="flex items-start gap-6">
-                                            <div className="text-6xl flex-shrink-0">🔍</div>
+                                    <div className="bg-white/95 rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 border-2 md:border-3 border-blue-200 shadow-md md:shadow-lg">
+                                        <div className="flex items-start gap-3 md:gap-6">
+                                            <div className="text-3xl md:text-4xl lg:text-6xl flex-shrink-0">🔍</div>
                                             <div className="flex-1">
-                                                <h4 className="text-blue-700 font-bold text-2xl mb-4">Kiểm duyệt nội dung và chất lượng</h4>
-                                                <ul className="text-blue-600 text-lg space-y-2">
-                                                    <li className="flex items-start gap-3">
-                                                        <span className="text-blue-500 text-xl mt-1">•</span>
+                                                <h4 className="text-blue-700 font-bold text-lg md:text-xl lg:text-2xl mb-2 md:mb-4">Kiểm duyệt nội dung và chất lượng</h4>
+                                                <ul className="text-blue-600 text-sm md:text-base lg:text-lg space-y-1 md:space-y-2">
+                                                    <li className="flex items-start gap-2 md:gap-3">
+                                                        <span className="text-blue-500 text-base md:text-xl mt-0.5">•</span>
                                                         <span>Lọc và loại bỏ nội dung có thể gây hiểu lầm hoặc nhạy cảm</span>
                                                     </li>
-                                                    <li className="flex items-start gap-3">
-                                                        <span className="text-blue-500 text-xl mt-1">•</span>
+                                                    <li className="flex items-start gap-2 md:gap-3">
+                                                        <span className="text-blue-500 text-base md:text-xl mt-0.5">•</span>
                                                         <span>Đảm bảo prompt phù hợp với ngữ cảnh học thuật</span>
                                                     </li>
-                                                    <li className="flex items-start gap-3">
-                                                        <span className="text-blue-500 text-xl mt-1">•</span>
+                                                    <li className="flex items-start gap-2 md:gap-3">
+                                                        <span className="text-blue-500 text-base md:text-xl mt-0.5">•</span>
                                                         <span>Kiểm tra tính chính xác của hình ảnh so với mô tả</span>
                                                     </li>
                                                 </ul>
@@ -2230,22 +2377,22 @@ function App() {
                                         </div>
                                     </div>
 
-                                    <div className="bg-white/95 rounded-2xl p-8 border-3 border-blue-200 shadow-lg">
-                                        <div className="flex items-start gap-6">
-                                            <div className="text-6xl flex-shrink-0">📝</div>
+                                    <div className="bg-white/95 rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 border-2 md:border-3 border-blue-200 shadow-md md:shadow-lg">
+                                        <div className="flex items-start gap-3 md:gap-6">
+                                            <div className="text-3xl md:text-4xl lg:text-6xl flex-shrink-0">📝</div>
                                             <div className="flex-1">
-                                                <h4 className="text-blue-700 font-bold text-2xl mb-4">Lưu trữ và theo dõi</h4>
-                                                <ul className="text-blue-600 text-lg space-y-2">
-                                                    <li className="flex items-start gap-3">
-                                                        <span className="text-blue-500 text-xl mt-1">•</span>
+                                                <h4 className="text-blue-700 font-bold text-lg md:text-xl lg:text-2xl mb-2 md:mb-4">Lưu trữ và theo dõi</h4>
+                                                <ul className="text-blue-600 text-sm md:text-base lg:text-lg space-y-1 md:space-y-2">
+                                                    <li className="flex items-start gap-2 md:gap-3">
+                                                        <span className="text-blue-500 text-base md:text-xl mt-0.5">•</span>
                                                         <span>Ghi nhật ký prompt và thông số tạo để truy vết</span>
                                                     </li>
-                                                    <li className="flex items-start gap-3">
-                                                        <span className="text-blue-500 text-xl mt-1">•</span>
+                                                    <li className="flex items-start gap-2 md:gap-3">
+                                                        <span className="text-blue-500 text-base md:text-xl mt-0.5">•</span>
                                                         <span>Lưu phiên bản gốc và các chỉnh sửa sau đó</span>
                                                     </li>
-                                                    <li className="flex items-start gap-3">
-                                                        <span className="text-blue-500 text-xl mt-1">•</span>
+                                                    <li className="flex items-start gap-2 md:gap-3">
+                                                        <span className="text-blue-500 text-base md:text-xl mt-0.5">•</span>
                                                         <span>Tạo báo cáo tổng hợp việc sử dụng AI cho từng project</span>
                                                     </li>
                                                 </ul>
@@ -2254,8 +2401,6 @@ function App() {
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </section>
