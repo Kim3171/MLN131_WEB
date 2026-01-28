@@ -444,7 +444,7 @@ function App() {
                                 onCanPlay={() => setVideoCanPlay(true)}
                                 onError={() => setVideoFailed(true)}
                             >
-                                <source src="/vn_flag.mp4" type="video/mp4" />
+                                <source src="/flag.mp4" type="video/mp4" />
                             </video>
                             <div className="hero-bg-overlay" />
                         </div>
@@ -569,7 +569,7 @@ function App() {
                 </section>
 
                 {/* Quan điểm & Chính sách */}
-                <section id="quan-diem-chinh-sach" className="min-h-screen bg-gradient-to-br from-red-700 via-red-800 to-red-900 relative overflow-hidden">
+                <section id="quan-diem-chinh-sach" className="min-h-screen bg-gradient-to-br from-red-700 via-red-800 to-red-900 relative overflow-hidden flex items-center">
                     {/* Video nền */}
                     <video
                         className="absolute inset-0 w-full h-full object-cover opacity-15"
@@ -592,24 +592,24 @@ function App() {
                         }}></div>
                     </div>
 
-                    <div className="relative z-20 container mx-auto px-8 py-20">
-                        {/* Tiêu đề chính */}
-                        <div className="text-center mb-20">
-                            <h1 className="text-5xl md:text-6xl font-bold text-yellow-400 mb-4 tracking-wide">
+                    <div className="relative z-20 container mx-auto px-8 py-16">
+                        {/* Tiêu đề chính - Adjusted spacing */}
+                        <div className="text-center mb-16">
+                            <h1 className="text-5xl md:text-6xl font-bold text-yellow-400 mb-6 tracking-wide">
                                 QUAN ĐIỂM & CHÍNH SÁCH VỀ TÔN GIÁO
                             </h1>
                             <div className="w-32 h-1 bg-yellow-400 mx-auto mt-6"></div>
                         </div>
 
-                        {/* Content Layout - Hiệu ứng nhẹ nhàng, bố trí gọn */}
-                        <div className="relative max-w-6xl mx-auto min-h-[600px] px-6">
+                        {/* Content Layout - Moved content upward and increased spacing */}
+                        <div className="relative max-w-6xl mx-auto min-h-[650px] px-6 mt-4">
 
-                            {/* CƠ SỞ LÝ LUẬN */}
-                            <div className="absolute top-30 left-0">
-                                <div className="flex items-center gap-10">
+                            {/* CƠ SỞ LÝ LUẬN - Moved upward */}
+                            <div className="absolute top-20 left-0">
+                                <div className="flex items-center gap-10 mb-20">
                                     <div className="w-[360px]">
-                                        <h3 className="text-4xl font-bold text-yellow-400 mb-4" style={{ textAlign: 'right' }}>CƠ SỞ LÝ LUẬN TỪ CNXH KHOA HỌC</h3>
-                                        <p className="text-white text-base leading-8" style={{ textAlign: 'right', lineHeight: '1.5' }}>
+                                        <h3 className="text-4xl font-bold text-yellow-400 mb-6" style={{ textAlign: 'right' }}>CƠ SỞ LÝ LUẬN TỪ CNXH KHOA HỌC</h3>
+                                        <p className="text-white text-base leading-8" style={{ textAlign: 'right', lineHeight: '1.6' }}>
                                             Tôn giáo là hình thái ý thức xã hội có tính lịch sử, phát sinh từ những điều kiện kinh tế-xã hội cụ thể. Nó tồn tại lâu dài vì những nguyên nhân sinh ra nó chưa thể khắc phục ngay trong thời kỳ quá độ.
                                         </p>
                                     </div>
@@ -619,27 +619,36 @@ function App() {
                                 </div>
                             </div>
 
-                            {/* TÍNH HAI MẶT */}
-                            <div className="absolute top-[138px] right-[-30px]">
-                                <div className="flex items-center gap-10 flex-row-reverse">
-                                    <div className="w-[320px]">
-                                        <h3 className="text-4xl font-bold text-yellow-400 mb-4" style={{ textAlign: 'left' }}>TÍNH HAI MẶT</h3>
-                                        <p className="text-white text-base leading-7" style={{ textAlign: 'left', lineHeight: '1.5' }}>
+                            {/* TÍNH HAI MẶT - Moved UPWARD significantly */}
+                            <div className="absolute top-[60px] left-1/2 translate-x-[60px]">
+                                <div className="flex items-center gap-10 mb-20">
+                                    {/* Image */}
+                                    <div className="w-56 h-56 rounded-full overflow-hidden shadow-xl border-[3px] border-yellow-400 hover:scale-105 transition-all duration-300 flex-shrink-0 animate-float-delay">
+                                        <img
+                                            src="/5.1.2.png"
+                                            alt="Tính hai mặt"
+                                            className="w-full h-full object-cover scale-110"
+                                        />
+                                    </div>
+
+                                    {/* Text */}
+                                    <div className="w-[320px] text-left">
+                                        <h3 className="text-4xl font-bold text-yellow-400 mb-6">
+                                            TÍNH HAI MẶT
+                                        </h3>
+                                        <p className="text-white text-base leading-7">
                                             Tôn giáo mang hai mặt đối lập thống nhất: mặt tích cực (giá trị đạo đức, văn hóa) và mặt tiêu cực (có thể trở thành công cụ mê hoặc, cản trở nhận thức khoa học). Chính sách cần dựa trên sự nhìn nhận toàn diện này.
                                         </p>
-                                    </div>
-                                    <div className="w-56 h-56 rounded-full overflow-hidden shadow-xl border-3 border-yellow-400 hover:scale-105 transition-all duration-300 flex-shrink-0 animate-float-delay">
-                                        <img src="/5.1.2.png" alt="Tính hai mặt" className="w-full h-full object-cover scale-125" />
                                     </div>
                                 </div>
                             </div>
 
-                            {/* TIẾP CẬN BẰNG GIÁO DỤC */}
-                            <div className="absolute top-[280px] left-[-150px]">
-                                <div className="flex items-center gap-14">
+                            {/* TIẾP CẬN BẰNG GIÁO DỤC - Moved upward and increased spacing from top circles */}
+                            <div className="absolute top-[380px] left-[-150px]">
+                                <div className="flex items-center gap-14 mb-20">
                                     <div className="w-[420px]">
-                                        <h3 className="text-3xl font-bold text-yellow-400 mb-4" style={{ textAlign: 'right' }}>TIẾP CẬN BẰNG GIÁO DỤC</h3>
-                                        <div className="text-white text-base leading-7 space-y-2" style={{ textAlign: 'right', lineHeight: '1.5' }}>
+                                        <h3 className="text-3xl font-bold text-yellow-400 mb-6" style={{ textAlign: 'right' }}>TIẾP CẬN BẰNG GIÁO DỤC</h3>
+                                        <div className="text-white text-base leading-7 space-y-3" style={{ textAlign: 'right', lineHeight: '1.6' }}>
                                             <p>Không thể dùng mệnh lệnh hành chính để xóa bỏ tôn giáo. Cần nâng cao đời sống vật chất và tinh thần, phát triển giáo dục khoa học - những điều kiện cơ bản để tôn giáo dần mất đi cơ sở tồn tại một cách tự nhiên.</p>
                                         </div>
                                     </div>
@@ -649,12 +658,12 @@ function App() {
                                 </div>
                             </div>
 
-                            {/* NGUYÊN TẮC CHÍNH SÁCH */}
-                            <div className="absolute bottom-0 right-[-205px]">
-                                <div className="flex items-center gap-9 flex-row-reverse">
+                            {/* NGUYÊN TẮC CHÍNH SÁCH - Moved upward */}
+                            <div className="absolute bottom-12 right-[-205px]">
+                                <div className="flex items-center gap-9 flex-row-reverse mb-8">
                                     <div className="w-[480px]">
                                         <h3 className="text-4xl font-bold text-yellow-400 mb-6" style={{ textAlign: 'left' }}>NGUYÊN TẮC CHÍNH SÁCH VIỆT NAM</h3>
-                                        <div className="text-white text-base leading-7 space-y-3" style={{ textAlign: 'left', lineHeight: '1.6' }}>
+                                        <div className="text-white text-base leading-7 space-y-4" style={{ textAlign: 'left', lineHeight: '1.7' }}>
                                             <p>1. Tôn trọng và bảo đảm quyền tự do tín ngưỡng, tôn giáo.<br />
                                                 2. Quản lý bằng pháp luật, phân biệt rõ hoạt động hợp pháp và lợi dụng tôn giáo.<br />
                                                 3. Đoàn kết giữa đồng bào có đạo và không có đạo.<br />
@@ -669,8 +678,8 @@ function App() {
 
                         </div>
 
-                        {/* Nút mũi tên xuống để chuyển section */}
-                        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce">
+                        {/* Nút mũi tên xuống để chuyển section - Adjusted position */}
+                        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
                             <button
                                 onClick={() => scrollToNextSection('quan-diem-chinh-sach')}
                                 className="text-yellow-300 hover:text-yellow-400 transition-colors duration-300 hover:scale-110 transform"
@@ -701,7 +710,7 @@ function App() {
                     <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
                     {/* Tiêu đề */}
-                    <div className="relative z-10 text-center mb-12">
+                    <div className="relative z-10 text-center mb-12 pt-8">
                         <h2 className="text-5xl font-bold text-yellow-400 uppercase mb-4 tracking-wide">
                             GIÁ TRỊ THỰC TIỄN CỦA TÔN GIÁO
                         </h2>
@@ -712,10 +721,10 @@ function App() {
                     </div>
 
                     {/* Container */}
-                    <div className="relative z-10 max-w-7xl mx-auto px-8 min-h-[1200px]">
+                    <div className="relative z-10 max-w-7xl mx-auto px-8 min-h-[1200px] mt-12">
 
-                        {/* TRONG HOẠT ĐỘNG TỪ THIỆN, NHÂN ĐẠO */}
-                        <div className="absolute top-[150px] left-[-50px] flex items-center gap-10">
+                        {/* TRONG HOẠT ĐỘNG TỪ THIỆN, NHÂN ĐẠO - Moved downward */}
+                        <div className="absolute top-[180px] left-[-50px] flex items-center gap-10">
                             <div className="w-56 h-56 rounded-full overflow-hidden shadow-2xl border-4 border-yellow-400 flex-shrink-0 hover:scale-105 transition-all duration-500 animate-float">
                                 <img
                                     src="/5.2.1.png"
@@ -732,8 +741,8 @@ function App() {
                             </div>
                         </div>
 
-                        {/* TRONG PHONG TRÀO THI ĐUA YÊU NƯỚC */}
-                        <div className="absolute top-[580px] left-[30px] flex items-center gap-8">
+                        {/* TRONG PHONG TRÀO THI ĐUA YÊU NƯỚC - Moved downward */}
+                        <div className="absolute top-[650px] left-[30px] flex items-center gap-8">
                             <div className="w-44 h-44 rounded-full overflow-hidden shadow-2xl border-4 border-yellow-400 flex-shrink-0 hover:scale-105 transition-all duration-500 animate-float-delay">
                                 <img
                                     src="/5.2.2.png"
@@ -750,8 +759,8 @@ function App() {
                             </div>
                         </div>
 
-                        {/* TRONG BẢO VỆ MÔI TRƯỜNG */}
-                        <div className="absolute top-[50px] right-[-40px] flex items-center gap-12">
+                        {/* TRONG BẢO VỆ MÔI TRƯỜNG - Moved downward */}
+                        <div className="absolute top-[80px] right-[-40px] flex items-center gap-12">
                             <div className="w-48 h-48 rounded-full overflow-hidden shadow-2xl border-4 border-yellow-400 flex-shrink-0 hover:scale-105 transition-all duration-500 animate-float-slow">
                                 <img
                                     src="/5.2.3.png"
@@ -768,8 +777,8 @@ function App() {
                             </div>
                         </div>
 
-                        {/* TRONG PHÒNG CHỐNG DỊCH BỆNH, THIÊN TAI */}
-                        <div className="absolute top-[380px] right-[20px] flex items-center gap-9">
+                        {/* TRONG PHÒNG CHỐNG DỊCH BỆNH, THIÊN TAI - Moved downward */}
+                        <div className="absolute top-[400px] right-[20px] flex items-center gap-9">
                             <div className="w-48 h-48 rounded-full overflow-hidden shadow-2xl border-4 border-yellow-400 flex-shrink-0 hover:scale-105 transition-all duration-500 animate-float-gentle">
                                 <img
                                     src="/5.2.4.png"
@@ -840,6 +849,9 @@ function App() {
                                     </h3>
                                     <p className="text-white/90 text-xl mb-6 max-w-3xl mx-auto">
                                         Video dưới đây sẽ phân tích cách tiếp cận biện chứng của Nhà nước Việt Nam đối với tôn giáo:
+                                    </p>
+                                    <p className="text-white/90 text-xl mb-6 max-w-3xl mx-auto">
+                                        Video mang tính minh họa học thuật, giúp trực quan hóa nội dung lý luận trong bài học MLN131.
                                     </p>
                                 </div>
 
@@ -1002,7 +1014,7 @@ function App() {
                                                 <div className="bg-red-900/40 rounded-xl p-4 w-full mb-4">
                                                     <div className="flex items-center justify-between mb-2">
                                                         <span className="text-yellow-200/80 text-sm">Thời lượng video</span>
-                                                        <span className="text-yellow-400 font-bold">1 phút 20s</span>
+                                                        <span className="text-yellow-400 font-bold">52s</span>
                                                     </div>
                                                     <div className="w-full bg-red-800/40 rounded-full h-2">
                                                         <div className="bg-gradient-to-r from-yellow-400 to-orange-500 h-2 rounded-full w-3/4"></div>
@@ -1097,10 +1109,21 @@ function App() {
                                                         <span className="text-white/80 text-sm">Nội dung đã được kiểm duyệt</span>
                                                     </div>
                                                 </div>
+                                                {/* English Description */}
+                                                <div className="w-full mt-1 p-4 rounded-xl bg-black/20 border border-yellow-400/20">
+                                                    <p className="text-yellow-300 font-semibold text-sm mb-1">
+                                                        English Description
+                                                    </p>
+                                                    <p className="text-white/80 text-sm leading-relaxed">
+                                                        An educational video explaining Marxist–Leninist perspectives on religion
+                                                        and their practical application in Vietnam.
+                                                    </p>
+                                                </div>
 
                                                 <p className="text-white/90 text-center text-lg leading-relaxed mt-auto">
                                                     Tài liệu chất lượng cao dành cho giáo dục
                                                 </p>
+
                                             </div>
                                         </div>
                                     </div>
@@ -1123,7 +1146,7 @@ function App() {
                                         </div>
                                         <div className="flex items-center justify-center gap-3">
                                             <span className="text-yellow-400 text-xl flex-shrink-0">✓</span>
-                                            <span className="text-white">Cách Việt Nam vận dụng lý luận vào thực tiễn</span>
+                                            <span className="text-white">Cách Nhà nước Việt Nam vận dụng lý luận Mác–Lênin vào thực tiễn</span>
                                         </div>
                                         <div className="flex items-center justify-center gap-3">
                                             <span className="text-yellow-400 text-xl flex-shrink-0">✓</span>
