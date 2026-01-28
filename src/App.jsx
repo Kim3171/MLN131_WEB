@@ -39,9 +39,9 @@ function App() {
     const navItems = [
         { id: 'hero', label: 'Trang chủ' },
         { id: 'timeline', label: 'Hành trình' },
-        { id: 'thoi-ky-qua-do', label: 'Thời kỳ quá độ lên chủ nghĩa xã hội ở Việt Nam' },
-        { id: 'moi-quan-he', label: 'Mối quan hệ giữa độc lập dân tộc và chủ nghĩa xã hội' },
-        { id: 'video-giang-giai', label: 'Video giải thích' }, 
+        { id: 'quan-diem-chinh-sach', label: 'Quan điểm & Chính sách' },
+        { id: 'gia-tri-thuc-tien', label: 'Giá trị thực tiễn' },
+        { id: 'video-giang-giai', label: 'Video giải thích' },
         { id: 'cau-hoi-suy-ngam', label: 'Câu hỏi suy ngẫm' },
         { id: 'quiz', label: 'Quiz' },
         { id: 'tinh-minh-bach-ai', label: 'Tính minh bạch AI' }
@@ -66,66 +66,66 @@ function App() {
 
     const quizQuestions = [
         {
-            question: 'Theo Hồ Chí Minh, độc lập dân tộc phải gắn liền với chủ nghĩa xã hội vì lý do nào sau đây?',
+            question: 'Theo quan điểm duy vật lịch sử, vì sao tôn giáo tồn tại lâu dài trong thời kỳ quá độ lên CNXH?',
             options: [
-                'Để duy trì vương triều phong kiến như các tiền nhân.',
-                'Để đảm bảo độc lập thực sự, tránh lệ thuộc và mang lại tự do, hạnh phúc cho nhân dân lao động.',
-                'Để theo đuổi mô hình tư bản chủ nghĩa như các nước phương Tây.',
-                'Để chỉ tập trung vào việc đánh đuổi ngoại xâm mà không cần cải tạo xã hội.'
+                'Vì đa số người dân vẫn có nhu cầu tín ngưỡng.',
+                'Vì Nhà nước chưa có biện pháp hữu hiệu để xóa bỏ.',
+                'Vì những nguyên nhân kinh tế-xã hội sinh ra tôn giáo chưa được khắc phục triệt để.',
+                'Vì tôn giáo là nhu cầu tinh thần vĩnh viễn của con người.'
             ],
-            correct: 1, // B (second option, index 1)
-            explanation: 'Hồ Chí Minh nhấn mạnh rằng chỉ có chủ nghĩa xã hội mới giải phóng được các dân tộc bị áp bức khỏi ách nô lệ, khác biệt với quan niệm độc lập của tiền nhân chủ yếu tập trung vào lãnh thổ mà không gắn với giải phóng giai cấp.'
+            correct: 2,
+            explanation: 'Quan điểm duy vật lịch sử chỉ ra: tôn giáo phát sinh từ những điều kiện vật chất-xã hội cụ thể (nghèo đói, bất công, hạn chế nhận thức...). Trong thời kỳ quá độ, nhiều điều kiện này vẫn tồn tại, nên tôn giáo còn cơ sở tồn tại.'
         },
         {
-            question: 'Sự khác biệt chính giữa quan niệm độc lập dân tộc của Hồ Chí Minh so với các tiền nhân như Phan Bội Châu hay Phan Châu Trinh là gì?',
+            question: 'Việc Luật Tín ngưỡng, Tôn giáo 2016 "phân biệt hoạt động tôn giáo hợp pháp và việc lợi dụng tôn giáo" thể hiện cách tiếp cận nào?',
             options: [
-                'Không gắn với bất kỳ chủ nghĩa nào, chỉ thuần túy yêu nước.',
-                'Vận dụng sáng tạo chủ nghĩa Mác-Lênin, gắn độc lập với chủ nghĩa xã hội và quốc tế vô sản.',
-                'Chỉ hướng về phương Đông hoặc phương Tây mà không sáng tạo.',
-                'Tập trung vào việc khôi phục chế độ quân chủ phong kiến.'
+                'Tiếp cận dựa trên tính hai mặt của tôn giáo.',
+                'Tiếp cận dựa trên quyền tự do tuyệt đối.',
+                'Tiếp cận dựa trên ưu tiên kiểm soát.',
+                'Tiếp cận dựa trên đối lập giữa tôn giáo và nhà nước.'
             ],
-            correct: 2, // CHANGED TO C (third option, index 2)
-            explanation: 'Các tiền nhân như Phan Bội Châu hướng Nhật Bản hoặc Phan Châu Trinh hướng Pháp, nhưng Hồ Chí Minh sáng tạo bằng cách kết hợp yêu nước với chủ nghĩa xã hội, khắc phục khuynh hướng dân tộc hẹp hòi và giáo điều.'
+            correct: 0,
+            explanation: 'Cách tiếp cận này nhìn nhận: tôn giáo có mặt tích cực (hoạt động hợp pháp, mang giá trị đạo đức) và mặt tiêu cực (bị lợi dụng cho mục đích xấu). Chính sách cần phân biệt để phát huy mặt tích cực, hạn chế mặt tiêu cực.'
         },
         {
-            question: 'Trong tư tưởng Hồ Chí Minh, thời kỳ quá độ lên chủ nghĩa xã hội ở Việt Nam có đặc điểm lớn nhất là gì?',
+            question: 'Nguyên tắc "phát huy giá trị văn hóa, đạo đức tốt đẹp của tôn giáo" phản ánh điều gì trong vận dụng lý luận Mác-Lênin?',
             options: [
-                'Trải qua giai đoạn tư bản chủ nghĩa đầy đủ như các nước châu Âu.',
-                'Bỏ qua việc xây dựng con người mới xã hội chủ nghĩa.',
-                'Chỉ tập trung vào kháng chiến mà không xây dựng kinh tế.',
-                'Từ một nước nông nghiệp lạc hậu tiến thẳng lên chủ nghĩa xã hội, không kinh qua tư bản chủ nghĩa.'
+                'Sự từ bỏ lý luận cơ bản về tôn giáo.',
+                'Sự vận dụng linh hoạt, phù hợp điều kiện cụ thể.',
+                'Sự nhượng bộ trước sức mạnh của tôn giáo.',
+                'Sự thay đổi hoàn toàn quan điểm về tôn giáo.'
             ],
-            correct: 3, // CHANGED TO D (fourth option, index 3)
-            explanation: 'Hồ Chí Minh nhận định đặc điểm to nhất là bỏ qua chế độ tư bản chủ nghĩa, phù hợp với thực tiễn Việt Nam thuộc địa nửa phong kiến, để rút ngắn con đường phát triển.'
+            correct: 1,
+            explanation: 'Đây không phải từ bỏ lý luận, mà là vận dụng nó một cách biện chứng: thừa nhận trong tôn giáo có những yếu tố tích cực có thể khai thác cho mục đích xã hội, phù hợp với nguyên tắc lịch sử-cụ thể.'
         },
         {
-            question: 'Ý nghĩa thực tiễn của việc vận dụng tư tưởng Hồ Chí Minh về độc lập dân tộc gắn liền với chủ nghĩa xã hội trong giai đoạn hiện nay là gì?',
+            question: 'Trong bối cảnh toàn cầu hóa, việc phát huy giá trị tôn giáo ở Việt Nam có thể góp phần gì?',
             options: [
-                'Trở lại mô hình kinh tế kế hoạch hóa tập trung hoàn toàn.',
-                'Chỉ áp dụng cho miền Bắc, không liên quan đến toàn quốc.',
-                'Là cơ sở cho đổi mới, phát triển kinh tế thị trường định hướng xã hội chủ nghĩa và bảo vệ Tổ quốc.',
-                'Bỏ qua hội nhập quốc tế để tránh lệ thuộc.'
+                'Thay thế vai trò của hệ tư tưởng chính thống.',
+                'Xây dựng nền văn hóa giàu bản sắc.',
+                'Giảm bớt sự quản lý của Nhà nước.',
+                'Tạo ra xã hội đa nguyên về tư tưởng.'
             ],
-            correct: 2, // c (second option, index 2)
-            explanation: 'Tư tưởng này giúp Việt Nam kiên định mục tiêu, kết hợp sức mạnh dân tộc với thời đại, đảm bảo phát triển bền vững và giữ vững độc lập tự chủ.'
+            correct: 1,
+            explanation: 'Nhiều giá trị tôn giáo gắn với truyền thống văn hóa dân tộc. Khi được phát huy một cách phù hợp, chúng góp phần làm phong phú bản sắc văn hóa Việt Nam, tạo nền tảng tinh thần vững chắc trong hội nhập.'
         },
         {
-            question: 'Theo Hồ Chí Minh, mối quan hệ giữa độc lập dân tộc và chủ nghĩa xã hội là gì?',
+            question: 'Quan điểm "đoàn kết giữa đồng bào có đạo và không có đạo" dựa trên cơ sở nào?',
             options: [
-                'Độc lập dân tộc là điều kiện tiên quyết cho chủ nghĩa xã hội, và chủ nghĩa xã hội bảo đảm độc lập vững chắc.',
-                'Hai yếu tố độc lập, có thể tách rời nhau.',
-                'Chủ nghĩa xã hội chỉ cần thiết sau khi có độc lập hình thức.',
-                'Độc lập chỉ gắn với tự do cá nhân, không liên quan đến xã hội.'
+                'Sự thừa nhận ưu thế của tôn giáo.',
+                'Truyền thống đoàn kết dân tộc và nhu cầu phát triển chung.',
+                'Áp lực từ các tổ chức tôn giáo.',
+                'Yêu cầu của các tổ chức quốc tế.'
             ],
-            correct: 0, // CHANGED TO A (second option, index 0)
-            explanation: 'Hồ Chí Minh khẳng định quan hệ biện chứng: không có độc lập thì không xây dựng được xã hội chủ nghĩa, và chỉ xã hội chủ nghĩa mới đảm bảo độc lập thực chất, mang lại hạnh phúc cho nhân dân.'
+            correct: 1,
+            explanation: 'Truyền thống đoàn kết là một đặc điểm nổi bật của dân tộc Việt Nam. Trong điều kiện xây dựng và phát triển đất nước, sự đoàn kết toàn dân - bao gồm cả đồng bào theo các tôn giáo - trở thành nguồn lực quan trọng.'
         }
     ]
 
 
     // 2. State (at the top of your component)
     const [score, setScore] = useState(0);
-    
+
 
     // 3. Scroll function
     const scrollToSection = (sectionId) => {
@@ -215,7 +215,7 @@ function App() {
 
     // Observe international solidarity sub-blocks to highlight in local TOC
     useEffect(() => {
-        const targets = document.querySelectorAll('#moi-quan-he [data-intl-topic]')
+        const targets = document.querySelectorAll('#gia-tri-thuc-tien [data-intl-topic]')
         if (!targets.length) return
         const io = new IntersectionObserver((entries) => {
             entries.forEach(e => {
@@ -375,7 +375,7 @@ function App() {
                                 aria-label="Tải lại trang"
                             >
                                 <div className="font-bold text-xl tracking-tight bg-gradient-to-r from-yellow-300 to-yellow-400 bg-clip-text text-transparent">
-                                    HCM202
+                                    MLN131
                                 </div>
                                 <div className="h-6 w-px bg-yellow-400/50"></div>
                                 <div className="text-sm font-semibold text-yellow-200">AI1807</div>
@@ -385,8 +385,8 @@ function App() {
                             <div className="flex-1 max-w-3xl mx-8">
                                 <ul className="flex items-center justify-center space-x-1">
                                     {navItems.map(item => {
-                                        const shortLabel = item.label.includes('Thời kỳ quá độ') ? 'Thời kỳ quá độ' :
-                                            item.label.includes('Mối quan hệ') ? 'Mối quan hệ' :
+                                        const shortLabel = item.label.includes('Quan điểm & Chính sách') ? 'Quan điểm & CS' :
+                                            item.label.includes('Giá trị thực tiễn') ? 'Giá trị thực tiễn' :
                                                 item.label.includes('Câu hỏi suy ngẫm') ? 'Câu hỏi suy ngẫm' :
                                                     item.label.includes('Tính minh bạch AI') ? 'Minh bạch AI' :
                                                         item.label;
@@ -395,7 +395,7 @@ function App() {
                                             <li key={item.id} className="relative">
                                                 <button
                                                     className={`px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 flex items-center gap-1 ${activeSection === item.id
-                                                        ? 'bg-yellow-400 text-black font-bold shadow-md'  
+                                                        ? 'bg-yellow-400 text-black font-bold shadow-md'
                                                         : 'text-yellow-200 hover:bg-yellow-400/20 hover:text-yellow-300'}`}
                                                     onClick={() => scrollToSection(item.id)}
                                                     aria-current={activeSection === item.id ? 'page' : undefined}
@@ -452,11 +452,11 @@ function App() {
                     <div className="container mx-auto px-6 xl:px-20 py-28 lg:py-32 relative z-10 w-full max-w-[1600px]">
                         <div className="hero-layout-final">
                             <div className="hero-text-block hero-text-block-final" data-reveal>
-                                <h1 className="hero-heading-compact" aria-label="Tư tưởng Hồ Chí Minh về độc lập dân tộc và chủ nghĩa xã hội">
-                                    TƯ TƯỞNG HỒ CHÍ MINH VỀ ĐỘC LẬP DÂN TỘC VÀ CHỦ NGHĨA XÃ HỘI
+                                <h1 className="hero-heading-compact" aria-label="SỐNG TỐT ĐỜI, ĐẸP ĐẠO">
+                                    SỐNG TỐT ĐỜI, ĐẸP ĐẠO
                                 </h1>
                                 <p className="hero-desc-compact" data-reveal>
-                                    Khám phá tư tưởng cốt lõi của Chủ tịch Hồ Chí Minh về con đường cách mạng Việt Nam: độc lập dân tộc gắn liền với chủ nghĩa xã hội, phù hợp với điều kiện lịch sử và thực tiễn Việt Nam.
+                                    Tôn giáo trong thời kỳ quá độ lên chủ nghĩa xã hội ở Việt Nam
                                 </p>
                                 <div className="hero-actions" data-reveal>
                                     <Button size="lg" className="cta-primary" onClick={() => { lastFocusedRef.current = document.activeElement; setShowIntro(true) }}>
@@ -468,10 +468,10 @@ function App() {
                                 </div>
                             </div>
                             <div className="flex justify-center lg:justify-start" data-reveal>
-                                <div className="chapter5-single-frame" aria-label="Chương 5: Tư tưởng Hồ Chí Minh về độc lập dân tộc và chủ nghĩa xã hội">
+                                <div className="chapter5-single-frame" aria-label="Chương 6: Tôn giáo trong thời kỳ quá độ lên CNXH ở Việt Nam">
                                     <img
                                         src="/1.png"
-                                        alt="Chương 5: Tư tưởng Hồ Chí Minh về độc lập dân tộc và chủ nghĩa xã hội"
+                                        alt="Chương 6: Tôn giáo trong thời kỳ quá độ lên CNXH ở Việt Nam"
                                         className="chapter5-image"
                                         loading="lazy"
                                     />
@@ -494,7 +494,7 @@ function App() {
                         <div className="intro-dialog">
                             <h3 id="intro-heading" ref={introHeadingRef} tabIndex={-1} className="intro-title">TỔNG QUAN</h3>
                             <div id="intro-body" className="intro-content">
-                                <p>Tư tưởng Hồ Chí Minh về độc lập dân tộc và chủ nghĩa xã hội là kim chỉ nam cho sự nghiệp cách mạng Việt Nam. Từ truyền thống yêu nước, kiên cường chống ngoại xâm của dân tộc, Người phát triển thành quan điểm chiến lược: độc lập dân tộc phải gắn liền với chủ nghĩa xã hội để đảm bảo tự do, hạnh phúc thực sự cho nhân dân. Chuyên trang giúp người học tiếp cận hệ thống, có chứng cứ lịch sử - từ Cách mạng Tháng Tám, kháng chiến chống xâm lược đến công cuộc đổi mới - qua đó hiểu vì sao con đường độc lập dân tộc gắn liền với chủ nghĩa xã hội là sự lựa chọn tất yếu, đúng đắn, bảo đảm tương lai phồn vinh cho đất nước.</p>
+                                <p>Chủ nghĩa Mác-Lênin phân tích tôn giáo như một <strong>hiện tượng xã hội có tính lịch sử</strong>, sẽ tồn tại lâu dài trong thời kỳ quá độ. Ở Việt Nam, quan điểm này được vận dụng với tinh thần <strong>biện chứng và thực tiễn</strong>: không phủ nhận tôn giáo, mà tìm cách phát huy những giá trị tích cực của nó phục vụ sự phát triển chung. Từ cơ sở lý luận đến chính sách cụ thể, mối quan hệ giữa Nhà nước và tôn giáo đang được xây dựng trên nguyên tắc <strong>tôn trọng, đoàn kết và đồng hành</strong>.</p>
                             </div>
                             <div className="intro-actions">
                                 <Button size="sm" variant="outline" className="cta-secondary" onClick={closeIntro}>Đóng</Button>
@@ -525,19 +525,16 @@ function App() {
                         </div>
                     )}
                     <div className="container mx-auto px-4 relative z-10">
-                        <h2 className="text-4xl font-bold text-center text-yellow-300 mb-16">HÀNH TRÌNH TƯ TƯỞNG ĐỘC LẬP DÂN TỘC GẮN LIỀN VỚI CHỦ NGHĨA XÃ HỘI</h2>
+                        <h2 className="text-4xl font-bold text-center text-yellow-300 mb-16">HÀNH TRÌNH CHÍNH SÁCH TÔN GIÁO</h2>
                         <div className="relative">
                             <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-yellow-400" />
                             <div className="space-y-6 md:space-y-10">
                                 {[
-                                    { year: '1930', event: 'Hồ Chí Minh xác định con đường cách mạng Việt Nam', description: 'Giải phóng dân tộc gắn liền với chủ nghĩa xã hội.' },
-                                    { year: '1945', event: 'Cách mạng Tháng Tám thành công', description: 'Giành độc lập dân tộc, mở đầu thời kỳ quá độ lên CNXH.' },
-                                    { year: '1945--1954', event: 'Thời kỳ quá độ trong kháng chiến', description: 'Vừa kháng chiến, vừa xây dựng chế độ mới.' },
-                                    { year: '1954', event: 'Miền Bắc bước vào quá độ lên CNXH', description: 'Xây dựng CNXH, làm cơ sở bảo vệ và củng cố độc lập.' },
-                                    { year: '1960', event: 'Hồ Chí Minh khẳng định vai trò CNXH', description: 'Chỉ CNXH mới bảo đảm độc lập dân tộc vững chắc.' },
-                                    { year: '1991', event: 'Đảng ban hành Cương lĩnh thời kỳ quá độ', description: 'Kiên định độc lập dân tộc gắn liền với CNXH.' },
-                                    { year: '2011', event: 'Bổ sung, phát triển Cương lĩnh', description: 'Làm rõ mô hình CNXH Việt Nam trong thời kỳ đổi mới.' },
-                                    { year: 'Hiện nay', event: 'Vận dụng tư tưởng Hồ Chí Minh', description: 'Giữ vững độc lập dân tộc, phát triển đất nước theo định hướng CNXH.' }
+                                    { year: '1946', event: 'Hiến pháp đầu tiên', description: 'Ghi nhận quyền tự do tín ngưỡng như một quyền cơ bản. Thể hiện tư tưởng đoàn kết toàn dân ngay từ buổi đầu xây dựng nhà nước.' },
+                                    { year: '1990', event: 'Nghị quyết 24 của Bộ Chính trị', description: 'Đánh dấu bước chuyển trong nhận thức: từ nhấn mạnh mặt tiêu cực sang thấy cả tiềm năng tích cực của tôn giáo trong xã hội mới.' },
+                                    { year: '2004', event: 'Pháp lệnh Tín ngưỡng, Tôn giáo', description: 'Chuyển dần từ quản lý hành chính sang quản lý bằng pháp luật. Tạo khung pháp lý cơ bản cho hoạt động tôn giáo hợp pháp.' },
+                                    { year: '2016', event: 'Luật Tín ngưỡng, Tôn giáo', description: 'Hoàn thiện hệ thống pháp luật, thể hiện cách tiếp cận toàn diện: vừa bảo đảm quyền tự do, vừa định hướng phát triển lành mạnh.' },
+                                    { year: 'Hiện nay', event: 'Đồng hành cùng phát triển', description: 'Các tổ chức tôn giáo tham gia ngày càng tích cực vào đời sống xã hội, chứng minh khả năng hài hòa giữa đức tin và trách nhiệm công dân.' }
                                 ].map((item, index) => (
                                     <div key={index} className={`flex items-center ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
                                         <div className={`w-5/12 ${index % 2 === 0 ? 'text-right pr-6 md:pr-8' : 'text-left pl-6 md:pl-8'}`}>
@@ -571,8 +568,8 @@ function App() {
                     </div>
                 </section>
 
-                {/* 5.1 Section: Thời kỳ quá độ lên chủ nghĩa xã hội ở Việt Nam */}
-                <section id="thoi-ky-qua-do" className="min-h-screen bg-gradient-to-br from-red-700 via-red-800 to-red-900 relative overflow-hidden">
+                {/* Quan điểm & Chính sách */}
+                <section id="quan-diem-chinh-sach" className="min-h-screen bg-gradient-to-br from-red-700 via-red-800 to-red-900 relative overflow-hidden">
                     {/* Video nền */}
                     <video
                         className="absolute inset-0 w-full h-full object-cover opacity-15"
@@ -599,7 +596,7 @@ function App() {
                         {/* Tiêu đề chính */}
                         <div className="text-center mb-20">
                             <h1 className="text-5xl md:text-6xl font-bold text-yellow-400 mb-4 tracking-wide">
-                                THỜI KỲ QUÁ ĐỘ LÊN CHỦ NGHĨA XÃ HỘI Ở VIỆT NAM
+                                QUAN ĐIỂM & CHÍNH SÁCH VỀ TÔN GIÁO
                             </h1>
                             <div className="w-32 h-1 bg-yellow-400 mx-auto mt-6"></div>
                         </div>
@@ -607,62 +604,65 @@ function App() {
                         {/* Content Layout - Hiệu ứng nhẹ nhàng, bố trí gọn */}
                         <div className="relative max-w-6xl mx-auto min-h-[600px] px-6">
 
-                            {/* VAI TRÒ - Top, chữ bên trái */}
+                            {/* CƠ SỞ LÝ LUẬN */}
                             <div className="absolute top-30 left-0">
                                 <div className="flex items-center gap-10">
                                     <div className="w-[360px]">
-                                        <h3 className="text-4xl font-bold text-yellow-400 mb-4" style={{ textAlign: 'right' }}>VAI TRÒ</h3>
+                                        <h3 className="text-4xl font-bold text-yellow-400 mb-4" style={{ textAlign: 'right' }}>CƠ SỞ LÝ LUẬN TỪ CNXH KHOA HỌC</h3>
                                         <p className="text-white text-base leading-8" style={{ textAlign: 'right', lineHeight: '1.5' }}>
-                                            Thời kỳ quá độ là giai đoạn tất yếu để chuyển từ xã hội cũ sang xã hội xã hội chủ nghĩa, quyết định việc xây dựng xã hội mới ở Việt Nam, nơi phải khắc phục tình trạng nông nghiệp lạc hậu và di sản thuộc địa.
+                                            Tôn giáo là hình thái ý thức xã hội có tính lịch sử, phát sinh từ những điều kiện kinh tế-xã hội cụ thể. Nó tồn tại lâu dài vì những nguyên nhân sinh ra nó chưa thể khắc phục ngay trong thời kỳ quá độ.
                                         </p>
                                     </div>
                                     <div className="w-48 h-48 rounded-full overflow-hidden shadow-xl border-4 border-yellow-400 hover:scale-105 transition-all duration-300 flex-shrink-0 animate-float">
-                                        <img src="/5.1.1.png" alt="Vai trò" className="w-full h-full object-cover scale-125" />
+                                        <img src="/5.1.1.png" alt="Cơ sở lý luận" className="w-full h-full object-cover scale-125" />
                                     </div>
                                 </div>
                             </div>
 
-                            {/* TÍNH CHẤT - Middle right, chữ bên phải */}
+                            {/* TÍNH HAI MẶT */}
                             <div className="absolute top-[138px] right-[-30px]">
                                 <div className="flex items-center gap-10 flex-row-reverse">
                                     <div className="w-[320px]">
-                                        <h3 className="text-4xl font-bold text-yellow-400 mb-4" style={{ textAlign: 'left' }}>TÍNH CHẤT</h3>
+                                        <h3 className="text-4xl font-bold text-yellow-400 mb-4" style={{ textAlign: 'left' }}>TÍNH HAI MẶT</h3>
                                         <p className="text-white text-base leading-7" style={{ textAlign: 'left', lineHeight: '1.5' }}>
-                                            Là thời kỳ cải biến sâu sắc, lâu dài và phức tạp trên mọi lĩnh vực của đời sống xã hội, đòi hỏi đấu tranh gian khổ để thay đổi nếp sống, thói quen và thành kiến hàng ngàn năm, không thể nóng vội mà phải tiến hành dần dần.
+                                            Tôn giáo mang hai mặt đối lập thống nhất: mặt tích cực (giá trị đạo đức, văn hóa) và mặt tiêu cực (có thể trở thành công cụ mê hoặc, cản trở nhận thức khoa học). Chính sách cần dựa trên sự nhìn nhận toàn diện này.
                                         </p>
                                     </div>
                                     <div className="w-56 h-56 rounded-full overflow-hidden shadow-xl border-3 border-yellow-400 hover:scale-105 transition-all duration-300 flex-shrink-0 animate-float-delay">
-                                        <img src="/5.1.2.png" alt="Tính chất" className="w-full h-full object-cover scale-125" />
+                                        <img src="/5.1.2.png" alt="Tính hai mặt" className="w-full h-full object-cover scale-125" />
                                     </div>
                                 </div>
                             </div>
 
-                            {/* ĐẶC ĐIỂM CƠ BẢN - Middle left, chữ bên trái */}
+                            {/* TIẾP CẬN BẰNG GIÁO DỤC */}
                             <div className="absolute top-[280px] left-[-150px]">
                                 <div className="flex items-center gap-14">
                                     <div className="w-[420px]">
-                                        <h3 className="text-3xl font-bold text-yellow-400 mb-4" style={{ textAlign: 'right' }}>ĐẶC ĐIỂM CƠ BẢN</h3>
+                                        <h3 className="text-3xl font-bold text-yellow-400 mb-4" style={{ textAlign: 'right' }}>TIẾP CẬN BẰNG GIÁO DỤC</h3>
                                         <div className="text-white text-base leading-7 space-y-2" style={{ textAlign: 'right', lineHeight: '1.5' }}>
-                                            <p>Tồn tại đan xen giữa yếu tố cũ và yếu tố mới, đòi hỏi vừa xây dựng vừa cải tạo xã hội, trong điều kiện xuất phát điểm thấp, chịu nhiều tác động quốc tế, đặc biệt là từ một nước nông nghiệp lạc hậu tiến thẳng lên chủ nghĩa xã hội mà không trải qua giai đoạn tư bản chủ nghĩa.</p>
+                                            <p>Không thể dùng mệnh lệnh hành chính để xóa bỏ tôn giáo. Cần nâng cao đời sống vật chất và tinh thần, phát triển giáo dục khoa học - những điều kiện cơ bản để tôn giáo dần mất đi cơ sở tồn tại một cách tự nhiên.</p>
                                         </div>
                                     </div>
                                     <div className="w-56 h-56 rounded-full overflow-hidden shadow-xl border-4 border-yellow-400 hover:scale-105 transition-all duration-300 flex-shrink-0 animate-float-slow">
-                                        <img src="/5.1.3.png" alt="Đặc điểm cơ bản" className="w-full h-full object-cover" />
+                                        <img src="/5.1.3.png" alt="Tiếp cận bằng giáo dục" className="w-full h-full object-cover" />
                                     </div>
                                 </div>
                             </div>
 
-                            {/* NHIỆM VỤ TRUNG TÂM - Bottom right, chữ bên phải */}
+                            {/* NGUYÊN TẮC CHÍNH SÁCH */}
                             <div className="absolute bottom-0 right-[-205px]">
                                 <div className="flex items-center gap-9 flex-row-reverse">
                                     <div className="w-[480px]">
-                                        <h3 className="text-4xl font-bold text-yellow-400 mb-6" style={{ textAlign: 'left' }}>NHIỆM VỤ TRUNG TÂM</h3>
+                                        <h3 className="text-4xl font-bold text-yellow-400 mb-6" style={{ textAlign: 'left' }}>NGUYÊN TẮC CHÍNH SÁCH VIỆT NAM</h3>
                                         <div className="text-white text-base leading-7 space-y-3" style={{ textAlign: 'left', lineHeight: '1.6' }}>
-                                            <p>Phát triển lực lượng sản xuất, xây dựng nền kinh tế mới với công nghiệp và nông nghiệp hiện đại làm nền tảng vật chất; xây dựng Nhà nước của dân, do dân, vì dân để đảm bảo dân chủ; và xây dựng con người mới xã hội chủ nghĩa, triệt để tẩy trừ di tích thuộc địa, phát triển văn hóa dân tộc, khoa học và đại chúng.</p>
+                                            <p>1. Tôn trọng và bảo đảm quyền tự do tín ngưỡng, tôn giáo.<br />
+                                                2. Quản lý bằng pháp luật, phân biệt rõ hoạt động hợp pháp và lợi dụng tôn giáo.<br />
+                                                3. Đoàn kết giữa đồng bào có đạo và không có đạo.<br />
+                                                4. Phát huy các giá trị văn hóa, đạo đức tốt đẹp của tôn giáo.</p>
                                         </div>
                                     </div>
                                     <div className="w-52 h-52 rounded-full overflow-hidden shadow-xl border-4 border-yellow-400 hover:scale-105 transition-all duration-300 flex-shrink-0 animate-float-gentle">
-                                        <img src="/5.1.4.png" alt="Nhiệm vụ trung tâm" className="w-full h-full object-cover scale-125" />
+                                        <img src="/5.1.4.png" alt="Nguyên tắc chính sách" className="w-full h-full object-cover scale-125" />
                                     </div>
                                 </div>
                             </div>
@@ -672,7 +672,7 @@ function App() {
                         {/* Nút mũi tên xuống để chuyển section */}
                         <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce">
                             <button
-                                onClick={() => scrollToNextSection('thoi-ky-qua-do')}
+                                onClick={() => scrollToNextSection('quan-diem-chinh-sach')}
                                 className="text-yellow-300 hover:text-yellow-400 transition-colors duration-300 hover:scale-110 transform"
                                 aria-label="Chuyển đến section tiếp theo"
                             >
@@ -682,8 +682,8 @@ function App() {
                     </div>
                 </section>
 
-                {/* 5.2 Section: Mối quan hệ giữa độc lập dân tộc và chủ nghĩa xã hội */}
-                <section id="moi-quan-he" className="relative overflow-hidden bg-red-900 py-20 min-h-[1400px]">
+                {/* Giá trị thực tiễn của tôn giáo */}
+                <section id="gia-tri-thuc-tien" className="relative overflow-hidden bg-red-900 py-20 min-h-[1400px]">
                     {/* Video nền */}
                     <video
                         className="absolute inset-0 w-full h-full object-cover opacity-30"
@@ -703,10 +703,10 @@ function App() {
                     {/* Tiêu đề */}
                     <div className="relative z-10 text-center mb-12">
                         <h2 className="text-5xl font-bold text-yellow-400 uppercase mb-4 tracking-wide">
-                            MỐI QUAN HỆ GIỮA ĐỘC LẬP DÂN TỘC VÀ CHỦ NGHĨA XÃ HỘI
+                            GIÁ TRỊ THỰC TIỄN CỦA TÔN GIÁO
                         </h2>
                         <p className="text-white text-lg opacity-90">
-                            Vị trí – Ý nghĩa • Nội dung mối quan hệ • Giá trị lý luận
+                            Từ thiện, nhân đạo • Thi đua yêu nước • Bảo vệ môi trường • Phòng chống dịch bệnh
                         </p>
                         <div className="w-32 h-1 bg-yellow-400 mx-auto mt-6"></div>
                     </div>
@@ -714,149 +714,75 @@ function App() {
                     {/* Container */}
                     <div className="relative z-10 max-w-7xl mx-auto px-8 min-h-[1200px]">
 
-                        {/* BEN TRAI - 2 MUC (layout động) */}
-
-                        {/* 1. Vị trí – Ý nghĩa */}
+                        {/* TRONG HOẠT ĐỘNG TỪ THIỆN, NHÂN ĐẠO */}
                         <div className="absolute top-[150px] left-[-50px] flex items-center gap-10">
                             <div className="w-56 h-56 rounded-full overflow-hidden shadow-2xl border-4 border-yellow-400 flex-shrink-0 hover:scale-105 transition-all duration-500 animate-float">
                                 <img
                                     src="/5.2.1.png"
-                                    alt="Vị trí ý nghĩa"
+                                    alt="Từ thiện, nhân đạo"
                                     className="w-full h-full object-cover scale-110 transform hover:scale-125 transition-transform duration-300"
                                 />
                             </div>
                             <div className="w-[450px] text-left">
-                                <h3 className="text-4xl font-bold text-yellow-300 mb-5">Vị trí – Ý nghĩa</h3>
+                                <h3 className="text-4xl font-bold text-yellow-300 mb-5">Từ thiện, nhân đạo</h3>
                                 <p className="text-white leading-9 text-xl mb-4">
-                                    Độc lập dân tộc và chủ nghĩa xã hội có quan hệ biện chứng, thống nhất, không thể tách rời, là nội dung cốt lõi trong tư tưởng Hồ Chí Minh về con đường cách mạng Việt Nam, đảm bảo giải phóng dân tộc dẫn đến giải phóng xã hội và con người.
+                                    Nhiều tôn giáo có giáo lý khuyến khích từ bi, bác ái. Trong điều kiện Việt Nam, những giáo lý này được chuyển hóa thành các hoạt động cụ thể: xây nhà tình nghĩa, cứu trợ thiên tai, chăm sóc người yếu thế.
                                 </p>
+                                <p className="text-yellow-200 font-semibold">Ý nghĩa xã hội: Bổ sung cho hệ thống an sinh xã hội, góp phần thực hiện mục tiêu công bằng và nhân văn.</p>
                             </div>
                         </div>
 
-                        {/* 2. Nội dung mối quan hệ */}
+                        {/* TRONG PHONG TRÀO THI ĐUA YÊU NƯỚC */}
                         <div className="absolute top-[580px] left-[30px] flex items-center gap-8">
                             <div className="w-44 h-44 rounded-full overflow-hidden shadow-2xl border-4 border-yellow-400 flex-shrink-0 hover:scale-105 transition-all duration-500 animate-float-delay">
                                 <img
                                     src="/5.2.2.png"
-                                    alt="Nội dung mối quan hệ"
+                                    alt="Thi đua yêu nước"
                                     className="w-full h-full object-cover scale-110 transform hover:scale-125 transition-transform duration-300"
                                 />
                             </div>
                             <div className="w-[480px] text-left">
-                                <h3 className="text-3xl font-bold text-yellow-300 mb-4">Nội dung mối quan hệ</h3>
-                                <ul className="list-none text-white space-y-3 text-lg">
-                                    <li className="flex items-center">
-                                        <span className="mr-4 text-yellow-400 text-xl">•</span>
-                                        <span>Độc lập dân tộc là điều kiện tiên quyết để xây dựng CNXH, vì không có độc lập thì không thể tiến hành cải tạo xã hội</span>
-                                    </li>
-                                    <li className="flex items-center">
-                                        <span className="mr-4 text-yellow-400 text-xl">•</span>
-                                        <span>Ngược lại, CNXH là cơ sở bảo đảm nền độc lập dân tộc vững chắc, tránh lệ thuộc và đảm bảo tự do, hạnh phúc của nhân dân lao động</span>
-                                    </li>
-                                </ul>
+                                <h3 className="text-3xl font-bold text-yellow-300 mb-4">Thi đua yêu nước</h3>
+                                <p className="text-white text-lg mb-4">
+                                    Phương châm 'Người Công giáo tốt cũng là công dân tốt' thể hiện sự gắn kết giữa đức tin và trách nhiệm công dân. Khi giáo dân tích cực tham gia xây dựng quê hương, họ đang đồng thời thực hành giáo lý và đóng góp vào sự phát triển chung.
+                                </p>
+                                <p className="text-yellow-200 font-semibold">Ý nghĩa xã hội: Củng cố mối liên hệ giữa tôn giáo và cộng đồng, tăng cường sự đồng thuận xã hội.</p>
                             </div>
                         </div>
 
-                        {/* BEN PHAI - 4 MUC (layout tự nhiên hơn) */}
-
-                        {/* 3. Giá trị lý luận */}
+                        {/* TRONG BẢO VỆ MÔI TRƯỜNG */}
                         <div className="absolute top-[50px] right-[-40px] flex items-center gap-12">
                             <div className="w-48 h-48 rounded-full overflow-hidden shadow-2xl border-4 border-yellow-400 flex-shrink-0 hover:scale-105 transition-all duration-500 animate-float-slow">
                                 <img
                                     src="/5.2.3.png"
-                                    alt="Giá trị lý luận"
+                                    alt="Bảo vệ môi trường"
                                     className="w-full h-full object-cover scale-110 transform hover:scale-125 transition-transform duration-300"
                                 />
                             </div>
                             <div className="w-[400px] text-left">
-                                <h3 className="text-3xl font-bold text-yellow-300 mb-4">Giá trị lý luận</h3>
-                                <ul className="list-none text-white space-y-2 text-lg">
-                                    <li className="flex items-center">
-                                        <span className="mr-4 text-yellow-400 text-lg">•</span>
-                                        <span>Vận dụng sáng tạo chủ nghĩa Mác -- Lênin vào thực tiễn Việt Nam</span>
-                                    </li>
-                                    <li className="flex items-center">
-                                        <span className="mr-4 text-yellow-400 text-lg">•</span>
-                                        <span>Khắc phục khuynh hướng dân tộc hẹp hòi và giáo điều máy móc</span>
-                                    </li>
-                                    <li className="flex items-center">
-                                        <span className="mr-4 text-yellow-400 text-lg">•</span>
-                                        <span>Bằng cách kết hợp yêu nước với quốc tế vô sản, phù hợp với điều kiện thuộc địa nửa phong kiến</span>
-                                    </li>
-                                </ul>
+                                <h3 className="text-3xl font-bold text-yellow-300 mb-4">Bảo vệ môi trường</h3>
+                                <p className="text-white text-lg mb-4">
+                                    Các tôn giáo thường có quan niệm về mối quan hệ giữa con người và tự nhiên. Phật giáo nói đến lòng từ bi với chúng sinh, Công giáo nhấn mạnh trách nhiệm quản lý thiên nhiên.
+                                </p>
+                                <p className="text-yellow-200 font-semibold">Chuyển hóa thành hành động: Các phong trào 'chùa xanh', 'giáo xứ xanh' biến những quan niệm này thành hoạt động bảo vệ môi trường cụ thể.</p>
                             </div>
                         </div>
 
-                        {/* 4. Vận dụng hiện nay: Nội dung vận dụng */}
+                        {/* TRONG PHÒNG CHỐNG DỊCH BỆNH, THIÊN TAI */}
                         <div className="absolute top-[380px] right-[20px] flex items-center gap-9">
                             <div className="w-48 h-48 rounded-full overflow-hidden shadow-2xl border-4 border-yellow-400 flex-shrink-0 hover:scale-105 transition-all duration-500 animate-float-gentle">
                                 <img
                                     src="/5.2.4.png"
-                                    alt="Nội dung vận dụng"
+                                    alt="Phòng chống dịch bệnh"
                                     className="w-full h-full object-cover scale-100 transform hover:scale-115 transition-transform duration-300"
                                 />
                             </div>
                             <div className="w-[420px] text-left">
-                                <h3 className="text-4xl font-bold text-yellow-300 mb-5">Nội dung vận dụng</h3>
-                                <ul className="list-none text-white space-y-3 text-xl">
-                                    <li className="flex items-center">
-                                        <span className="mr-4 text-yellow-400 text-xl">•</span>
-                                        <span>Kiên định mục tiêu độc lập dân tộc và chủ nghĩa xã hội</span>
-                                    </li>
-                                    <li className="flex items-center">
-                                        <span className="mr-4 text-yellow-400 text-xl">•</span>
-                                        <span>Phát triển kinh tế thị trường định hướng xã hội chủ nghĩa để nâng cao đời sống nhân dân</span>
-                                    </li>
-                                    <li className="flex items-center">
-                                        <span className="mr-4 text-yellow-400 text-xl">•</span>
-                                        <span>Chủ động hội nhập quốc tế gắn với giữ vững độc lập, tự chủ, tránh lệ thuộc vào các thế lực bên ngoài</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        {/* 5. Vận dụng hiện nay: Nguyên tắc thực hiện */}
-                        <div className="absolute top-[720px] right-[-60px] flex items-center gap-7">
-                            <div className="w-40 h-40 rounded-full overflow-hidden shadow-2xl border-4 border-yellow-400 flex-shrink-0 hover:scale-105 transition-all duration-500 animate-float">
-                                <img
-                                    src="/5.2.5.png"
-                                    alt="Nguyên tắc thực hiện"
-                                    className="w-full h-full object-cover scale-110 transform hover:scale-125 transition-transform duration-300"
-                                />
-                            </div>
-                            <div className="w-[460px] text-left">
-                                <h3 className="text-3xl font-bold text-yellow-300 mb-4">Nguyên tắc thực hiện</h3>
-                                <ul className="list-none text-white space-y-2 text-lg">
-                                    <li className="flex items-center">
-                                        <span className="mr-4 text-yellow-400 text-lg">•</span>
-                                        <span>Giữ vững độc lập, tự chủ trong đường lối phát triển, không rập khuôn máy móc</span>
-                                    </li>
-                                    <li className="flex items-center">
-                                        <span className="mr-4 text-yellow-400 text-lg">•</span>
-                                        <span>Kết hợp sức mạnh dân tộc với sức mạnh thời đại qua đoàn kết quốc tế</span>
-                                    </li>
-                                    <li className="flex items-center">
-                                        <span className="mr-4 text-yellow-400 text-lg">•</span>
-                                        <span>Lấy lợi ích của nhân dân làm mục tiêu cao nhất, đảm bảo công bằng xã hội và hạnh phúc thực sự</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        {/* 6. Vận dụng hiện nay: Ý nghĩa thực tiễn - LEFT SIDE */}
-                        <div className="absolute top-[900px] left-[30px] flex items-center gap-8">
-                            <div className="w-44 h-44 rounded-full overflow-hidden shadow-2xl border-4 border-yellow-400 flex-shrink-0 hover:scale-105 transition-all duration-500 animate-float-delay">
-                                <img
-                                    src="/5.2.6.png"
-                                    alt="Ý nghĩa thực tiễn"
-                                    className="w-full h-full object-cover scale-110 transform hover:scale-125 transition-transform duration-300"
-                                />
-                            </div>
-                            <div className="w-[480px] text-left">
-                                <h3 className="text-3xl font-bold text-yellow-300 mb-4">Ý nghĩa thực tiễn</h3>
-                                <p className="text-white text-lg leading-7">
-                                    Là cơ sở tư tưởng cho sự nghiệp đổi mới, phát triển bền vững và bảo vệ Tổ quốc Việt Nam xã hội chủ nghĩa, giúp vượt qua thách thức toàn cầu hóa, duy trì ổn định và tiến bộ xã hội.
+                                <h3 className="text-4xl font-bold text-yellow-300 mb-5">Phòng chống dịch bệnh, thiên tai</h3>
+                                <p className="text-white text-xl mb-4">
+                                    Đại dịch COVID-19 trở thành 'bài kiểm tra' thực tế về khả năng phối hợp giữa Nhà nước và các tổ chức tôn giáo. Nhiều cơ sở tôn giáo đã trở thành điểm cứu trợ, phân phát nhu yếu phẩm, vận động tuân thủ biện pháp phòng dịch.
                                 </p>
+                                <p className="text-yellow-200 font-semibold">Ý nghĩa xã hội: Thể hiện tiềm năng của tôn giáo như một kênh vận động xã hội hiệu quả trong những tình huống khẩn cấp.</p>
                             </div>
                         </div>
 
@@ -865,7 +791,7 @@ function App() {
                     {/* Nút mũi tên xuống để chuyển section */}
                     <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce">
                         <button
-                            onClick={() => scrollToNextSection('moi-quan-he')}
+                            onClick={() => scrollToNextSection('gia-tri-thuc-tien')}
                             className="text-yellow-300 hover:text-yellow-400 transition-colors duration-300 hover:scale-110 transform"
                             aria-label="Chuyển đến section tiếp theo"
                         >
@@ -892,10 +818,10 @@ function App() {
                             </div>
 
                             <h2 className="text-4xl md:text-5xl font-bold text-yellow-400 mb-4">
-                                SO SÁNH TƯ TƯỞNG ĐỘC LẬP DÂN TỘC
+                                TÔN GIÁO TRONG XÃ HỘI HIỆN ĐẠI
                             </h2>
                             <p className="text-xl text-white/90 max-w-3xl mx-auto">
-                                Phan Bội Châu • Phan Châu Trinh • Hồ Chí Minh - 3 con đường, 1 lựa chọn lịch sử
+                                Vai trò và đóng góp của tôn giáo trong thời kỳ quá độ lên chủ nghĩa xã hội
                             </p>
                             <div className="w-40 h-1 bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 mx-auto mt-6 rounded-full"></div>
                         </div>
@@ -903,24 +829,23 @@ function App() {
                         {/* PHẦN GIỚI THIỆU MỚI - FLEXBOX ĐỒNG BỘ */}
                         <div className="max-w-5xl mx-auto mb-12">
                             <div className="text-center mb-8">
-                                <h2 className="text-3xl font-bold text-yellow-400 mb-2">Tại Sao Tư Tưởng Hồ Chí Minh Là Đột Phá?</h2>
+                                <h2 className="text-3xl font-bold text-yellow-400 mb-2">Vì Sao Cần Hiểu Đúng Về Tôn Giáo?</h2>
                                 <div className="w-48 h-1 bg-gradient-to-r from-yellow-400 to-red-600 mx-auto rounded-full"></div>
                             </div>
 
                             <div className="bg-gradient-to-b from-yellow-50/10 to-red-900/30 backdrop-blur-lg rounded-2xl p-8 border-2 border-yellow-400/30">
                                 <div className="text-center mb-8">
                                     <h3 className="text-3xl font-bold text-yellow-300 mb-4">
-                                        Để Hiểu Sự Đột Phá Trong Tư Tưởng Hồ Chí Minh
+                                        Để Hiểu Vai Trò Của Tôn Giáo Trong Xã Hội Hiện Đại
                                     </h3>
                                     <p className="text-white/90 text-xl mb-6 max-w-3xl mx-auto">
-                                        Chúng ta cần so sánh với các nhà yêu nước tiền bối.
-                                        Video dưới đây sẽ phân tích 3 con đường khác nhau trong lịch sử Việt Nam:
+                                        Video dưới đây sẽ phân tích cách tiếp cận biện chứng của Nhà nước Việt Nam đối với tôn giáo:
                                     </p>
                                 </div>
 
                                 {/* === FIXED: CHUYỂN TỪ GRID SANG FLEXBOX === */}
                                 <div className="flex flex-col md:flex-row gap-8">
-                                    {/* Phan Bội Châu */}
+                                    {/* Quan điểm Mác-Lênin */}
                                     <div className="group relative flex-1">
                                         <div className="absolute inset-0 bg-gradient-to-br from-red-600/10 to-red-800/20 rounded-2xl blur-lg group-hover:blur-xl transition-all duration-500"></div>
                                         <div className="relative bg-gradient-to-b from-red-50/10 to-red-900/30 backdrop-blur-lg rounded-2xl p-6 border-2 border-red-400/30 group-hover:border-red-400/60 transition-all duration-300 group-hover:scale-[1.02] h-full">
@@ -928,29 +853,29 @@ function App() {
                                                 <div className="relative mb-4">
                                                     <div className="absolute inset-0 bg-red-400/20 rounded-full blur-md"></div>
                                                     <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center shadow-2xl">
-                                                        <span className="text-white text-2xl">🇯🇵</span>
+                                                        <span className="text-white text-2xl">📚</span>
                                                     </div>
                                                 </div>
 
-                                                <h4 className="text-2xl font-bold text-red-300 mb-3">Phan Bội Châu</h4>
+                                                <h4 className="text-2xl font-bold text-red-300 mb-3">Quan điểm Mác-Lênin</h4>
 
                                                 <div className="bg-red-900/40 rounded-xl p-3 w-full mb-4">
-                                                    <span className="text-yellow-200/80 text-sm">Con Đường</span>
-                                                    <p className="text-yellow-400 font-bold mt-1">Dựa Vào Ngoại Bang</p>
+                                                    <span className="text-yellow-200/80 text-sm">Cơ sở lý luận</span>
+                                                    <p className="text-yellow-400 font-bold mt-1">Tính lịch sử</p>
                                                 </div>
 
                                                 <p className="text-white/80 text-center leading-relaxed mb-4">
-                                                    Chủ trương "Đông Du", dựa vào Nhật Bản để đánh Pháp
+                                                    Tôn giáo là hình thái ý thức xã hội có tính lịch sử
                                                 </p>
 
                                                 <div className="mt-auto pt-4 border-t border-red-400/20 w-full text-center">
-                                                    <span className="text-red-300/70 text-sm">• Cầu viện ngoại bang •</span>
+                                                    <span className="text-red-300/70 text-sm">• Phân tích khoa học •</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    {/* Phan Châu Trinh */}
+                                    {/* Vận dụng sáng tạo */}
                                     <div className="group relative flex-1">
                                         <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/10 to-orange-700/20 rounded-2xl blur-lg group-hover:blur-xl transition-all duration-500"></div>
                                         <div className="relative bg-gradient-to-b from-yellow-50/10 to-orange-900/30 backdrop-blur-lg rounded-2xl p-6 border-2 border-yellow-400/30 group-hover:border-yellow-400/60 transition-all duration-300 group-hover:scale-[1.02] h-full">
@@ -958,29 +883,29 @@ function App() {
                                                 <div className="relative mb-4">
                                                     <div className="absolute inset-0 bg-yellow-400/20 rounded-full blur-md"></div>
                                                     <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-yellow-500 to-orange-600 flex items-center justify-center shadow-2xl">
-                                                        <span className="text-white text-2xl">📚</span>
+                                                        <span className="text-white text-2xl">🔄</span>
                                                     </div>
                                                 </div>
 
-                                                <h4 className="text-2xl font-bold text-yellow-300 mb-3">Phan Châu Trinh</h4>
+                                                <h4 className="text-2xl font-bold text-yellow-300 mb-3">Vận dụng sáng tạo</h4>
 
                                                 <div className="bg-orange-900/40 rounded-xl p-3 w-full mb-4">
-                                                    <span className="text-yellow-200/80 text-sm">Con Đường</span>
-                                                    <p className="text-yellow-400 font-bold mt-1">Cải Cách Ôn Hòa</p>
+                                                    <span className="text-yellow-200/80 text-sm">Thích nghi</span>
+                                                    <p className="text-yellow-400 font-bold mt-1">Điều kiện Việt Nam</p>
                                                 </div>
 
                                                 <p className="text-white/80 text-center leading-relaxed mb-4">
-                                                    Đề cao "Khai dân trí", cải cách trong khuôn khổ thuộc địa
+                                                    Vận dụng lý luận vào thực tiễn Việt Nam
                                                 </p>
 
                                                 <div className="mt-auto pt-4 border-t border-yellow-400/20 w-full text-center">
-                                                    <span className="text-yellow-300/70 text-sm">• Duy tân • Khai hóa •</span>
+                                                    <span className="text-yellow-300/70 text-sm">• Linh hoạt • Thực tiễn •</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    {/* Hồ Chí Minh - HIGHLIGHTED */}
+                                    {/* Phát huy giá trị tích cực - HIGHLIGHTED */}
                                     <div className="group relative flex-1">
                                         <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 to-red-600/20 rounded-2xl blur-lg group-hover:blur-xl transition-all duration-500"></div>
                                         <div className="relative bg-gradient-to-b from-yellow-100/10 to-red-900/40 backdrop-blur-lg rounded-2xl p-6 border-3 border-yellow-400 group-hover:border-yellow-300 transition-all duration-300 group-hover:scale-[1.02] h-full shadow-xl">
@@ -991,23 +916,23 @@ function App() {
                                                         <span className="text-white text-2xl">⭐</span>
                                                     </div>
                                                     <div className="absolute -top-2 -right-2 bg-yellow-500 text-xs font-bold text-white px-2 py-1 rounded-full">
-                                                        ĐỘT PHÁ
+                                                        TRỌNG TÂM
                                                     </div>
                                                 </div>
 
-                                                <h4 className="text-2xl font-bold text-yellow-400 mb-3">Hồ Chí Minh</h4>
+                                                <h4 className="text-2xl font-bold text-yellow-400 mb-3">Phát huy giá trị tích cực</h4>
 
                                                 <div className="bg-gradient-to-r from-yellow-500/20 to-red-500/20 rounded-xl p-3 w-full mb-4 border border-yellow-400/30">
-                                                    <span className="text-yellow-200 text-sm">Con Đường Cách Mạng</span>
-                                                    <p className="text-yellow-300 font-bold mt-1">Độc Lập + CNXH</p>
+                                                    <span className="text-yellow-200 text-sm">Chính sách thực tiễn</span>
+                                                    <p className="text-yellow-300 font-bold mt-1">Đạo đức + Văn hóa</p>
                                                 </div>
 
                                                 <p className="text-white font-medium text-center leading-relaxed mb-4">
-                                                    Độc lập dân tộc phải đi đôi với chủ nghĩa xã hội
+                                                    Khai thác mặt tích cực của tôn giáo
                                                 </p>
 
                                                 <div className="mt-auto pt-4 border-t border-yellow-400/30 w-full text-center">
-                                                    <span className="text-yellow-400 text-sm font-semibold">• Cách mạng triệt để •</span>
+                                                    <span className="text-yellow-400 text-sm font-semibold">• Đóng góp xã hội •</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -1019,15 +944,14 @@ function App() {
                                 <div className="flex items-center justify-center mt-8 pt-6 border-t border-yellow-400/20">
                                     <div className="text-center">
                                         <p className="text-white/80 text-lg mb-3">
-                                            <span className="text-yellow-300 font-bold">Mỗi con đường</span> thể hiện một cách tiếp cận khác biệt
-                                            trong bối cảnh lịch sử đầu thế kỷ XX
+                                            <span className="text-yellow-300 font-bold">Mỗi giai đoạn</span> thể hiện sự phát triển trong nhận thức và chính sách
                                         </p>
                                         <div className="flex items-center justify-center gap-2 mt-2">
-                                            <div className="text-sm text-yellow-300/80">Độc lập hình thức</div>
+                                            <div className="text-sm text-yellow-300/80">Lý luận cơ bản</div>
                                             <div className="w-16 h-1 bg-gradient-to-r from-yellow-400/40 to-yellow-400 rounded-full"></div>
-                                            <div className="text-sm font-bold text-yellow-400 px-2">→ BƯỚC NHẢY ←</div>
+                                            <div className="text-sm font-bold text-yellow-400 px-2">→ THỰC TIỄN ←</div>
                                             <div className="w-16 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full"></div>
-                                            <div className="text-sm text-yellow-300">Độc lập thực chất</div>
+                                            <div className="text-sm text-yellow-300">Đóng góp xã hội</div>
                                         </div>
                                     </div>
                                 </div>
@@ -1045,7 +969,7 @@ function App() {
                                         muted={false}
                                         playsInline
                                         preload="metadata"
-                                        title="So sánh tư tưởng độc lập dân tộc: Phan Bội Châu, Phan Châu Trinh vs Hồ Chí Minh"
+                                        title="Tôn giáo trong xã hội hiện đại: Vai trò và đóng góp"
                                     >
                                         <source src="/6.0.mp4" type="video/mp4" />
                                         Trình duyệt của bạn không hỗ trợ thẻ video.
@@ -1115,24 +1039,24 @@ function App() {
                                                         <div className="w-8 h-8 rounded-full bg-yellow-500/20 flex items-center justify-center">
                                                             <span className="text-yellow-400 text-lg">1</span>
                                                         </div>
-                                                        <span className="text-white/90">So sánh 3 quan điểm yêu nước</span>
+                                                        <span className="text-white/90">Phân tích quan điểm Mác-Lênin về tôn giáo</span>
                                                     </div>
                                                     <div className="flex items-center gap-3 bg-red-900/40 p-3 rounded-lg">
                                                         <div className="w-8 h-8 rounded-full bg-yellow-500/20 flex items-center justify-center">
                                                             <span className="text-yellow-400 text-lg">2</span>
                                                         </div>
-                                                        <span className="text-white/90">Phân tích tư tưởng Hồ Chí Minh</span>
+                                                        <span className="text-white/90">Vận dụng sáng tạo vào điều kiện Việt Nam</span>
                                                     </div>
                                                     <div className="flex items-center gap-3 bg-red-900/40 p-3 rounded-lg">
                                                         <div className="w-8 h-8 rounded-full bg-yellow-500/20 flex items-center justify-center">
                                                             <span className="text-yellow-400 text-lg">3</span>
                                                         </div>
-                                                        <span className="text-white/90">Bài học lịch sử trực quan</span>
+                                                        <span className="text-white/90">Phát huy giá trị tích cực của tôn giáo</span>
                                                     </div>
                                                 </div>
 
                                                 <p className="text-white/90 text-center text-lg leading-relaxed mt-auto">
-                                                    Phân tích sâu, so sánh đa chiều các quan điểm lịch sử
+                                                    Phân tích sâu, đa chiều về vai trò tôn giáo trong xã hội hiện đại
                                                 </p>
                                             </div>
                                         </div>
@@ -1154,12 +1078,8 @@ function App() {
 
                                                 <div className="bg-gradient-to-r from-yellow-500/10 to-red-500/10 rounded-xl p-5 w-full mb-6 border border-yellow-400/20">
                                                     <div className="text-center">
-                                                        {/* CHỈNH SỬA TẠI ĐÂY */}
-                                                        <p className="text-yellow-300 font-bold text-lg mb-1">HCM202</p>
-                                                        <p className="text-white/80 text-sm">Môn: Tư tưởng Hồ Chí Minh</p>
-                                                        {/* HOẶC: */}
-                                                        {/* <p className="text-yellow-300 font-bold text-lg mb-1">Tư tưởng HCM</p>
-                    <p className="text-white/80 text-sm">Mã môn học: HCM202</p> */}
+                                                        <p className="text-yellow-300 font-bold text-lg mb-1">MLN131</p>
+                                                        <p className="text-white/80 text-sm">Môn: Chủ nghĩa xã hội khoa học</p>
                                                     </div>
                                                 </div>
 
@@ -1199,19 +1119,19 @@ function App() {
                                     <div className="space-y-4 max-w-2xl mx-auto text-center">
                                         <div className="flex items-center justify-center gap-3">
                                             <span className="text-yellow-400 text-xl flex-shrink-0">✓</span>
-                                            <span className="text-white">Sự khác biệt giữa "độc lập hình thức" và "độc lập thực chất"</span>
+                                            <span className="text-white">Quan điểm Mác-Lênin về tôn giáo trong bối cảnh hiện đại</span>
                                         </div>
                                         <div className="flex items-center justify-center gap-3">
                                             <span className="text-yellow-400 text-xl flex-shrink-0">✓</span>
-                                            <span className="text-white">Tại sao Hồ Chí Minh chọn con đường độc lập + CNXH</span>
+                                            <span className="text-white">Cách Việt Nam vận dụng lý luận vào thực tiễn</span>
                                         </div>
                                         <div className="flex items-center justify-center gap-3">
                                             <span className="text-yellow-400 text-xl flex-shrink-0">✓</span>
-                                            <span className="text-white">Cách Hồ Chí Minh kế thừa &amp; sáng tạo từ tiền nhân</span>
+                                            <span className="text-white">Giá trị tích cực của tôn giáo trong xã hội</span>
                                         </div>
                                         <div className="flex items-center justify-center gap-3">
                                             <span className="text-yellow-400 text-xl flex-shrink-0">✓</span>
-                                            <span className="text-white">Giá trị lịch sử của tư tưởng Hồ Chí Minh ngày nay</span>
+                                            <span className="text-white">Chính sách tôn giáo trong thời kỳ quá độ</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1237,7 +1157,7 @@ function App() {
                 <section id="cau-hoi-suy-ngam" className="min-h-screen bg-gradient-to-br from-red-700 via-red-800 to-red-900 relative overflow-hidden py-16">
                     {/* === 1. VIDEO BACKGROUND - ĐÃ THÊM LẠI === */}
                     <video
-                        className="absolute inset-0 w-full h-full object-cover opacity-15"  // Change from opacity-30 to opacity-15
+                        className="absolute inset-0 w-full h-full object-cover opacity-15"
                         autoPlay
                         muted
                         loop
@@ -1270,10 +1190,10 @@ function App() {
                                 <span className="text-2xl">💭</span>
                             </div>
                             <h1 className="text-4xl md:text-5xl font-bold text-yellow-400 mb-4 tracking-tight">
-                                Khám Phá Chiều Sâu Tư Tưởng Hồ Chí Minh
+                                Khám Phá Tính Biện Chứng Trong Chính Sách Tôn Giáo
                             </h1>
                             <p className="text-xl text-white/90 max-w-3xl mx-auto">
-                                Phân tích sự đột phá trong quan niệm về độc lập dân tộc qua các thời kỳ lịch sử
+                                Phân tích sự thống nhất giữa lý luận Mác-Lênin và thực tiễn Việt Nam
                             </p>
                             <div className="w-40 h-1 bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 mx-auto mt-6 rounded-full"></div>
                         </div>
@@ -1304,13 +1224,13 @@ function App() {
 
                                                 <div className="bg-gradient-to-r from-yellow-500/10 to-red-500/10 rounded-xl p-6 border-l-4 border-yellow-400">
                                                     <p className="text-white text-xl leading-relaxed font-medium">
-                                                        <span className="text-yellow-300 font-bold">"Quan niệm độc lập dân tộc của Hồ Chí Minh khác biệt như thế nào</span>
+                                                        <span className="text-yellow-300 font-bold">"Phân tích tính biện chứng trong quan điểm của Nhà nước Việt Nam về tôn giáo:</span>
                                                         <br />
-                                                        <span className="text-white">so với các tiền nhân như Lê Lợi hay Phan Bội Châu,</span>
+                                                        <span className="text-white">Một mặt, dựa trên lý luận Mác-Lênin coi tôn giáo là hình thái ý thức xã hội có tính lịch sử.</span>
                                                         <br />
-                                                        <span className="text-yellow-400 font-bold">đặc biệt trong việc gắn kết với chủ nghĩa xã hội</span>
+                                                        <span className="text-yellow-400 font-bold">Mặt khác, lại chủ trương 'phát huy giá trị tốt đẹp của tôn giáo'.</span>
                                                         <br />
-                                                        <span className="text-white">để đảm bảo hạnh phúc thực sự cho nhân dân lao động?"</span>
+                                                        <span className="text-white">Làm thế nào để hiểu sự thống nhất của hai mặt tưởng như mâu thuẫn này?"</span>
                                                     </p>
                                                 </div>
                                             </div>
@@ -1322,10 +1242,9 @@ function App() {
                                                 <span className="text-blue-400 text-2xl">📺</span>
                                                 <div>
                                                     <p className="text-white/90 font-medium">
-                                                        <span className="text-blue-300">Đã xem video so sánh 3 con đường yêu nước?</span>
+                                                        <span className="text-blue-300">Đã xem video về vai trò tôn giáo?</span>
                                                         <br />
-                                                        <span className="text-white/70 text-sm">Video trước đã phân tích 3 quan điểm khác nhau.
-                                                            Bây giờ hãy cùng suy ngẫm sâu hơn về bản chất của sự khác biệt này.</span>
+                                                        <span className="text-white/70 text-sm">Video trước đã phân tích cách tiếp cận của Việt Nam. Bây giờ hãy cùng suy ngẫm sâu hơn về tính biện chứng trong chính sách.</span>
                                                     </p>
                                                 </div>
                                             </div>
@@ -1357,12 +1276,12 @@ function App() {
                                                             <h6 className="text-red-300 font-bold text-lg mb-3">1. Bối cảnh lịch sử</h6>
 
                                                             <div className="bg-red-900/40 rounded-xl p-3 w-full mb-4">
-                                                                <span className="text-yellow-200/80 text-sm">Đặc điểm xã hội</span>
-                                                                <p className="text-yellow-400 font-bold mt-1">Thuộc địa nửa phong kiến</p>
+                                                                <span className="text-yellow-200/80 text-sm">Phân tích quan điểm Mác-Lênin</span>
+                                                                <p className="text-yellow-400 font-bold mt-1">Trong bối cảnh ra đời</p>
                                                             </div>
 
                                                             <p className="text-white/80 text-center leading-relaxed text-sm">
-                                                                Xã hội Việt Nam đầu thế kỷ XX với những mâu thuẫn đặc thù
+                                                                Mác phê phán tôn giáo trong xã hội tư bản thế kỷ XIX. Liệu quan điểm đó có áp dụng nguyên xi cho mọi hoàn cảnh?
                                                             </p>
                                                         </div>
                                                     </div>
@@ -1382,15 +1301,15 @@ function App() {
                                                                 </div>
                                                             </div>
 
-                                                            <h6 className="text-orange-300 font-bold text-lg mb-3">2. Mục tiêu kép</h6>
+                                                            <h6 className="text-orange-300 font-bold text-lg mb-3">2. Nguyên tắc lịch sử-cụ thể</h6>
 
                                                             <div className="bg-orange-900/40 rounded-xl p-3 w-full mb-4">
-                                                                <span className="text-yellow-200/80 text-sm">Kết hợp hai nhiệm vụ</span>
-                                                                <p className="text-yellow-400 font-bold mt-1">Dân tộc + Giai cấp</p>
+                                                                <span className="text-yellow-200/80 text-sm">Vận dụng linh hoạt</span>
+                                                                <p className="text-yellow-400 font-bold mt-1">Điều kiện Việt Nam</p>
                                                             </div>
 
                                                             <p className="text-white/80 text-center leading-relaxed text-sm">
-                                                                Mối quan hệ giữa giải phóng dân tộc và giải phóng giai cấp
+                                                                Lý luận cần được vận dụng phù hợp với điều kiện cụ thể. Việt Nam có truyền thống văn hóa tâm linh đặc thù.
                                                             </p>
                                                         </div>
                                                     </div>
@@ -1410,15 +1329,15 @@ function App() {
                                                                 </div>
                                                             </div>
 
-                                                            <h6 className="text-yellow-300 font-bold text-lg mb-3">3. Vận dụng sáng tạo</h6>
+                                                            <h6 className="text-yellow-300 font-bold text-lg mb-3">3. Tính hai mặt của tôn giáo</h6>
 
                                                             <div className="bg-yellow-900/40 rounded-xl p-3 w-full mb-4">
-                                                                <span className="text-yellow-200/80 text-sm">Lý luận + Thực tiễn</span>
-                                                                <p className="text-yellow-400 font-bold mt-1">Marx-Lenin + Việt Nam</p>
+                                                                <span className="text-yellow-200/80 text-sm">Nhìn nhận toàn diện</span>
+                                                                <p className="text-yellow-400 font-bold mt-1">Tích cực + Tiêu cực</p>
                                                             </div>
 
                                                             <p className="text-white/80 text-center leading-relaxed text-sm">
-                                                                Sự vận dụng sáng tạo chủ nghĩa Marx-Lenin vào điều kiện Việt Nam
+                                                                Mọi hiện tượng xã hội đều có mặt tích cực và tiêu cực. Trong điều kiện mới, có thể tạo điều kiện để mặt tích cực phát triển?
                                                             </p>
                                                         </div>
                                                     </div>
@@ -1430,7 +1349,7 @@ function App() {
                                     {/* Answer Button - UPGRADED */}
                                     <div className="text-center">
                                         <div className="mb-4">
-                                            <p className="text-white/70 text-sm mb-2">Sẵn sàng khám phá câu trả lời chi tiết?</p>
+                                            <p className="text-white/70 text-sm mb-2">Sẵn sàng khám phá câu trả lời phân tích?</p>
                                         </div>
 
                                         <button
@@ -1445,7 +1364,7 @@ function App() {
 
                                         <div className="mt-4 flex items-center justify-center gap-2">
                                             <span className="text-yellow-300/60 text-xs">•</span>
-                                            <span className="text-white/60 text-xs">So sánh đối chiếu rõ ràng</span>
+                                            <span className="text-white/60 text-xs">Phân tích biện chứng</span>
                                             <span className="text-yellow-300/60 text-xs">•</span>
                                             <span className="text-white/60 text-xs">Logic khoa học</span>
                                             <span className="text-yellow-300/60 text-xs">•</span>
@@ -1476,7 +1395,7 @@ function App() {
                                                 </div>
                                                 <div>
                                                     <h3 className="text-3xl font-bold text-yellow-400">CÂU TRẢ LỜI PHÂN TÍCH</h3>
-                                                    <p className="text-yellow-300/80 text-sm">So sánh đối chiếu rõ ràng, logic</p>
+                                                    <p className="text-yellow-300/80 text-sm">Phân tích biện chứng, logic</p>
                                                 </div>
                                             </div>
                                             <button
@@ -1491,51 +1410,51 @@ function App() {
                                         <div className="p-6 overflow-y-auto max-h-[70vh]">
                                             <div className="space-y-6">
 
-                                                {/* PHẦN 1: So sánh 3 quan điểm - FIXED: DÙNG FLEXBOX */}
+                                                {/* PHẦN 1: Phân tích quan điểm Mác-Lênin - FIXED: DÙNG FLEXBOX */}
                                                 <div className="bg-gradient-to-b from-black/50 to-red-900/30 rounded-2xl p-6 border border-yellow-400/20">
                                                     <div className="flex items-center gap-3 mb-6">
                                                         <div className="bg-yellow-400 text-black rounded-full w-8 h-8 flex items-center justify-center font-bold">1</div>
-                                                        <h4 className="text-yellow-300 font-bold text-xl">SO SÁNH 3 QUAN ĐIỂM YÊU NƯỚC</h4>
+                                                        <h4 className="text-yellow-300 font-bold text-xl">PHÂN TÍCH QUAN ĐIỂM MÁC-LÊNIN TRONG BỐI CẢNH</h4>
                                                     </div>
 
                                                     {/* ==== FIX: CHUYỂN TỪ GRID SANG FLEXBOX ==== */}
                                                     <div className="flex flex-col md:flex-row gap-4 mb-6">
-                                                        {/* Phan Bội Châu */}
+                                                        {/* Bối cảnh thế kỷ XIX */}
                                                         <div className="flex-1 bg-red-800/40 rounded-xl p-4 border border-red-400/30">
                                                             <div className="flex items-center gap-2 mb-3">
-                                                                <span className="text-red-300">🇯🇵</span>
-                                                                <h5 className="text-red-300 font-bold">Phan Bội Châu</h5>
+                                                                <span className="text-red-300">📜</span>
+                                                                <h5 className="text-red-300 font-bold">Bối cảnh thế kỷ XIX</h5>
                                                             </div>
-                                                            <p className="text-white/80 text-sm mb-2"><strong>Con đường:</strong> Dựa ngoại bang</p>
-                                                            <p className="text-white/70 text-xs">"Đông Du", tìm Nhật Bản giúp đánh Pháp</p>
+                                                            <p className="text-white/80 text-sm mb-2"><strong>Đặc điểm:</strong> Xã hội tư bản công nghiệp</p>
+                                                            <p className="text-white/70 text-xs">Tôn giáo thường bị giai cấp thống trị sử dụng như công cụ hợp pháp hóa sự áp bức</p>
                                                             <div className="mt-3 pt-2 border-t border-red-400/20">
-                                                                <span className="text-red-300/60 text-xs">• Độc lập hình thức</span>
+                                                                <span className="text-red-300/60 text-xs">• Phê phán chức năng ý thức hệ •</span>
                                                             </div>
                                                         </div>
 
-                                                        {/* Phan Châu Trinh */}
+                                                        {/* Nội dung cốt lõi */}
                                                         <div className="flex-1 bg-orange-800/40 rounded-xl p-4 border border-yellow-400/30">
                                                             <div className="flex items-center gap-2 mb-3">
-                                                                <span className="text-yellow-300">📚</span>
-                                                                <h5 className="text-yellow-300 font-bold">Phan Châu Trinh</h5>
+                                                                <span className="text-yellow-300">🎯</span>
+                                                                <h5 className="text-yellow-300 font-bold">Nội dung cốt lõi</h5>
                                                             </div>
-                                                            <p className="text-white/80 text-sm mb-2"><strong>Con đường:</strong> Cải cách ôn hòa</p>
-                                                            <p className="text-white/70 text-xs">"Khai dân trí", nâng cao dân trí trong khuôn khổ thuộc địa</p>
+                                                            <p className="text-white/80 text-sm mb-2"><strong>Phương pháp:</strong> Duy vật lịch sử</p>
+                                                            <p className="text-white/70 text-xs">Phân tích tôn giáo như một hiện tượng xã hội, gắn với điều kiện vật chất</p>
                                                             <div className="mt-3 pt-2 border-t border-yellow-400/20">
-                                                                <span className="text-yellow-300/60 text-xs">• Cải cách từng bước</span>
+                                                                <span className="text-yellow-300/60 text-xs">• Tính lịch sử • Tính xã hội •</span>
                                                             </div>
                                                         </div>
 
-                                                        {/* Hồ Chí Minh */}
+                                                        {/* Giới hạn lịch sử */}
                                                         <div className="flex-1 bg-gradient-to-b from-yellow-500/20 to-red-600/20 rounded-xl p-4 border-2 border-yellow-400">
                                                             <div className="flex items-center gap-2 mb-3">
-                                                                <span className="text-yellow-400">⭐</span>
-                                                                <h5 className="text-yellow-400 font-bold">Hồ Chí Minh</h5>
+                                                                <span className="text-yellow-400">⚠️</span>
+                                                                <h5 className="text-yellow-400 font-bold">Giới hạn lịch sử</h5>
                                                             </div>
-                                                            <p className="text-white font-semibold text-sm mb-2"><strong>Con đường:</strong> Cách mạng triệt để</p>
-                                                            <p className="text-yellow-100 text-xs font-medium">"Độc lập dân tộc + Chủ nghĩa xã hội"</p>
+                                                            <p className="text-white font-semibold text-sm mb-2"><strong>Vấn đề:</strong> Áp dụng nguyên xi</p>
+                                                            <p className="text-yellow-100 text-xs font-medium">Liệu quan điểm thế kỷ XIX có áp dụng được cho mọi hoàn cảnh?</p>
                                                             <div className="mt-3 pt-2 border-t border-yellow-400/30">
-                                                                <span className="text-yellow-400 text-xs font-bold">• Độc lập thực chất</span>
+                                                                <span className="text-yellow-400 text-xs font-bold">• Cần vận dụng sáng tạo •</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1543,99 +1462,99 @@ function App() {
 
                                                     <div className="bg-gradient-to-r from-yellow-500/10 to-red-500/10 rounded-lg p-4 border-l-4 border-yellow-400">
                                                         <p className="text-yellow-200 text-sm">
-                                                            <strong>Điểm đột phá:</strong> Hồ Chí Minh không chỉ kế thừa tinh thần yêu nước của <strong>tiền nhân</strong>, mà còn <strong>nâng lên tầm cao mới</strong> bằng cách kết hợp với lý luận cách mạng khoa học.
+                                                            <strong>Kết luận:</strong> Quan điểm Mác-Lênin cung cấp <strong>phương pháp luận khoa học</strong> để phân tích tôn giáo, nhưng cần được <strong>vận dụng linh hoạt</strong> trong từng bối cảnh cụ thể.
                                                         </p>
                                                     </div>
                                                 </div>
 
-                                                {/* PHẦN 2: Sự khác biệt cốt lõi - ĐÃ FIX */}
+                                                {/* PHẦN 2: Vận dụng vào điều kiện Việt Nam - ĐÃ FIX */}
                                                 <div className="bg-gradient-to-b from-black/50 to-purple-900/30 rounded-2xl p-6 border border-purple-400/20">
                                                     <div className="flex items-center gap-3 mb-4">
                                                         <div className="bg-purple-400 text-black rounded-full w-8 h-8 flex items-center justify-center font-bold">2</div>
-                                                        <h4 className="text-purple-300 font-bold text-xl">SỰ KHÁC BIỆT CỐT LÕI</h4>
+                                                        <h4 className="text-purple-300 font-bold text-xl">VẬN DỤNG VÀO ĐIỀU KIỆN VIỆT NAM</h4>
                                                     </div>
 
                                                     <div className="space-y-4">
                                                         {/* Sử dụng FLEXBOX thay vì GRID */}
                                                         <div className="flex flex-col md:flex-row gap-4">
-                                                            {/* Tiền nhân */}
+                                                            {/* Truyền thống văn hóa */}
                                                             <div className="flex-1 bg-red-900/30 rounded-lg p-4">
                                                                 <div className="flex items-center gap-2 mb-3">
                                                                     <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center">
-                                                                        <span className="text-red-400">👑</span>
+                                                                        <span className="text-red-400">🏮</span>
                                                                     </div>
-                                                                    <h5 className="text-red-300 font-bold">Tiền nhân:</h5>
+                                                                    <h5 className="text-red-300 font-bold">Truyền thống văn hóa:</h5>
                                                                 </div>
                                                                 <ul className="text-white/80 space-y-2">
                                                                     <li className="flex items-start gap-2">
                                                                         <span className="text-red-400 mt-1">•</span>
                                                                         <div>
-                                                                            <strong className="text-red-200">Chỉ dừng ở độc lập lãnh thổ</strong>
-                                                                            <p className="text-white/60 text-xs mt-1">Giành lại chủ quyền, nhưng không thay đổi cơ cấu xã hội</p>
+                                                                            <strong className="text-red-200">Tôn giáo gắn với văn hóa dân tộc</strong>
+                                                                            <p className="text-white/60 text-xs mt-1">Phật giáo, Đạo giáo hòa quyện với tín ngưỡng dân gian</p>
                                                                         </div>
                                                                     </li>
                                                                     <li className="flex items-start gap-2">
                                                                         <span className="text-red-400 mt-1">•</span>
                                                                         <div>
-                                                                            <strong className="text-red-200">Không thay đổi bản chất xã hội</strong>
-                                                                            <p className="text-white/60 text-xs mt-1">Vẫn là chế độ phong kiến/quân chủ</p>
+                                                                            <strong className="text-red-200">Tính chất đặc thù</strong>
+                                                                            <p className="text-white/60 text-xs mt-1">Không có xung đột tôn giáo kéo dài như nhiều nước</p>
                                                                         </div>
                                                                     </li>
                                                                     <li className="flex items-start gap-2">
                                                                         <span className="text-red-400 mt-1">•</span>
                                                                         <div>
-                                                                            <strong className="text-red-200">Vẫn duy trì áp bức, bóc lột</strong>
-                                                                            <p className="text-white/60 text-xs mt-1">Nhân dân lao động vẫn bị bóc lột dưới hình thức mới</p>
+                                                                            <strong className="text-red-200">Tinh thần khoan dung</strong>
+                                                                            <p className="text-white/60 text-xs mt-1">Các tôn giáo chung sống hòa bình qua nhiều thế kỷ</p>
                                                                         </div>
                                                                     </li>
                                                                 </ul>
                                                             </div>
 
-                                                            {/* Hồ Chí Minh */}
+                                                            {/* Nhu cầu phát triển */}
                                                             <div className="flex-1 bg-gradient-to-b from-yellow-500/20 to-orange-600/20 rounded-lg p-4 border border-yellow-400/30">
                                                                 <div className="flex items-center gap-2 mb-3">
                                                                     <div className="w-8 h-8 rounded-full bg-yellow-500/20 flex items-center justify-center">
-                                                                        <span className="text-yellow-400">⭐</span>
+                                                                        <span className="text-yellow-400">🚀</span>
                                                                     </div>
-                                                                    <h5 className="text-yellow-300 font-bold">Hồ Chí Minh:</h5>
+                                                                    <h5 className="text-yellow-300 font-bold">Nhu cầu phát triển:</h5>
                                                                 </div>
                                                                 <ul className="text-yellow-100 space-y-2">
                                                                     <li className="flex items-start gap-2">
                                                                         <span className="text-yellow-400 mt-1">•</span>
                                                                         <div>
-                                                                            <strong className="text-yellow-300">Độc lập dân tộc + CNXH</strong>
-                                                                            <p className="text-yellow-100/60 text-xs mt-1">Kết hợp hai nhiệm vụ trong một</p>
+                                                                            <strong className="text-yellow-300">Đoàn kết toàn dân</strong>
+                                                                            <p className="text-yellow-100/60 text-xs mt-1">Cần huy động mọi nguồn lực cho phát triển</p>
                                                                         </div>
                                                                     </li>
                                                                     <li className="flex items-start gap-2">
                                                                         <span className="text-yellow-400 mt-1">•</span>
                                                                         <div>
-                                                                            <strong className="text-yellow-300">Giải phóng toàn diện</strong>
-                                                                            <p className="text-yellow-100/60 text-xs mt-1">Giải phóng dân tộc và giải phóng giai cấp</p>
+                                                                            <strong className="text-yellow-300">Ổn định xã hội</strong>
+                                                                            <p className="text-yellow-100/60 text-xs mt-1">Tôn giáo ổn định góp phần vào ổn định chung</p>
                                                                         </div>
                                                                     </li>
                                                                     <li className="flex items-start gap-2">
                                                                         <span className="text-yellow-400 mt-1">•</span>
                                                                         <div>
-                                                                            <strong className="text-yellow-300">Hướng tới hạnh phúc thực sự</strong>
-                                                                            <p className="text-yellow-100/60 text-xs mt-1">Xóa bỏ mọi hình thức áp bức, bóc lột</p>
+                                                                            <strong className="text-yellow-300">Phát huy giá trị tích cực</strong>
+                                                                            <p className="text-yellow-100/60 text-xs mt-1">Khai thác mặt tốt đẹp của tôn giáo cho xã hội</p>
                                                                         </div>
                                                                     </li>
                                                                 </ul>
                                                             </div>
                                                         </div>
 
-                                                        {/* Phần bước nhảy vọt */}
+                                                        {/* Phần nguyên tắc vận dụng */}
                                                         <div className="bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-lg p-4">
                                                             <div className="flex items-start gap-3">
                                                                 <div className="bg-gradient-to-br from-purple-500 to-blue-500 rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0">
-                                                                    <span className="text-white text-xl">🚀</span>
+                                                                    <span className="text-white text-xl">🔄</span>
                                                                 </div>
                                                                 <div>
-                                                                    <h6 className="text-purple-300 font-bold mb-2">BƯỚC NHẢY VỌT LỊCH SỬ</h6>
+                                                                    <h6 className="text-purple-300 font-bold mb-2">NGUYÊN TẮC VẬN DỤNG</h6>
                                                                     <p className="text-white text-sm leading-relaxed">
-                                                                        Từ <strong className="text-red-300">"độc lập hình thức"</strong> (chỉ thay đổi chủ thể cai trị)
-                                                                        → sang <strong className="text-yellow-300">"độc lập thực chất"</strong> (thay đổi toàn bộ cấu trúc xã hội).
+                                                                        Từ <strong className="text-red-300">"áp dụng máy móc"</strong> lý luận
+                                                                        → sang <strong className="text-yellow-300">"vận dụng sáng tạo"</strong> phù hợp với điều kiện Việt Nam.
                                                                     </p>
                                                                 </div>
                                                             </div>
@@ -1643,35 +1562,47 @@ function App() {
                                                     </div>
                                                 </div>
 
-                                                {/* PHẦN 3: Giá trị thời đại */}
+                                                {/* PHẦN 3: Tính hai mặt và phát huy giá trị tích cực */}
                                                 <div className="bg-gradient-to-b from-black/50 to-blue-900/30 rounded-2xl p-6 border border-blue-400/20">
                                                     <div className="flex items-center gap-3 mb-4">
                                                         <div className="bg-blue-400 text-black rounded-full w-8 h-8 flex items-center justify-center font-bold">3</div>
-                                                        <h4 className="text-blue-300 font-bold text-xl">GIÁ TRỊ THỜI ĐẠI</h4>
+                                                        <h4 className="text-blue-300 font-bold text-xl">TÍNH HAI MẶT VÀ PHÁT HUY GIÁ TRỊ TÍCH CỰC</h4>
                                                     </div>
 
                                                     <div className="space-y-4">
                                                         <div className="bg-blue-900/20 rounded-lg p-4">
                                                             <h5 className="text-blue-300 font-bold mb-3 flex items-center gap-2">
-                                                                <span>🎯</span>
-                                                                Tại sao vẫn còn giá trị ngày nay?
+                                                                <span>⚖️</span>
+                                                                Phân tích tính hai mặt của tôn giáo:
                                                             </h5>
                                                             <ul className="text-white/80 space-y-2 text-sm">
                                                                 <li className="flex items-start gap-2">
                                                                     <span className="text-blue-400 mt-1">•</span>
-                                                                    <span><strong>Tính khoa học:</strong> Dựa trên phân tích thực tiễn Việt Nam, không giáo điều</span>
+                                                                    <span><strong>Mặt tích cực:</strong> Giá trị đạo đức (từ bi, bác ái), văn hóa, giáo dục, an ủi tinh thần</span>
                                                                 </li>
                                                                 <li className="flex items-start gap-2">
                                                                     <span className="text-blue-400 mt-1">•</span>
-                                                                    <span><strong>Tính nhân văn:</strong> Lấy hạnh phúc nhân dân làm mục tiêu cao nhất</span>
+                                                                    <span><strong>Mặt tiêu cực:</strong> Có thể trở thành công cụ mê hoặc, cản trở nhận thức khoa học, bị lợi dụng</span>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div className="bg-green-900/20 rounded-lg p-4">
+                                                            <h5 className="text-green-300 font-bold mb-3 flex items-center gap-2">
+                                                                <span>🌟</span>
+                                                                Phát huy giá trị tích cực:
+                                                            </h5>
+                                                            <ul className="text-white/80 space-y-2 text-sm">
+                                                                <li className="flex items-start gap-2">
+                                                                    <span className="text-green-400 mt-1">•</span>
+                                                                    <span><strong>Không phủ nhận toàn bộ:</strong> Nhận diện và khai thác các giá trị tốt đẹp</span>
                                                                 </li>
                                                                 <li className="flex items-start gap-2">
-                                                                    <span className="text-blue-400 mt-1">•</span>
-                                                                    <span><strong>Tính sáng tạo:</strong> Vận dụng lý luận quốc tế vào điều kiện cụ thể trong nước</span>
+                                                                    <span className="text-green-400 mt-1">•</span>
+                                                                    <span><strong>Định hướng phát triển:</strong> Hướng các hoạt động tôn giáo vào mục tiêu xã hội chung</span>
                                                                 </li>
                                                                 <li className="flex items-start gap-2">
-                                                                    <span className="text-blue-400 mt-1">•</span>
-                                                                    <span><strong>Tính dự báo:</strong> Đặt nền móng cho phát triển bền vững</span>
+                                                                    <span className="text-green-400 mt-1">•</span>
+                                                                    <span><strong>Tạo điều kiện:</strong> Để mặt tích cực được phát huy, mặt tiêu cực được hạn chế</span>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -1691,75 +1622,77 @@ function App() {
                                                         {/* Tuyên bố chính */}
                                                         <div className="bg-gradient-to-r from-yellow-400/10 to-orange-500/10 rounded-lg p-5 border-l-4 border-yellow-400">
                                                             <p className="text-yellow-200 text-lg leading-relaxed font-medium">
-                                                                Tư tưởng <strong className="text-yellow-300">"Độc lập dân tộc gắn liền với Chủ nghĩa xã hội"</strong> của Hồ Chí Minh
-                                                                không chỉ là một <strong className="text-yellow-300">sự đột phá lý luận</strong>, mà còn là
-                                                                <strong className="text-yellow-300"> giải pháp thực tiễn hoàn chỉnh</strong> cho vấn đề dân tộc và giai cấp trong điều kiện Việt Nam.
+                                                                Quan điểm của Nhà nước Việt Nam về tôn giáo thể hiện <strong className="text-yellow-300">tính biện chứng sâu sắc</strong>:
+                                                                <br />
+                                                                <strong className="text-yellow-300">Kế thừa phương pháp luận khoa học</strong> của chủ nghĩa Mác-Lênin,
+                                                                <br />
+                                                                nhưng <strong className="text-yellow-300">vận dụng linh hoạt, sáng tạo</strong> vào điều kiện cụ thể của Việt Nam.
                                                             </p>
                                                         </div>
 
                                                         {/* Bài học & Giá trị - FLEXBOX */}
                                                         <div className="flex flex-col md:flex-row gap-4">
-                                                            {/* Bài học lịch sử */}
+                                                            {/* Sự thống nhất */}
                                                             <div className="flex-1 bg-black/40 rounded-lg p-4">
                                                                 <div className="flex items-center gap-2 mb-3">
                                                                     <div className="w-8 h-8 rounded-full bg-yellow-500/20 flex items-center justify-center">
-                                                                        <span className="text-yellow-400">📜</span>
+                                                                        <span className="text-yellow-400">🔄</span>
                                                                     </div>
-                                                                    <h5 className="text-yellow-300 font-bold">Bài học lịch sử:</h5>
+                                                                    <h5 className="text-yellow-300 font-bold">Sự thống nhất biện chứng:</h5>
                                                                 </div>
                                                                 <ul className="text-white/80 space-y-3">
                                                                     <li className="flex items-start gap-2">
                                                                         <span className="text-yellow-400 mt-1">•</span>
                                                                         <div>
-                                                                            <strong className="text-yellow-200">Kế thừa có chọn lọc tinh hoa truyền thống</strong>
-                                                                            <p className="text-white/60 text-xs mt-1">Giữ lại tinh thần yêu nước, loại bỏ hạn chế lịch sử</p>
+                                                                            <strong className="text-yellow-200">Không mâu thuẫn mà bổ sung</strong>
+                                                                            <p className="text-white/60 text-xs mt-1">Lý luận về tính lịch sử và phát huy giá trị tích cực không đối lập</p>
                                                                         </div>
                                                                     </li>
                                                                     <li className="flex items-start gap-2">
                                                                         <span className="text-yellow-400 mt-1">•</span>
                                                                         <div>
-                                                                            <strong className="text-yellow-200">Vận dụng sáng tạo lý luận vào thực tiễn</strong>
-                                                                            <p className="text-white/60 text-xs mt-1">Không rập khuôn, máy móc chủ nghĩa Marx-Lenin</p>
+                                                                            <strong className="text-yellow-200">Nhìn nhận toàn diện</strong>
+                                                                            <p className="text-white/60 text-xs mt-1">Thấy cả bản chất lịch sử lẫn khả năng đóng góp hiện tại</p>
                                                                         </div>
                                                                     </li>
                                                                     <li className="flex items-start gap-2">
                                                                         <span className="text-yellow-400 mt-1">•</span>
                                                                         <div>
-                                                                            <strong className="text-yellow-200">Luôn đặt lợi ích nhân dân lên hàng đầu</strong>
-                                                                            <p className="text-white/60 text-xs mt-1">Mục tiêu cao nhất là hạnh phúc của nhân dân lao động</p>
+                                                                            <strong className="text-yellow-200">Phù hợp với thực tiễn</strong>
+                                                                            <p className="text-white/60 text-xs mt-1">Đáp ứng nhu cầu phát triển và ổn định xã hội</p>
                                                                         </div>
                                                                     </li>
                                                                 </ul>
                                                             </div>
 
-                                                            {/* Giá trị hiện tại */}
+                                                            {/* Ý nghĩa thực tiễn */}
                                                             <div className="flex-1 bg-red-900/40 rounded-lg p-4">
                                                                 <div className="flex items-center gap-2 mb-3">
                                                                     <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center">
                                                                         <span className="text-red-400">🎯</span>
                                                                     </div>
-                                                                    <h5 className="text-red-300 font-bold">Giá trị hiện tại:</h5>
+                                                                    <h5 className="text-red-300 font-bold">Ý nghĩa thực tiễn:</h5>
                                                                 </div>
                                                                 <ul className="text-white/80 space-y-3">
                                                                     <li className="flex items-start gap-2">
                                                                         <span className="text-red-400 mt-1">•</span>
                                                                         <div>
-                                                                            <strong className="text-red-200">Vẫn là kim chỉ nam cho phát triển đất nước</strong>
-                                                                            <p className="text-white/60 text-xs mt-1">Định hướng cho công cuộc đổi mới và hội nhập</p>
+                                                                            <strong className="text-red-200">Tạo sự đồng thuận xã hội</strong>
+                                                                            <p className="text-white/60 text-xs mt-1">Đoàn kết đồng bào có đạo và không có đạo</p>
                                                                         </div>
                                                                     </li>
                                                                     <li className="flex items-start gap-2">
                                                                         <span className="text-red-400 mt-1">•</span>
                                                                         <div>
-                                                                            <strong className="text-red-200">Giúp giữ vững độc lập trong hội nhập quốc tế</strong>
-                                                                            <p className="text-white/60 text-xs mt-1">Cân bằng giữa mở cửa và bảo vệ chủ quyền</p>
+                                                                            <strong className="text-red-200">Phát huy nguồn lực</strong>
+                                                                            <p className="text-white/60 text-xs mt-1">Khai thác giá trị tích cực của tôn giáo cho phát triển</p>
                                                                         </div>
                                                                     </li>
                                                                     <li className="flex items-start gap-2">
                                                                         <span className="text-red-400 mt-1">•</span>
                                                                         <div>
-                                                                            <strong className="text-red-200">Đảm bảo phát triển bền vững, công bằng</strong>
-                                                                            <p className="text-white/60 text-xs mt-1">Phát triển kinh tế đi đôi với công bằng xã hội</p>
+                                                                            <strong className="text-red-200">Bảo đảm ổn định lâu dài</strong>
+                                                                            <p className="text-white/60 text-xs mt-1">Giải quyết vấn đề tôn giáo bằng biện pháp phù hợp</p>
                                                                         </div>
                                                                     </li>
                                                                 </ul>
@@ -1772,9 +1705,9 @@ function App() {
                                                                 <div className="text-2xl">💎</div>
                                                                 <div>
                                                                     <p className="text-white text-sm italic leading-relaxed">
-                                                                        "Sự khác biệt của Hồ Chí Minh so với tiền nhân không phải ở mục tiêu yêu nước,
-                                                                        mà ở <strong className="text-yellow-300">tầm nhìn chiến lược</strong> và
-                                                                        <strong className="text-yellow-300"> phương pháp khoa học</strong> để đạt được mục tiêu đó."
+                                                                        "Chính sách tôn giáo của Việt Nam không phải là sự từ bỏ lý luận Mác-Lênin,
+                                                                        mà là <strong className="text-yellow-300">sự vận dụng sáng tạo</strong> lý luận đó vào điều kiện cụ thể,
+                                                                        thể hiện <strong className="text-yellow-300">tinh thần biện chứng và thực tiễn</strong>."
                                                                     </p>
                                                                 </div>
                                                             </div>
@@ -1803,9 +1736,9 @@ function App() {
                     </div>
                 </section>
 
-                                                                                                   
 
-                
+
+
 
 
                 {/* Quiz */}
@@ -1836,7 +1769,7 @@ function App() {
                                 <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 rounded-full"></div>
                             </h2>
                             <p className="text-lg text-white opacity-90 font-medium">
-                                TƯ TƯỞNG HỒ CHÍ MINH VỀ ĐỘC LẬP DÂN TỘC VÀ CHỦ NGHĨA XÃ HỘI
+                                TÔN GIÁO TRONG THỜI KỲ QUÁ ĐỘ LÊN CHỦ NGHĨA XÃ HỘI
                             </p>
 
                             {/* Score Display - Hiển thị điểm số */}
@@ -1998,8 +1931,8 @@ function App() {
                                                     {/* Lời nhắn */}
                                                     <p className="text-white text-center max-w-md mb-6">
                                                         {score === quizQuestions.length ?
-                                                            "Bạn đã nắm vững tư tưởng Hồ Chí Minh về độc lập dân tộc và chủ nghĩa xã hội!" :
-                                                            "Hãy tiếp tục nghiên cứu để hiểu sâu hơn về tư tưởng Hồ Chí Minh!"}
+                                                            "Bạn đã nắm vững kiến thức về tôn giáo trong thời kỳ quá độ!" :
+                                                            "Hãy tiếp tục nghiên cứu để hiểu sâu hơn về chính sách tôn giáo!"}
                                                     </p>
 
                                                     {/* Nút làm lại */}
@@ -2115,7 +2048,7 @@ function App() {
                                             → Nội dung video được tạo bằng AI để minh họa khái niệm, timeline, poster mô phỏng phong cách cổ động.
                                         </p>
                                         <p className="text-red-700 font-semibold text-lg mt-3">
-                                            → Các hình ảnh AI được sử dụng để làm cho bài giảng về tư tưởng Hồ Chí Minh trở nên hấp dẫn và trực quan hơn.
+                                            → Các hình ảnh AI được sử dụng để làm cho bài giảng về tôn giáo trong thời kỳ quá độ trở nên hấp dẫn và trực quan hơn.
                                         </p>
                                     </div>
                                 </div>
@@ -2136,11 +2069,11 @@ function App() {
                                                 <ul className="text-red-600 text-lg space-y-2">
                                                     <li className="flex items-start gap-3">
                                                         <span className="text-red-500 text-xl mt-1">•</span>
-                                                        <span>Tạo hình ảnh trực quan cho các mốc lịch sử quan trọng</span>
+                                                        <span>Tạo hình ảnh trực quan cho các khái niệm học thuật</span>
                                                     </li>
                                                     <li className="flex items-start gap-3">
                                                         <span className="text-red-500 text-xl mt-1">•</span>
-                                                        <span>Sơ đồ hóa các khái niệm phức tạp thành hình ảnh dễ hiểu</span>
+                                                        <span>Sơ đồ hóa các mối quan hệ phức tạp thành hình ảnh dễ hiểu</span>
                                                     </li>
                                                     <li className="flex items-start gap-3">
                                                         <span className="text-red-500 text-xl mt-1">•</span>
@@ -2167,7 +2100,7 @@ function App() {
                                                     </li>
                                                     <li className="flex items-start gap-3">
                                                         <span className="text-red-500 text-xl mt-1">•</span>
-                                                        <span>Tạo texture và pattern nền phù hợp với theme Việt Nam</span>
+                                                        <span>Tạo texture và pattern nền phù hợp với theme</span>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -2307,8 +2240,8 @@ function App() {
                 {/* Footer */}
                 <footer className="bg-red-900 border-t border-yellow-400/20 py-8">
                     <div className="container mx-auto px-4 text-center">
-                        <p className="text-yellow-100 mb-4">© 2026 - Tư tưởng Hồ Chí Minh về Độc lập dân tộc và Chủ nghĩa xã hội - Nhóm SPST1 - AI1807</p>
-                        <p className="text-yellow-300 text-sm">"Không có gì quý hơn độc lập, tự do" - Chủ tịch Hồ Chí Minh</p>
+                        <p className="text-yellow-100 mb-4">© 2026 - Tôn giáo trong thời kỳ quá độ lên chủ nghĩa xã hội - Nhóm SPST1 - AI1807</p>
+                        <p className="text-yellow-300 text-sm">"Sống tốt đời, đẹp đạo" - Phương châm của đồng bào có đạo</p>
                     </div>
                 </footer>
 
