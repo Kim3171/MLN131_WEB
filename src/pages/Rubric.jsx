@@ -5,33 +5,13 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import rubricData from '../data/rubricData';
 import RedStar from '../components/svgs/RedStar';
-import BambooDecoration from '../components/svgs/BambooDecoration';
 import HistoricalPhoto from '../components/HistoricalPhoto';
-import { IMAGES } from '../data/images';
 
 export default function Rubric() {
-  const [expandedSection, setExpandedSection] = useState(null);
   const [expandedCriteria, setExpandedCriteria] = useState({});
-  const [aiChecks, setAiChecks] = useState({
-    '4-1': false,
-    '4-2': false,
-    '4-3': false,
-    '4-4': false
-  });
-
-  const toggleSection = (section) => {
-    setExpandedSection(expandedSection === section ? null : section);
-  };
 
   const toggleCriteria = (id) => {
     setExpandedCriteria(prev => ({
-      ...prev,
-      [id]: !prev[id]
-    }));
-  };
-
-  const toggleAiCheck = (id) => {
-    setAiChecks(prev => ({
       ...prev,
       [id]: !prev[id]
     }));
@@ -43,216 +23,159 @@ export default function Rubric() {
 
   return (
     <div className="rubric-page">
-      {/* Header */}
-      <div className="rubric-header">
-        <h1>Tiêu Chí Đánh Giá</h1>
-        <p>Grading Rubric — CQ6 Assignment</p>
-      </div>
-
-      {/* Part 1 */}
-      <div className="rubric-section">
-        <button
-          className={`section-header ${rubricData.part1.color}`}
-          onClick={() => toggleSection('part1')}
-        >
-          <div className="section-title">
-            <RedStar size={20} />
-            <span>{rubricData.part1.titleVi}</span>
+      {/* Left Column - Rubric Content */}
+      <div className="rubric-content">
+        {/* Header */}
+        <div className="rubric-header">
+          <div className="rubric-title-row">
+            <h1>Tiêu Chí Đánh Giá</h1>
+            <button className="print-btn" onClick={handlePrint}>
+              🖨️ In / Print
+            </button>
           </div>
-          <div className="section-total">
-            {rubricData.part1.totalPoints} điểm / points
-          </div>
-        </button>
+          <p>Grading Rubric — CQ6 Assignment</p>
+        </div>
 
-        <AnimatePresence>
-          {expandedSection === 'part1' && (
-            <motion.div
-              className="section-content"
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-            >
-              {rubricData.part1.criteria.map((criterion, index) => (
-                <div
-                  key={criterion.id}
-                  className="criterion-card"
+        {/* Part 1 - Crimson */}
+        <div className="rubric-section">
+          <div className="section-header crimson">
+            <div className="section-title">
+              <RedStar size={20} />
+              <span>{rubricData.part1.titleVi}</span>
+            </div>
+            <div className="section-total">
+              {rubricData.part1.totalPoints} điểm / points
+            </div>
+          </div>
+
+          <div className="criteria-list">
+            {rubricData.part1.criteria.map((criterion, index) => (
+              <div
+                key={criterion.id}
+                className={`criterion-card ${expandedCriteria[criterion.id] ? 'expanded' : ''}`}
+              >
+                <button
+                  className="criterion-header"
                   onClick={() => toggleCriteria(criterion.id)}
                 >
-                  <div className="criterion-header">
-                    <div className="criterion-number">{index + 1}</div>
-                    <div className="criterion-info">
-                      <h4>{criterion.nameVi}</h4>
-                      <p>{criterion.nameEn}</p>
-                    </div>
-                    <div className="criterion-points">{criterion.points}</div>
+                  <div className="criterion-number">{index + 1}</div>
+                  <div className="criterion-info">
+                    <h4>{criterion.nameVi}</h4>
+                    <p>{criterion.nameEn}</p>
                   </div>
-                  <AnimatePresence>
-                    {expandedCriteria[criterion.id] && (
-                      <motion.div
-                        className="criterion-details"
-                        initial={{ height: 0 }}
-                        animate={{ height: 'auto' }}
-                        exit={{ height: 0 }}
-                      >
-                        <p>{criterion.descriptionVi}</p>
-                        <p className="en">{criterion.descriptionEn}</p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-
-      <BambooDecoration />
-
-      {/* Part 2 */}
-      <div className="rubric-section">
-        <button
-          className={`section-header ${rubricData.part2.color}`}
-          onClick={() => toggleSection('part2')}
-        >
-          <div className="section-title">
-            <RedStar size={20} />
-            <span>{rubricData.part2.titleVi}</span>
+                  <div className="criterion-points">{criterion.points}</div>
+                </button>
+                <AnimatePresence>
+                  {expandedCriteria[criterion.id] && (
+                    <motion.div
+                      className="criterion-details"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                    >
+                      <p>{criterion.detailVi}</p>
+                      <p className="en">{criterion.detailEn}</p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
           </div>
-          <div className="section-total">
-            {rubricData.part2.totalPoints} điểm / points
-          </div>
-        </button>
+        </div>
 
-        <AnimatePresence>
-          {expandedSection === 'part2' && (
-            <motion.div
-              className="section-content"
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-            >
-              {rubricData.part2.criteria.map((criterion, index) => (
-                <div
-                  key={criterion.id}
-                  className="criterion-card"
+        {/* Part 2 - Gold */}
+        <div className="rubric-section">
+          <div className="section-header gold">
+            <div className="section-title">
+              <RedStar size={20} />
+              <span>{rubricData.part2.titleVi}</span>
+            </div>
+            <div className="section-total">
+              {rubricData.part2.totalPoints} điểm / points
+            </div>
+          </div>
+
+          <div className="criteria-list">
+            {rubricData.part2.criteria.map((criterion, index) => (
+              <div
+                key={criterion.id}
+                className={`criterion-card ${expandedCriteria[criterion.id] ? 'expanded' : ''}`}
+              >
+                <button
+                  className="criterion-header"
                   onClick={() => toggleCriteria(criterion.id)}
                 >
-                  <div className="criterion-header">
-                    <div className="criterion-number">{index + 1}</div>
-                    <div className="criterion-info">
-                      <h4>{criterion.nameVi}</h4>
-                      <p>{criterion.nameEn}</p>
-                    </div>
-                    <div className="criterion-points">{criterion.points}</div>
+                  <div className="criterion-number">{index + 1}</div>
+                  <div className="criterion-info">
+                    <h4>{criterion.nameVi}</h4>
+                    <p>{criterion.nameEn}</p>
                   </div>
-                  <AnimatePresence>
-                    {expandedCriteria[criterion.id] && (
-                      <motion.div
-                        className="criterion-details"
-                        initial={{ height: 0 }}
-                        animate={{ height: 'auto' }}
-                        exit={{ height: 0 }}
-                      >
-                        <p>{criterion.descriptionVi}</p>
-                        <p className="en">{criterion.descriptionEn}</p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-
-      <BambooDecoration />
-
-      {/* AI Usage */}
-      <div className="rubric-section">
-        <button
-          className={`section-header ${rubricData.aiUsage.color}`}
-          onClick={() => toggleSection('aiUsage')}
-        >
-          <div className="section-title">
-            <span>🤖</span>
-            <span>{rubricData.aiUsage.titleVi}</span>
+                  <div className="criterion-points">{criterion.points}</div>
+                </button>
+                <AnimatePresence>
+                  {expandedCriteria[criterion.id] && (
+                    <motion.div
+                      className="criterion-details"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                    >
+                      <p>{criterion.detailVi}</p>
+                      <p className="en">{criterion.detailEn}</p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
           </div>
-        </button>
-
-        <AnimatePresence>
-          {expandedSection === 'aiUsage' && (
-            <motion.div
-              className="section-content ai-content"
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-            >
-              {rubricData.aiUsage.criteria.map((criterion) => (
-                <div key={criterion.id} className="ai-criterion">
-                  <label className="ai-checkbox">
-                    <input
-                      type="checkbox"
-                      checked={aiChecks[criterion.id]}
-                      onChange={() => toggleAiCheck(criterion.id)}
-                    />
-                    <span className="checkmark" />
-                    <div className="ai-criterion-content">
-                      <h4>{criterion.nameVi}</h4>
-                      <p>{criterion.nameEn}</p>
-                      <p className="description">{criterion.descriptionVi}</p>
-                      <p className="description en">{criterion.descriptionEn}</p>
-                    </div>
-                  </label>
-                </div>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
+        </div>
       </div>
 
-      {/* Print Button */}
-      <button className="print-btn" onClick={handlePrint}>
-        🖨️ In / Print
-      </button>
-
-      {/* Historical Photos Side Panel (Desktop Only) */}
+      {/* Right Column - Historical Photos */}
       <div className="rubric-photos-panel">
-        <div className="rubric-photo-card">
-          <HistoricalPhoto
-            imageKey="hoChiMinhPortrait"
-            alt="Hồ Chí Minh"
-            caption="Hồ Chí Minh — Chủ tịch nước"
-            className="rubric-historical-photo"
-          />
-        </div>
-        <div className="rubric-photo-card">
-          <HistoricalPhoto
-            imageKey="voNguyenGiap"
-            alt="Võ Nguyên Giáp"
-            caption="Võ Nguyên Giáp — Tổng Tư lệnh"
-            className="rubric-historical-photo"
-          />
-        </div>
-        <div className="rubric-photo-card">
-          <HistoricalPhoto
-            imageKey="parisAccords"
-            alt="Hiệp định Paris 1973"
-            caption="Hiệp định Paris — 27/1/1973"
-            className="rubric-historical-photo"
-          />
-        </div>
+        <HistoricalPhoto
+          imageKey="hoChiMinhPortrait"
+          alt="Hồ Chí Minh"
+          caption="Hồ Chí Minh — Chủ tịch nước Việt Nam Dân chủ Cộng hòa"
+          className="rubric-historical-photo"
+        />
+        <HistoricalPhoto
+          imageKey="voNguyenGiap"
+          alt="Võ Nguyên Giáp"
+          caption="Võ Nguyên Giáp — Tổng Tư lệnh Quân đội Nhân dân Việt Nam"
+          className="rubric-historical-photo"
+        />
+        <HistoricalPhoto
+          imageKey="parisAccords"
+          alt="Hiệp định Paris"
+          caption="Hiệp định Paris — 27/1/1973"
+          className="rubric-historical-photo"
+        />
       </div>
 
       <style>{`
         .rubric-page {
-          max-width: 900px;
+          display: flex;
+          gap: 2rem;
+          max-width: 1400px;
           margin: 0 auto;
-          padding-bottom: 4rem;
+          padding: 2rem;
+        }
+
+        .rubric-content {
+          flex: 0 0 65%;
+          min-width: 0;
         }
 
         .rubric-header {
-          text-align: center;
           margin-bottom: 2rem;
+        }
+
+        .rubric-title-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 0.5rem;
         }
 
         .rubric-header h1 {
@@ -265,28 +188,38 @@ export default function Rubric() {
         .rubric-header p {
           font-family: var(--font-mono);
           color: var(--gold);
-          margin: 0.5rem 0 0;
+          margin: 0;
+        }
+
+        .print-btn {
+          padding: 0.5rem 1rem;
+          background: var(--smoke);
+          border: 1px solid var(--gold);
+          border-radius: 8px;
+          color: var(--gold);
+          font-family: var(--font-mono);
+          font-size: 0.8rem;
+          cursor: pointer;
+          transition: all 0.2s;
+        }
+
+        .print-btn:hover {
+          background: rgba(212, 168, 83, 0.1);
         }
 
         .rubric-section {
-          margin-bottom: 1.5rem;
+          margin-bottom: 2rem;
         }
 
         .section-header {
-          width: 100%;
           display: flex;
           justify-content: space-between;
           align-items: center;
           padding: 1.5rem;
           background: var(--smoke);
+          border-radius: 12px 12px 0 0;
           border: 1px solid rgba(212, 168, 83, 0.2);
-          border-radius: 12px;
-          cursor: pointer;
-          transition: all 0.2s;
-        }
-
-        .section-header:hover {
-          border-color: var(--gold);
+          border-bottom: none;
         }
 
         .section-header.crimson {
@@ -295,10 +228,6 @@ export default function Rubric() {
 
         .section-header.gold {
           border-left: 4px solid var(--gold);
-        }
-
-        .section-header.olive {
-          border-left: 4px solid var(--olive);
         }
 
         .section-title {
@@ -316,13 +245,12 @@ export default function Rubric() {
           color: var(--gold);
         }
 
-        .section-content {
-          overflow: hidden;
-          padding: 1rem;
+        .criteria-list {
           background: rgba(30, 37, 53, 0.5);
-          border: 1px solid rgba(212, 168, 83, 0.1);
+          border: 1px solid rgba(212, 168, 83, 0.2);
           border-top: none;
           border-radius: 0 0 12px 12px;
+          padding: 1rem;
         }
 
         .criterion-card {
@@ -330,8 +258,12 @@ export default function Rubric() {
           border: 1px solid rgba(212, 168, 83, 0.2);
           border-radius: 8px;
           margin-bottom: 0.75rem;
-          cursor: pointer;
+          overflow: hidden;
           transition: all 0.2s;
+        }
+
+        .criterion-card:last-child {
+          margin-bottom: 0;
         }
 
         .criterion-card:hover {
@@ -339,10 +271,15 @@ export default function Rubric() {
         }
 
         .criterion-header {
+          width: 100%;
           display: flex;
           align-items: center;
           gap: 1rem;
           padding: 1rem;
+          background: none;
+          border: none;
+          cursor: pointer;
+          text-align: left;
         }
 
         .criterion-number {
@@ -387,140 +324,36 @@ export default function Rubric() {
         .criterion-details {
           padding: 0 1rem 1rem 3.5rem;
           border-top: 1px solid rgba(212, 168, 83, 0.1);
-          margin-top: 0.5rem;
         }
 
         .criterion-details p {
+          font-family: var(--font-body);
           font-size: 0.9rem;
           color: var(--ash);
-          margin: 0.5rem 0 0;
+          margin: 0.75rem 0 0;
+          line-height: 1.5;
         }
 
         .criterion-details p.en {
           font-size: 0.8rem;
           font-style: italic;
-        }
-
-        .ai-content {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-        }
-
-        .ai-criterion {
-          background: var(--smoke);
-          border: 1px solid rgba(107, 122, 58, 0.3);
-          border-radius: 8px;
-        }
-
-        .ai-checkbox {
-          display: flex;
-          align-items: flex-start;
-          gap: 1rem;
-          padding: 1rem;
-          cursor: pointer;
-        }
-
-        .ai-checkbox input {
-          display: none;
-        }
-
-        .checkmark {
-          width: 24px;
-          height: 24px;
-          border: 2px solid var(--olive);
-          border-radius: 4px;
-          flex-shrink: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: all 0.2s;
-        }
-
-        .ai-checkbox input:checked + .checkmark {
-          background: var(--olive);
-        }
-
-        .ai-checkbox input:checked + .checkmark::after {
-          content: '✓';
-          color: var(--parchment);
-          font-weight: bold;
-        }
-
-        .ai-criterion-content h4 {
-          font-family: var(--font-heading);
-          font-size: 1rem;
-          color: var(--parchment);
-          margin: 0 0 0.25rem;
-        }
-
-        .ai-criterion-content p {
-          font-family: var(--font-mono);
-          font-size: 0.75rem;
-          color: var(--ash);
-          margin: 0;
-        }
-
-        .ai-criterion-content .description {
-          font-family: var(--font-body);
-          font-size: 0.85rem;
-          margin-top: 0.5rem;
-        }
-
-        .ai-criterion-content .description.en {
-          font-style: italic;
           opacity: 0.8;
         }
 
-        .print-btn {
-          display: block;
-          width: 100%;
-          max-width: 200px;
-          margin: 2rem auto 0;
-          padding: 1rem;
-          background: var(--smoke);
-          border: 1px solid var(--gold);
-          border-radius: 8px;
-          color: var(--gold);
-          font-family: var(--font-body);
-          cursor: pointer;
-          transition: all 0.2s;
-        }
-
-        .print-btn:hover {
-          background: rgba(212, 168, 83, 0.1);
-        }
-
-        /* Historical photos panel */
-        .rubric-page {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 2rem;
-          max-width: 1400px;
-        }
-
-        .rubric-page > *:not(.rubric-photos-panel) {
-          flex: 1;
-          min-width: 300px;
-        }
-
+        /* Right Column - Photos */
         .rubric-photos-panel {
-          width: 320px;
+          flex: 0 0 35%;
           display: flex;
           flex-direction: column;
-          gap: 1rem;
+          gap: 1.5rem;
           position: sticky;
           top: 2rem;
           height: fit-content;
         }
 
-        .rubric-photo-card {
-          border-radius: 8px;
-          overflow: hidden;
-        }
-
         .rubric-historical-photo {
-          filter: sepia(0.25) contrast(1.1) brightness(0.9);
+          height: 180px;
+          filter: sepia(0.2) contrast(1.1);
         }
 
         .rubric-historical-photo .historical-photo-caption {
@@ -528,25 +361,75 @@ export default function Rubric() {
           transform: none;
           background: rgba(10, 14, 26, 0.9);
           padding: 0.5rem;
+          font-family: var(--font-mono);
           font-size: 0.7rem;
+          color: var(--gold);
+          text-align: center;
         }
 
+        /* Responsive */
         @media (max-width: 1024px) {
+          .rubric-page {
+            flex-direction: column;
+          }
+
+          .rubric-content {
+            flex: 1;
+          }
+
           .rubric-photos-panel {
             display: none;
           }
         }
 
+        @media (max-width: 768px) {
+          .rubric-page {
+            padding: 1rem;
+          }
+
+          .rubric-header h1 {
+            font-size: 1.75rem;
+          }
+
+          .rubric-title-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+          }
+
+          .criterion-details {
+            padding-left: 1rem;
+          }
+        }
+
+        /* Print Styles */
         @media print {
-          .print-btn,
-          .section-header {
+          .rubric-page {
+            display: block;
+            padding: 0;
+          }
+
+          .rubric-photos-panel {
             display: none;
           }
 
-          .section-content {
+          .print-btn {
+            display: none;
+          }
+
+          .criterion-card {
+            break-inside: avoid;
+          }
+
+          .criterion-details {
             display: block !important;
             height: auto !important;
             opacity: 1 !important;
+          }
+
+          .section-header {
+            print-color-adjust: exact;
+            -webkit-print-color-adjust: exact;
           }
         }
       `}</style>

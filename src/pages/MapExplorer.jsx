@@ -69,12 +69,17 @@ export default function MapExplorer() {
           <motion.button
             key={key}
             className={`layer-btn ${layer === key ? 'active' : ''}`}
-            onClick={() => setLayer(key)}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setLayer(key);
+            }}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4 + index * 0.1 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            type="button"
           >
             <span className="layer-icon">{info.icon}</span>
             <span className="layer-label">{info.titleVi}</span>

@@ -10,35 +10,43 @@ export const rubricData = {
     criteria: [
       {
         id: '1-1',
-        nameVi: 'Nội dung kiến thức lịch sử',
-        nameEn: 'Historical Knowledge Content',
-        points: 5,
-        descriptionVi: 'Thể hiện hiểu biết sâu sắc về vai trò lãnh đạo của Đảng Cộng sản Việt Nam trong cuộc kháng chiến chống Mỹ (1954-1975).',
-        descriptionEn: 'Demonstrates deep understanding of the leadership role of the Communist Party of Vietnam in the resistance war against the U.S. (1954-1975).'
+        nameVi: 'Chiều sâu học thuật & Liên kết lý thuyết',
+        nameEn: 'Academic Depth & Theoretical Connections',
+        points: 3,
+        detailVi: 'Sản phẩm vận dụng đúng lý thuyết, phân tích logic, gắn kết với các LO. Nhóm phải trả lời câu hỏi CQ của giảng viên. Trường hợp phải chờ/tra cứu: trừ 0.5 điểm/3 điểm.',
+        detailEn: 'Product correctly applies theory, analyzes logically, connects to LOs. Group must answer lecturer CQ questions. Case of waiting/looking up: minus 0.5 points/3 points.'
       },
       {
         id: '1-2',
-        nameVi: 'Tính sáng tạo trong hình thức',
-        nameEn: 'Creativity in Form',
-        points: 5,
-        descriptionVi: 'Sử dụng hình thức trình bày độc đáo, hấp dẫn, phù hợp với nội dung và đối tượng.',
-        descriptionEn: 'Uses unique, engaging presentation forms appropriate to content and audience.'
+        nameVi: 'Sáng tạo, Hình thức & Tính trình bày',
+        nameEn: 'Creativity, Form & Presentation',
+        points: 2,
+        detailVi: 'Sản phẩm bày sinh động (video, web, kick...). Không dùng slide thuyết trình. Thời lượng 10-20 phút thuyết trình, 20 phút phản biện.',
+        detailEn: 'Product presented vividly (video, web, kick...). No presentation slides. Duration 10-20 minutes presentation, 20 minutes critique.'
       },
       {
         id: '1-3',
-        nameVi: 'Chất lượng hình ảnh và tài liệu',
-        nameEn: 'Quality of Images and Documents',
-        points: 5,
-        descriptionVi: 'Hình ảnh, tài liệu lịch sử phong phú, có nguồn gốc rõ ràng, được sử dụng hợp lý.',
-        descriptionEn: 'Rich historical images and documents with clear origins, used appropriately.'
+        nameVi: 'Tính tương tác',
+        nameEn: 'Interactivity',
+        points: 2,
+        detailVi: 'Có yếu tố thu hút khán giả. Thu hút tối thiểu 80% lớp.',
+        detailEn: 'Has elements to engage audience. Engages at least 80% of the class.'
       },
       {
         id: '1-4',
-        nameVi: 'Kết nối thực tiễn',
-        nameEn: 'Practical Connection',
-        points: 5,
-        descriptionVi: 'Liên hệ được với thực tiễn xây dựng đất nước hiện nay, rút ra bài học có giá trị.',
-        descriptionEn: 'Connects to current nation-building practice, draws valuable lessons.'
+        nameVi: 'Ứng dụng AI có trách nhiệm — minh bạch — sáng tạo — liêm chính học thuật',
+        nameEn: 'AI Application: Responsible — Transparent — Creative — Academic Integrity',
+        points: 2,
+        detailVi: '4.1 Minh bạch: Có slide AI Usage. 0.5đ | 4.2 Có trách nhiệm: Kiểm chứng thông tin AI. 0.5đ | 4.3 Sáng tạo: AI chỉ đóng vai trò hỗ trợ. 0.5đ | 4.4 Liêm chính: Cam kết không để AI làm thay. 0.5đ',
+        detailEn: '4.1 Transparency: Has AI Usage slide. 0.5pts | 4.2 Responsible: Verifies AI information. 0.5pts | 4.3 Creative: AI only plays supporting role. 0.5pts | 4.4 Integrity: Commits to not letting AI do work. 0.5pts'
+      },
+      {
+        id: '1-5',
+        nameVi: 'Tính cập nhật & Gắn kết thực tiễn',
+        nameEn: 'Currency & Practical Connection',
+        points: 1,
+        detailVi: 'Bổ sung dẫn chứng từ bối cảnh xã hội, kinh tế, chính trị hiện nay.',
+        detailEn: 'Add evidence from current social, economic, political context.'
       }
     ]
   },
@@ -50,70 +58,27 @@ export const rubricData = {
     criteria: [
       {
         id: '2-1',
-        nameVi: 'Trình bày rõ ràng, mạch lạc',
-        nameEn: 'Clear and Coherent Presentation',
-        points: 5,
-        descriptionVi: 'Trình bày lưu loát, logic, có khả năng thuyết phục người nghe.',
-        descriptionEn: 'Fluent, logical presentation with ability to persuade audience.'
+        nameVi: 'Kỹ năng trình bày & Tổ chức logic',
+        nameEn: 'Presentation Skills & Logical Organization',
+        points: 3,
+        detailVi: 'Tuân thủ thời lượng. Bố cục mạch lạc, logic. Hình thức thuyết trình liên kết chặt chẽ và làm nổi bật giá trị của sản phẩm sáng tạo.',
+        detailEn: 'Follow duration. Logical, coherent layout. Presentation form tightly connects and highlights value of creative product.'
       },
       {
         id: '2-2',
-        nameVi: 'Trả lời câu hỏi phản biện',
-        nameEn: 'Answering Counter Questions',
-        points: 5,
-        descriptionVi: 'Phản hồi tốt các câu hỏi phản biện, thể hiện kiến thức vững chắc.',
-        descriptionEn: 'Responds well to counter questions, demonstrates solid knowledge.'
+        nameVi: 'Phản biện & trả lời phản biện',
+        nameEn: 'Critique & Answering Questions',
+        points: 4,
+        detailVi: 'Yêu cầu logic, dẫn chứng, tôn trọng đối thoại. Điểm tính là trung bình cộng các lượt phản biện. Có 20 phút phản biện.',
+        detailEn: 'Requirements: logical, evidence-based, respectful dialogue. Score is average of critique rounds. 20 minutes critique.'
       },
       {
         id: '2-3',
-        nameVi: 'Sử dụng công nghệ thông tin',
-        nameEn: 'Use of Information Technology',
-        points: 5,
-        descriptionVi: 'Sử dụng hiệu quả các phương tiện hỗ trợ thuyết trình (PowerPoint, video,...).',
-        descriptionEn: 'Effectively uses presentation aids (PowerPoint, video, etc.).'
-      },
-      {
-        id: '2-4',
-        nameVi: 'Phân bổ thời gian hợp lý',
-        nameEn: 'Appropriate Time Allocation',
-        points: 5,
-        descriptionVi: 'Quản lý tốt thời gian, trình bày đủ nội dung trong thời gian quy định.',
-        descriptionEn: 'Manages time well, presents sufficient content within allocated time.'
-      }
-    ]
-  },
-  aiUsage: {
-    titleVi: 'Tiêu chí sử dụng AI',
-    titleEn: 'AI Usage Criteria',
-    color: 'olive',
-    criteria: [
-      {
-        id: '4-1',
-        nameVi: 'Sử dụng AI để tìm kiếm và tổng hợp thông tin',
-        nameEn: 'Use AI to search and synthesize information',
-        descriptionVi: 'Sinh viên sử dụng các công cụ AI để thu thập, tổng hợp thông tin lịch sử từ nhiều nguồn.',
-        descriptionEn: 'Students use AI tools to collect and synthesize historical information from multiple sources.'
-      },
-      {
-        id: '4-2',
-        nameVi: 'Sử dụng AI để phân tích và đánh giá',
-        nameEn: 'Use AI to analyze and evaluate',
-        descriptionVi: 'Sử dụng AI để phân tích, đánh giá các góc nhìn lịch sử khác nhau.',
-        descriptionEn: 'Use AI to analyze and evaluate different historical perspectives.'
-      },
-      {
-        id: '4-3',
-        nameVi: 'Sử dụng AI để cải thiện chất lượng sản phẩm',
-        nameEn: 'Use AI to improve product quality',
-        descriptionVi: 'Sử dụng AI để nâng cao chất lượng trình bày, hình ảnh, nội dung.',
-        descriptionEn: 'Use AI to enhance presentation quality, images, and content.'
-      },
-      {
-        id: '4-4',
-        nameVi: 'Ghi nhận và trích dẫn nguồn AI',
-        nameEn: 'Acknowledge and cite AI sources',
-        descriptionVi: 'Công khai các công cụ AI đã sử dụng và cách sử dụng trong bài làm.',
-        descriptionEn: 'Disclose AI tools used and how they were used in the assignment.'
+        nameVi: 'Đánh giá nội bộ',
+        nameEn: 'Internal Assessment',
+        points: 3,
+        detailVi: 'Nhóm chốt phân bổ điểm gửi giảng viên vào slot 9. Mức cao nhất 110%-120%, hoàn thành 90%-100%, trung bình 70%-80%.',
+        detailEn: 'Group finalizes point allocation and sends to lecturer in slot 9. Highest 110%-120%, completed 90%-100%, average 70%-80%.'
       }
     ]
   }

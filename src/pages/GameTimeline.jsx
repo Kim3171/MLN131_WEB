@@ -43,14 +43,38 @@ export default function GameTimeline() {
 
   // Initialize game
   const initGame = () => {
+    // Step 1: Get 8 random events
     const shuffled = [...events]
       .sort(() => Math.random() - 0.5)
-      .slice(0, 8)
-      .map((event, index) => ({
-        ...event,
-        currentPosition: index
-      }));
-    setCards(shuffled);
+      .slice(0, 8);
+
+    // Step 2: Sort chronologically to determine correct order (1-8)
+    const sortedByYear = [...shuffled].sort((a, b) => {
+      const yearA = parseInt(a.year);
+      const yearB = parseInt(b.year);
+      return yearA - yearB;
+    });
+
+    // Create a map of event id -> correct position (1-8)
+    const correctPositions = {};
+    sortedByYear.forEach((event, index) => {
+      correctPositions[event.id] = index + 1;
+    });
+
+    // Step 3: Assign correctPosition and shuffle for display
+    const gameCards = shuffled.map((event) => ({
+      ...event,
+      correctPosition: correctPositions[event.id],
+      currentPosition: 0 // will be set by shuffle
+    }));
+
+    // Step 4: Shuffle the display order
+    gameCards.sort(() => Math.random() - 0.5);
+    gameCards.forEach((card, index) => {
+      card.currentPosition = index;
+    });
+
+    setCards(gameCards);
     setTimeLeft(60);
     setScore(0);
     setShowCorrectOrder(false);
@@ -89,9 +113,11 @@ export default function GameTimeline() {
     let newScore = 0;
     let correctCount = 0;
 
+    // Use correctPosition (1-8) from the card, compare with currentPosition (0-7)
     cards.forEach((card, index) => {
-      const correctIndex = events.findIndex(e => e.id === card.id);
-      if (index === correctIndex) {
+      // currentPosition is 0-7, correctPosition is 1-8
+      const playerPosition = index + 1;
+      if (playerPosition === card.correctPosition) {
         newScore += 10;
         correctCount++;
       } else {
@@ -137,8 +163,9 @@ export default function GameTimeline() {
   const getCardStatus = (card, index) => {
     if (!showCorrectOrder && gameState !== 'submitted') return 'neutral';
 
-    const correctIndex = events.findIndex(e => e.id === card.id);
-    if (index === correctIndex) return 'correct';
+    // Use correctPosition (1-8) vs current position (index + 1)
+    const playerPosition = index + 1;
+    if (playerPosition === card.correctPosition) return 'correct';
     return 'incorrect';
   };
 
@@ -237,7 +264,7 @@ export default function GameTimeline() {
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                     >
-                      {events.findIndex(e => e.id === card.id) + 1}
+                      {card.correctPosition}
                     </motion.span>
                   )}
                 </div>

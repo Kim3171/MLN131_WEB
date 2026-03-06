@@ -1,48 +1,47 @@
 // src/lib/claude.js
-// Claude API wrapper for AI-powered features
+// Gemini API wrapper for AI-powered features
 
 /**
- * Call Claude API with a system prompt and user message
+ * Call Gemini API with a system prompt and user message
  * @param {string} systemPrompt - The system prompt to set context
  * @param {string} userMessage - The user's message/query
  * @returns {Promise<string>} - The AI's response text
  */
 export async function askClaude(systemPrompt, userMessage) {
-  const apiKey = import.meta.env.VITE_ANTHROPIC_API_KEY;
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 
   // Check if API key is set
-  if (!apiKey || apiKey === 'your_key_here' || apiKey === 'sk-ant-api03-placeholder-key') {
-    console.error('Claude API key not configured. Please add VITE_ANTHROPIC_API_KEY to .env.local');
+  if (!apiKey || apiKey === 'your_key_here' || apiKey === 'AIzaSy...') {
+    console.error('Gemini API key not configured. Please add VITE_GEMINI_API_KEY to .env.local');
     return 'AI đang chờ cấu hình. Vui lòng thêm API key vào file .env.local / AI awaiting configuration. Please add API key to .env.local';
   }
 
   try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        model: 'claude-opus-4-6',
-        max_tokens: 1000,
-        system: systemPrompt,
-        messages: [{ role: 'user', content: userMessage }]
+        system_instruction: {
+          parts: [{ text: systemPrompt }]
+        },
+        contents: [{
+          parts: [{ text: userMessage }]
+        }]
       })
     });
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('Claude API error:', response.status, errorText);
+      console.error('Gemini API error:', response.status, errorText);
       throw new Error(`API error: ${response.status}`);
     }
 
     const data = await response.json();
-    return data.content?.[0]?.text || '';
+    return data.candidates?.[0]?.content?.parts?.[0]?.text || '';
   } catch (error) {
-    console.error('Claude API error:', error.message);
+    console.error('Gemini API error:', error.message);
     return 'Xin lỗi, hiện tại không thể kết nối với AI. Vui lòng thử lại sau. / Sorry, unable to connect to AI. Please try again later.';
   }
 }
