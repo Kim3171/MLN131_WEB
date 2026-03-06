@@ -1,0 +1,527 @@
+// src/pages/Resources.jsx
+// Glossary + AI Historical Analyst chat interface
+
+import { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { askClaude, historianSystemPrompt } from '../lib/claude';
+import { useApp } from '../context/AppContext';
+
+const textbookGuide = [
+  { pages: '205-210', topic: 'Bối cảnh lịch sử / Historical Context' },
+  { pages: '211-218', topic: 'Đường lối lãnh đạo của Đảng / Party Leadership' },
+  { pages: '219-225', topic: 'Chiến tranh đặc biệt / Special War' },
+  { pages: '226-232', topic: 'Chiến tranh cục bộ / Limited War' },
+  { pages: '233-235', topic: 'Việt Nam hóa chiến tranh / Vietnamization' },
+];
+
+const glossary = [
+  { vi: 'Chiến tranh đặc biệt', en: 'Special War', definition: 'Giai đoạn 1961-1965, Mỹ cố vấn nhưng chưa đưa quân chiến đấu trực tiếp.' },
+  { vi: 'Chiến tranh cục bộ', en: 'Limited War', definition: 'Giai đoạn 1965-1968, Mỹ đưa quân chiến đấu trực tiếp vào miền Nam.' },
+  { vi: 'Việt Nam hóa chiến tranh', en: 'Vietnamization', definition: 'Chính sách của Nixon chuyển giao gánh nặng chiến đấu cho QLVNCH.' },
+  { vi: 'Đánh và đàm', en: 'Fight and Negotiate', definition: 'Chiến lược kết hợp chiến đấu và đàm phán.' },
+  { vi: 'Tổng tiến công và nổi dậy', en: 'General Offensive and Uprising', definition: 'Chiến lược tấn công quy mô lớn vào các thành phố.' },
+  { vi: 'Hiệp định Paris', en: 'Paris Peace Accords', definition: 'Thỏa thuận hòa bình ngày 27/1/1973.' },
+  { vi: 'Đường mòn Hồ Chí Minh', en: 'Ho Chi Minh Trail', definition: 'Tuyến đường vận tải chiến lược qua Lào và Campuchia.' },
+  { vi: 'Vĩ tuyến 17', en: '17th Parallel', definition: 'Ran giới quân sự tạm thời Bắc-Nam 1954-1975.' },
+];
+
+export default function Resources() {
+  const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState('');
+  const [loading, setLoading] = useState(false);
+  const messagesEndRef = useRef(null);
+  const { handleLabubuClick, labubuClicks, resetLabubuClicks } = useApp();
+  const [showConfetti, setShowConfetti] = useState(false);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!input.trim() || loading) return;
+
+    const userMessage = input.trim();
+    setInput('');
+    setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
+    setLoading(true);
+
+    try {
+      const response = await askClaude(historianSystemPrompt, userMessage);
+      setMessages(prev => [...prev, { role: 'assistant', content: response }]);
+    } catch (error) {
+      setMessages(prev => [...prev, {
+        role: 'assistant',
+        content: 'Xin lỗi, đã có lỗi xảy ra. Vui lòng thử lại. / Sorry, an error occurred. Please try again.'
+      }]);
+    }
+    setLoading(false);
+  };
+
+  const handleLabubu = () => {
+    const clicks = handleLabubuClick();
+    if (clicks >= 3) {
+      setShowConfetti(true);
+      resetLabubuClicks();
+      setTimeout(() => setShowConfetti(false), 3000);
+    }
+  };
+
+  return (
+    <div className="resources-page">
+      {/* Confetti overlay */}
+      <AnimatePresence>
+        {showConfetti && (
+          <motion.div
+            className="confetti-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <h1>PASS ĐỒ ÁN! 🎉</h1>
+            <canvas id="confetti-canvas" />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Header */}
+      <div className="resources-header">
+        <h1>Tài Liệu & Nguồn Học Liệu</h1>
+        <p>Resources & Study Materials</p>
+      </div>
+
+      <div className="resources-grid">
+        {/* Left Column - Textbook Guide */}
+        <div className="resource-column">
+          <h2>Hướng Dẫn Sách Giáo Khoaka</h2>
+          <p className="column-subtitle">Textbook Guide (trang / pages 205-235)</p>
+
+          <div className="textbook-list">
+            {textbookGuide.map((item, index) => (
+              <div key={index} className="textbook-item">
+                <span className="textbook-pages">{item.pages}</span>
+                <span className="textbook-topic">{item.topic}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Center Column - Glossary */}
+        <div className="resource-column">
+          <h2>Thuật Ngữ Lịch Sử</h2>
+          <p className="column-subtitle">Bilingual Glossary</p>
+
+          <div className="glossary-table">
+            <div className="glossary-header">
+              <span>Tiếng Việt</span>
+              <span>English</span>
+              <span>Định nghĩa / Definition</span>
+            </div>
+            {glossary.map((item, index) => (
+              <div key={index} className="glossary-row">
+                <span className="term-vi">{item.vi}</span>
+                <span className="term-en">{item.en}</span>
+                <span className="term-def">{item.definition}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Right Column - AI Chat */}
+        <div className="resource-column chat-column">
+          <h2>Phân Tích Lịch Sử</h2>
+          <p className="column-subtitle">AI Historical Analyst</p>
+
+          <div className="chat-container">
+            <div className="chat-messages">
+              {messages.length === 0 ? (
+                <div className="chat-welcome">
+                  <span className="ai-avatar">LS</span>
+                  <p>
+                    Xin chào! Tôi là Giáo sư Lịch sử (LS).
+                    <br />
+                    Nhập luận điểm của bạn về CQ6 để được phản hồi.
+                    <br />
+                    <em>Enter your thesis for CQ6 to get feedback.</em>
+                  </p>
+                </div>
+              ) : (
+                messages.map((msg, index) => (
+                  <div key={index} className={`chat-message ${msg.role}`}>
+                    <span className="chat-avatar">
+                      {msg.role === 'user' ? 'Bạn' : 'LS'}
+                    </span>
+                    <div className="chat-content">
+                      <p>{msg.content}</p>
+                    </div>
+                  </div>
+                ))
+              )}
+              {loading && (
+                <div className="chat-message assistant">
+                  <span className="chat-avatar">LS</span>
+                  <div className="chat-content">
+                    <span className="loading-dots">Đang suy nghĩ... / Thinking...</span>
+                  </div>
+                </div>
+              )}
+              <div ref={messagesEndRef} />
+            </div>
+
+            <form className="chat-input" onSubmit={handleSubmit}>
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="Nhập luận điểm của bạn..."
+                disabled={loading}
+              />
+              <button type="submit" disabled={loading || !input.trim()}>
+                Gửi / Send
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      {/* Labubu Easter Egg */}
+      <button className="labubu-btn" onClick={handleLabubu}>
+        🎀
+      </button>
+      <span className="labubu-hint">{3 - labubuClicks} more...</span>
+
+      <style>{`
+        .resources-page {
+          min-height: 100vh;
+          position: relative;
+        }
+
+        .confetti-overlay {
+          position: fixed;
+          inset: 0;
+          background: var(--ink);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 99999;
+        }
+
+        .confetti-overlay h1 {
+          font-family: var(--font-heading);
+          font-size: 4rem;
+          color: var(--crimson);
+          animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.05); }
+        }
+
+        .resources-header {
+          text-align: center;
+          margin-bottom: 2rem;
+        }
+
+        .resources-header h1 {
+          font-family: var(--font-heading);
+          font-size: 2.5rem;
+          color: var(--parchment);
+          margin: 0;
+        }
+
+        .resources-header p {
+          font-family: var(--font-mono);
+          color: var(--gold);
+          margin: 0.5rem 0 0;
+        }
+
+        .resources-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1.5fr;
+          gap: 1.5rem;
+          max-width: 1400px;
+          margin: 0 auto;
+        }
+
+        .resource-column {
+          background: var(--smoke);
+          border: 1px solid rgba(212, 168, 83, 0.2);
+          border-radius: 12px;
+          padding: 1.5rem;
+        }
+
+        .resource-column h2 {
+          font-family: var(--font-heading);
+          font-size: 1.25rem;
+          color: var(--parchment);
+          margin: 0 0 0.25rem;
+        }
+
+        .column-subtitle {
+          font-family: var(--font-mono);
+          font-size: 0.75rem;
+          color: var(--ash);
+          margin: 0 0 1.5rem;
+        }
+
+        /* Textbook Guide */
+        .textbook-list {
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+
+        .textbook-item {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          padding: 0.75rem;
+          background: rgba(212, 168, 83, 0.1);
+          border-radius: 8px;
+        }
+
+        .textbook-pages {
+          font-family: var(--font-mono);
+          font-size: 0.85rem;
+          color: var(--gold);
+          font-weight: bold;
+        }
+
+        .textbook-topic {
+          font-size: 0.85rem;
+          color: var(--parchment);
+        }
+
+        /* Glossary */
+        .glossary-table {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        .glossary-header {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1.5fr;
+          gap: 0.5rem;
+          padding: 0.5rem;
+          font-family: var(--font-mono);
+          font-size: 0.7rem;
+          color: var(--gold);
+          text-transform: uppercase;
+          border-bottom: 1px solid rgba(212, 168, 83, 0.2);
+        }
+
+        .glossary-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1.5fr;
+          gap: 0.5rem;
+          padding: 0.5rem;
+          font-size: 0.8rem;
+          border-bottom: 1px solid rgba(212, 168, 83, 0.1);
+        }
+
+        .term-vi {
+          color: var(--parchment);
+          font-weight: 500;
+        }
+
+        .term-en {
+          color: var(--ash);
+          font-family: var(--font-mono);
+        }
+
+        .term-def {
+          color: var(--ash);
+          font-size: 0.75rem;
+        }
+
+        /* Chat */
+        .chat-column {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .chat-container {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          min-height: 400px;
+        }
+
+        .chat-messages {
+          flex: 1;
+          overflow-y: auto;
+          padding: 1rem;
+          background: rgba(30, 37, 53, 0.5);
+          border-radius: 8px;
+          margin-bottom: 1rem;
+        }
+
+        .chat-welcome {
+          display: flex;
+          gap: 1rem;
+          align-items: flex-start;
+        }
+
+        .ai-avatar {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          background: var(--olive);
+          color: var(--parchment);
+          border-radius: 50%;
+          font-family: var(--font-mono);
+          font-size: 0.85rem;
+          font-weight: bold;
+          flex-shrink: 0;
+        }
+
+        .chat-welcome p {
+          font-size: 0.9rem;
+          color: var(--parchment);
+          margin: 0;
+          line-height: 1.5;
+        }
+
+        .chat-welcome em {
+          color: var(--ash);
+          font-size: 0.8rem;
+        }
+
+        .chat-message {
+          display: flex;
+          gap: 0.75rem;
+          margin-bottom: 1rem;
+        }
+
+        .chat-message.user {
+          flex-direction: row-reverse;
+        }
+
+        .chat-avatar {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 32px;
+          height: 32px;
+          background: var(--olive);
+          color: var(--parchment);
+          border-radius: 50%;
+          font-size: 0.7rem;
+          flex-shrink: 0;
+        }
+
+        .chat-message.user .chat-avatar {
+          background: var(--crimson);
+        }
+
+        .chat-content {
+          max-width: 80%;
+          padding: 0.75rem 1rem;
+          background: rgba(212, 168, 83, 0.1);
+          border-radius: 12px;
+        }
+
+        .chat-message.user .chat-content {
+          background: rgba(192, 57, 43, 0.2);
+        }
+
+        .chat-content p {
+          font-size: 0.85rem;
+          color: var(--parchment);
+          margin: 0;
+          line-height: 1.5;
+        }
+
+        .loading-dots {
+          color: var(--crimson);
+          font-family: var(--font-mono);
+          animation: pulse 1s infinite;
+        }
+
+        .chat-input {
+          display: flex;
+          gap: 0.5rem;
+        }
+
+        .chat-input input {
+          flex: 1;
+          padding: 0.75rem 1rem;
+          background: rgba(30, 37, 53, 0.5);
+          border: 1px solid rgba(212, 168, 83, 0.2);
+          border-radius: 8px;
+          color: var(--parchment);
+          font-family: var(--font-body);
+          font-size: 0.9rem;
+        }
+
+        .chat-input input:focus {
+          outline: none;
+          border-color: var(--gold);
+        }
+
+        .chat-input button {
+          padding: 0.75rem 1.5rem;
+          background: var(--crimson);
+          border: none;
+          border-radius: 8px;
+          color: var(--parchment);
+          font-family: var(--font-body);
+          cursor: pointer;
+          transition: background 0.2s;
+        }
+
+        .chat-input button:hover:not(:disabled) {
+          background: #a33025;
+        }
+
+        .chat-input button:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+
+        /* Labubu */
+        .labubu-btn {
+          position: fixed;
+          bottom: 2rem;
+          right: 2rem;
+          width: 48px;
+          height: 48px;
+          background: #ff69b4;
+          border: none;
+          border-radius: 50%;
+          font-size: 1.5rem;
+          cursor: pointer;
+          z-index: 100;
+          transition: transform 0.2s;
+        }
+
+        .labubu-btn:hover {
+          transform: scale(1.1);
+        }
+
+        .labubu-hint {
+          position: fixed;
+          bottom: 1rem;
+          right: 5rem;
+          font-size: 0.75rem;
+          color: var(--ash);
+          z-index: 100;
+        }
+
+        @media (max-width: 1024px) {
+          .resources-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
+    </div>
+  );
+}
