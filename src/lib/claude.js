@@ -8,13 +8,22 @@
  * @returns {Promise<string>} - The AI's response text
  */
 export async function askClaude(systemPrompt, userMessage) {
+  const apiKey = import.meta.env.VITE_ANTHROPIC_API_KEY;
+
+  // Check if API key is set
+  if (!apiKey || apiKey === 'your_key_here' || apiKey === 'sk-ant-api03-placeholder-key') {
+    console.error('Claude API key not configured. Please add VITE_ANTHROPIC_API_KEY to .env.local');
+    return 'AI đang chờ cấu hình. Vui lòng thêm API key vào file .env.local / AI awaiting configuration. Please add API key to .env.local';
+  }
+
   try {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': 'sk-ant-api03-placeholder-key', // Placeholder - users need to provide their own
-        'anthropic-version': '2023-06-01'
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
       },
       body: JSON.stringify({
         model: 'claude-opus-4-6',
@@ -25,13 +34,15 @@ export async function askClaude(systemPrompt, userMessage) {
     });
 
     if (!response.ok) {
+      const errorText = await response.text();
+      console.error('Claude API error:', response.status, errorText);
       throw new Error(`API error: ${response.status}`);
     }
 
     const data = await response.json();
     return data.content?.[0]?.text || '';
   } catch (error) {
-    console.error('Claude API error:', error);
+    console.error('Claude API error:', error.message);
     return 'Xin lỗi, hiện tại không thể kết nối với AI. Vui lòng thử lại sau. / Sorry, unable to connect to AI. Please try again later.';
   }
 }

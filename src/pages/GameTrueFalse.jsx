@@ -1,10 +1,11 @@
 // src/pages/GameTrueFalse.jsx
-// Rapid swipe True/False game (Game 4)
+// Rapid swipe True/False game (Game 4) - Premium version with mobile countdown
 
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import trueFalseQuestions from '../data/trueFalse';
 import GameCard from '../components/GameCard';
+import RedStar from '../components/svgs/RedStar';
 import { useApp } from '../context/AppContext';
 
 export default function GameTrueFalse() {
@@ -21,7 +22,7 @@ export default function GameTrueFalse() {
 
   const question = trueFalseQuestions[currentQuestion];
 
-  // Timer
+  // Timer with large countdown display
   useEffect(() => {
     if (gameState !== 'playing' || showResult) return;
 
@@ -124,20 +125,38 @@ export default function GameTrueFalse() {
       <GameCard title="Nhanh Như Chớp" titleEn="Quick True/False" gameKey="trueFalse">
         {gameState === 'playing' && (
           <>
+            {/* Sticky Timer Bar */}
+            <div className={`sticky-timer ${timeLeft <= 2 ? 'danger' : ''}`}>
+              <div className="timer-progress" style={{ width: `${(timeLeft / 5) * 100}%` }} />
+              <div className="timer-content">
+                <span className="timer-label">Time</span>
+                <motion.span
+                  className="timer-countdown"
+                  key={timeLeft}
+                  initial={{ scale: 1.3, color: '#C0392B' }}
+                  animate={{ scale: 1, color: timeLeft <= 2 ? '#C0392B' : '#D4A853' }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {timeLeft}
+                </motion.span>
+              </div>
+            </div>
+
             {/* Progress */}
             <div className="quiz-progress">
               <span>{currentQuestion + 1} / {trueFalseQuestions.length}</span>
               <div className="combo">
-                {combo > 1 && <span className="combo-badge">×{combo}</span>}
+                {combo > 1 && (
+                  <motion.span
+                    className="combo-badge"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                  >
+                    <RedStar size={12} />
+                    ×{combo}
+                  </motion.span>
+                )}
               </div>
-            </div>
-
-            {/* Timer */}
-            <div className={`timer ${timeLeft <= 2 ? 'danger' : ''}`}>
-              <div
-                className="timer-bar"
-                style={{ width: `${(timeLeft / 5) * 100}%` }}
-              />
             </div>
 
             {/* Card */}
@@ -151,7 +170,7 @@ export default function GameTrueFalse() {
                   exit={{ x: -50, opacity: 0 }}
                 >
                   <span className="difficulty-badge" data-difficulty={question.difficulty}>
-                    {question.difficulty}
+                    {question.difficulty === 'easy' ? 'Dễ / Easy' : question.difficulty === 'medium' ? 'Trung bình / Medium' : 'Khó / Hard'}
                   </span>
 
                   <p className="statement-vi">{question.statementVi}</p>
@@ -178,35 +197,43 @@ export default function GameTrueFalse() {
               </AnimatePresence>
             </div>
 
-            {/* Controls */}
+            {/* Large Touch Controls */}
             <div className="controls">
-              <button
+              <motion.button
                 className="control-btn false"
                 onClick={() => handleAnswer(false)}
                 disabled={showResult}
+                whileTap={{ scale: 0.95 }}
               >
                 <span className="arrow">←</span>
-                <span>FALSE</span>
-              </button>
-              <button
+                <span>SAI</span>
+                <span className="label-en">FALSE</span>
+              </motion.button>
+              <motion.button
                 className="control-btn true"
                 onClick={() => handleAnswer(true)}
                 disabled={showResult}
+                whileTap={{ scale: 0.95 }}
               >
-                <span>TRUE</span>
+                <span>ĐÚNG</span>
+                <span className="label-en">TRUE</span>
                 <span className="arrow">→</span>
-              </button>
+              </motion.button>
             </div>
 
             <p className="hint">
-              Sử dụng phím mũi tên / Use arrow keys
+              Sử dụng phím mũi tên hoặc chạm nút / Use arrow keys or tap buttons
             </p>
           </>
         )}
 
         {/* Final Score */}
         {gameState === 'finished' && (
-          <div className="final-score">
+          <motion.div
+            className="final-score"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+          >
             <div className="stars">
               {[...Array(5)].map((_, i) => (
                 <motion.span
@@ -230,13 +257,67 @@ export default function GameTrueFalse() {
             <button className="restart-btn" onClick={handleRestart}>
               Chơi lại / Play Again
             </button>
-          </div>
+          </motion.div>
         )}
       </GameCard>
 
       <style>{`
         .game-truefalse-page {
           min-height: 100vh;
+        }
+
+        /* Sticky Timer Bar */
+        .sticky-timer {
+          position: sticky;
+          top: 0;
+          z-index: 10;
+          background: rgba(10, 14, 26, 0.95);
+          border: 1px solid rgba(212, 168, 83, 0.3);
+          border-radius: 12px;
+          margin-bottom: 1.5rem;
+          overflow: hidden;
+          backdrop-filter: blur(10px);
+        }
+
+        .timer-progress {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          background: linear-gradient(90deg, var(--crimson), var(--gold));
+          transition: width 1s linear;
+          opacity: 0.3;
+        }
+
+        .sticky-timer.danger .timer-progress {
+          background: var(--crimson);
+          animation: timerPulse 0.5s ease-in-out infinite;
+        }
+
+        @keyframes timerPulse {
+          0%, 100% { opacity: 0.5; }
+          50% { opacity: 0.8; }
+        }
+
+        .timer-content {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 1rem 1.5rem;
+        }
+
+        .timer-label {
+          font-family: var(--font-mono);
+          font-size: 0.85rem;
+          color: var(--ash);
+        }
+
+        .timer-countdown {
+          font-family: var(--font-mono);
+          font-size: 2rem;
+          font-weight: bold;
+          color: var(--gold);
         }
 
         .quiz-progress {
@@ -250,29 +331,14 @@ export default function GameTrueFalse() {
         }
 
         .combo-badge {
-          background: var(--gold);
-          color: var(--ink);
-          padding: 0.25rem 0.5rem;
-          border-radius: 4px;
-          font-weight: bold;
-        }
-
-        .timer {
-          height: 6px;
-          background: rgba(212, 168, 83, 0.2);
-          border-radius: 3px;
-          margin-bottom: 1.5rem;
-          overflow: hidden;
-        }
-
-        .timer-bar {
-          height: 100%;
-          background: var(--gold);
-          transition: width 1s linear;
-        }
-
-        .timer.danger .timer-bar {
+          display: flex;
+          align-items: center;
+          gap: 0.25rem;
           background: var(--crimson);
+          color: var(--parchment);
+          padding: 0.25rem 0.75rem;
+          border-radius: 20px;
+          font-weight: bold;
         }
 
         .question-card {
@@ -365,6 +431,7 @@ export default function GameTrueFalse() {
           opacity: 0.9;
         }
 
+        /* Large Touch Controls */
         .controls {
           display: flex;
           gap: 1rem;
@@ -376,35 +443,47 @@ export default function GameTrueFalse() {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 0.5rem;
-          padding: 1.5rem;
+          gap: 0.75rem;
+          padding: 2rem 1rem;
           border: none;
-          border-radius: 8px;
-          font-family: var(--font-mono);
-          font-size: 1.25rem;
+          border-radius: 16px;
+          font-family: var(--font-heading);
+          font-size: 1.5rem;
           font-weight: bold;
           cursor: pointer;
           transition: all 0.2s;
+          min-height: 100px;
+        }
+
+        .control-btn .label-en {
+          display: block;
+          font-family: var(--font-mono);
+          font-size: 0.8rem;
+          font-weight: normal;
+          opacity: 0.8;
         }
 
         .control-btn.false {
           background: var(--smoke);
-          border: 2px solid var(--ash);
+          border: 3px solid var(--ash);
           color: var(--ash);
         }
 
         .control-btn.false:hover:not(:disabled) {
           border-color: var(--crimson);
           color: var(--crimson);
+          background: rgba(192, 57, 43, 0.1);
         }
 
         .control-btn.true {
           background: var(--crimson);
           color: var(--parchment);
+          border: 3px solid var(--crimson);
         }
 
         .control-btn.true:hover:not(:disabled) {
           background: #a33025;
+          box-shadow: 0 0 20px rgba(192, 57, 43, 0.5);
         }
 
         .control-btn:disabled {
@@ -413,7 +492,7 @@ export default function GameTrueFalse() {
         }
 
         .arrow {
-          font-size: 1.5rem;
+          font-size: 2rem;
         }
 
         .hint {
@@ -468,6 +547,40 @@ export default function GameTrueFalse() {
 
         .restart-btn:hover {
           background: #a33025;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+          .timer-content {
+            padding: 0.75rem 1rem;
+          }
+
+          .timer-countdown {
+            font-size: 1.5rem;
+          }
+
+          .control-btn {
+            padding: 1.5rem 0.75rem;
+            font-size: 1.25rem;
+            min-height: 80px;
+          }
+
+          .control-btn .label-en {
+            display: none;
+          }
+
+          .arrow {
+            font-size: 1.5rem;
+          }
+
+          .question-card {
+            padding: 1.5rem;
+            min-height: 250px;
+          }
+
+          .statement-vi {
+            font-size: 1.1rem;
+          }
         }
       `}</style>
     </div>

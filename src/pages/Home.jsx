@@ -65,6 +65,21 @@ export default function Home() {
     <div className="home-page">
       {/* Hero Section */}
       <section className="hero">
+        {/* Video background with fallback */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="hero-video"
+          onError={(e) => { e.target.style.display = 'none'; }}
+        >
+          <source src="https://videos.pexels.com/video-files/2098827/2098827-uhd_2560_1440_25fps.mp4" type="video/mp4" />
+        </video>
+
+        {/* Gradient overlay */}
+        <div className="hero-gradient" />
+
         {/* Animated stars background */}
         <div className="hero-stars">
           {[...Array(20)].map((_, i) => (
@@ -217,6 +232,24 @@ export default function Home() {
           background: linear-gradient(180deg, var(--ink) 0%, #0d1220 100%);
         }
 
+        .hero-video {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          opacity: 0.2;
+          filter: sepia(0.5) contrast(1.2) brightness(0.4);
+          z-index: 0;
+        }
+
+        .hero-gradient {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, rgba(10,14,26,0.6) 0%, rgba(10,14,26,0.4) 50%, rgba(10,14,26,0.9) 100%);
+          z-index: 1;
+        }
+
         .hero-stars {
           position: absolute;
           inset: 0;
@@ -236,6 +269,8 @@ export default function Home() {
           padding: 2rem;
           max-width: 1200px;
           width: 100%;
+          position: relative;
+          z-index: 10;
         }
 
         .hero-branding {

@@ -5,7 +5,9 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import quotes from '../data/quotes';
 import GameCard from '../components/GameCard';
+import HistoricalPhoto from '../components/HistoricalPhoto';
 import { useApp } from '../context/AppContext';
+import { SPEAKER_IMAGES } from '../data/images';
 
 export default function GameQuotes() {
   const [currentQuote, setCurrentQuote] = useState(0);
@@ -17,7 +19,7 @@ export default function GameQuotes() {
   const [shuffledQuotes, setShuffledQuotes] = useState([]);
   const { updateScore } = useApp();
 
-  const currentData = quotes[currentQuote];
+  const currentData = shuffledQuotes[currentQuote] || quotes[0];
 
   // Initialize game
   useEffect(() => {
@@ -27,12 +29,12 @@ export default function GameQuotes() {
 
   // Timer
   useEffect(() => {
-    if (gameState !== 'playing' || showResult) return;
+    if (gameState !== 'playing' || showResult || !currentData) return;
 
     const timer = setInterval(() => {
       setTimeLeft(prev => {
         if (prev <= 1) {
-          handleAnswer(-1); // Time's up
+          handleAnswer(-1);
           return 15;
         }
         return prev - 1;
@@ -40,10 +42,11 @@ export default function GameQuotes() {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [gameState, showResult, currentQuote]);
+  }, [gameState, showResult, currentQuote, currentData]);
 
-  // Get 4 speaker options (including correct answer)
+  // Get 4 speaker options
   const getOptions = () => {
+    if (!currentData) return [];
     const correctSpeaker = currentData.speakerVi;
     const otherSpeakers = quotes
       .filter(q => q.speakerVi !== correctSpeaker)
@@ -60,7 +63,7 @@ export default function GameQuotes() {
     if (currentData) {
       setOptions(getOptions());
     }
-  }, [currentQuote]);
+  }, [currentQuote, currentData]);
 
   const handleAnswer = (answer) => {
     if (showResult) return;
@@ -79,12 +82,11 @@ export default function GameQuotes() {
         setShowResult(false);
         setTimeLeft(15);
       } else {
-        // Game over
         const finalScore = answer === currentData.speakerVi ? score + 10 : score;
         updateScore('quotes', finalScore);
         setGameState('finished');
       }
-    }, 2000);
+    }, 2500);
   };
 
   const handleRestart = () => {
@@ -96,6 +98,16 @@ export default function GameQuotes() {
     setScore(0);
     setTimeLeft(15);
     setGameState('playing');
+  };
+
+  // Get speaker initials for watermark
+  const getSpeakerInitials = (name) => {
+    return name.split(' ').map(w => w[0]).join('');
+  };
+
+  // Get speaker image key
+  const getSpeakerImageKey = (speakerName) => {
+    return SPEAKER_IMAGES[speakerName] || null;
   };
 
   if (!currentData) return null;
@@ -114,10 +126,27 @@ export default function GameQuotes() {
           </div>
         </div>
 
+        {/* Progress dots */}
+        <div className="progress-dots">
+          {quotes.map((_, i) => (
+            <span
+              key={i}
+              className={`progress-dot ${i === currentQuote ? 'current' : i < currentQuote ? 'completed' : 'future'}`}
+            />
+          ))}
+        </div>
+
         {/* Timer */}
         <div className={`timer ${timeLeft <= 5 ? 'danger' : ''}`}>
           <span>{timeLeft}s</span>
         </div>
+
+        {/* Speaker initials watermark (when not showing result) */}
+        {!showResult && (
+          <div className="speaker-watermark">
+            {getSpeakerInitials(currentData.speakerVi)}
+          </div>
+        )}
 
         {/* Quote */}
         <div className="quote-container">
@@ -158,30 +187,50 @@ export default function GameQuotes() {
           })}
         </div>
 
-        {/* Result feedback */}
+        {/* Result feedback with speaker photo */}
         <AnimatePresence>
           {showResult && (
             <motion.div
               className={`result-feedback ${selectedAnswer === currentData.speakerVi ? 'correct' : 'wrong'}`}
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
+              exit={{ opacity: 0, y: -20 }}
             >
-              {selectedAnswer === currentData.speakerVi ? (
-                <>
-                  <span className="result-icon">✓</span>
-                  <span>Đúng! / Correct!</span>
-                </>
-              ) : (
-                <>
-                  <span className="result-icon">✗</span>
-                  <span>
-                    Đáp án đúng: {currentData.speakerVi}
-                    <br />
-                    {currentData.context}
-                  </span>
-                </>
-              )}
+              <div className="result-header">
+                {selectedAnswer === currentData.speakerVi ? (
+                  <>
+                    <span className="result-icon">✓</span>
+                    <span>Đúng! / Correct!</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="result-icon">✗</span>
+                    <span>Đáp án đúng: {currentData.speakerVi}</span>
+                  </>
+                )}
+              </div>
+
+              {/* Speaker photo slide-up */}
+              <motion.div
+                className="speaker-photo-panel"
+                initial={{ y: 100, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.2 }}
+              >
+                {getSpeakerImageKey(currentData.speakerVi) ? (
+                  <HistoricalPhoto
+                    imageKey={getSpeakerImageKey(currentData.speakerVi)}
+                    alt={currentData.speakerEn}
+                    caption={currentData.speakerVi}
+                    className="speaker-photo"
+                  />
+                ) : (
+                  <div className="speaker-placeholder">
+                    <span className="placeholder-initials">{getSpeakerInitials(currentData.speakerVi)}</span>
+                  </div>
+                )}
+                <p className="speaker-context">{currentData.context}</p>
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
@@ -207,7 +256,7 @@ export default function GameQuotes() {
           display: flex;
           align-items: center;
           gap: 1rem;
-          margin-bottom: 1rem;
+          margin-bottom: 0.5rem;
           font-family: var(--font-mono);
           font-size: 0.85rem;
           color: var(--ash);
@@ -225,6 +274,39 @@ export default function GameQuotes() {
           height: 100%;
           background: var(--gold);
           transition: width 0.3s;
+        }
+
+        .progress-dots {
+          display: flex;
+          justify-content: center;
+          gap: 8px;
+          margin-bottom: 1rem;
+        }
+
+        .progress-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: var(--ash);
+          opacity: 0.3;
+          transition: all 0.3s;
+        }
+
+        .progress-dot.current {
+          width: 12px;
+          height: 12px;
+          background: var(--gold);
+          opacity: 1;
+        }
+
+        .progress-dot.completed {
+          background: var(--crimson);
+          opacity: 1;
+        }
+
+        .progress-dot.future {
+          background: var(--ash);
+          opacity: 0.3;
         }
 
         .timer {
@@ -250,13 +332,27 @@ export default function GameQuotes() {
           animation: pulse 1s infinite;
         }
 
+        .speaker-watermark {
+          position: absolute;
+          bottom: 30%;
+          left: 50%;
+          transform: translateX(-50%);
+          font-family: var(--font-heading);
+          font-size: 200px;
+          color: var(--parchment);
+          opacity: 0.04;
+          pointer-events: none;
+          user-select: none;
+        }
+
         .quote-container {
           text-align: center;
           padding: 2rem;
           background: rgba(242, 232, 213, 0.05);
           border-radius: 12px;
-          margin-bottom: 1.5rem;
+          margin-bottom: 1rem;
           position: relative;
+          z-index: 1;
         }
 
         .quote {
@@ -286,7 +382,9 @@ export default function GameQuotes() {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
           gap: 1rem;
-          margin-bottom: 1.5rem;
+          margin-bottom: 1rem;
+          position: relative;
+          z-index: 1;
         }
 
         .option-btn {
@@ -342,28 +440,67 @@ export default function GameQuotes() {
         }
 
         .result-feedback {
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
           padding: 1rem;
           border-radius: 8px;
           text-align: center;
+          position: relative;
+          z-index: 1;
         }
 
         .result-feedback.correct {
           background: rgba(34, 197, 94, 0.1);
-          color: #22c55e;
         }
 
         .result-feedback.wrong {
           background: rgba(239, 68, 68, 0.1);
-          color: #ef4444;
-          flex-direction: column;
+        }
+
+        .result-header {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          margin-bottom: 1rem;
+          color: var(--parchment);
         }
 
         .result-icon {
           font-size: 1.5rem;
           font-weight: bold;
+        }
+
+        .speaker-photo-panel {
+          background: rgba(0, 0, 0, 0.3);
+          border-radius: 8px;
+          overflow: hidden;
+          margin-top: 1rem;
+        }
+
+        .speaker-photo {
+          height: 150px;
+        }
+
+        .speaker-placeholder {
+          height: 150px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: var(--smoke);
+        }
+
+        .placeholder-initials {
+          font-family: var(--font-heading);
+          font-size: 4rem;
+          color: var(--gold);
+          opacity: 0.5;
+        }
+
+        .speaker-context {
+          padding: 0.75rem;
+          font-size: 0.8rem;
+          color: var(--parchment);
+          text-align: center;
+          margin: 0;
         }
 
         .final-score {

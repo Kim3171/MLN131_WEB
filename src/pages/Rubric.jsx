@@ -6,6 +6,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import rubricData from '../data/rubricData';
 import RedStar from '../components/svgs/RedStar';
 import BambooDecoration from '../components/svgs/BambooDecoration';
+import HistoricalPhoto from '../components/HistoricalPhoto';
+import { IMAGES } from '../data/images';
 
 export default function Rubric() {
   const [expandedSection, setExpandedSection] = useState(null);
@@ -212,6 +214,34 @@ export default function Rubric() {
       <button className="print-btn" onClick={handlePrint}>
         🖨️ In / Print
       </button>
+
+      {/* Historical Photos Side Panel (Desktop Only) */}
+      <div className="rubric-photos-panel">
+        <div className="rubric-photo-card">
+          <HistoricalPhoto
+            imageKey="hoChiMinhPortrait"
+            alt="Hồ Chí Minh"
+            caption="Hồ Chí Minh — Chủ tịch nước"
+            className="rubric-historical-photo"
+          />
+        </div>
+        <div className="rubric-photo-card">
+          <HistoricalPhoto
+            imageKey="voNguyenGiap"
+            alt="Võ Nguyên Giáp"
+            caption="Võ Nguyên Giáp — Tổng Tư lệnh"
+            className="rubric-historical-photo"
+          />
+        </div>
+        <div className="rubric-photo-card">
+          <HistoricalPhoto
+            imageKey="parisAccords"
+            alt="Hiệp định Paris 1973"
+            caption="Hiệp định Paris — 27/1/1973"
+            className="rubric-historical-photo"
+          />
+        </div>
+      </div>
 
       <style>{`
         .rubric-page {
@@ -459,6 +489,52 @@ export default function Rubric() {
 
         .print-btn:hover {
           background: rgba(212, 168, 83, 0.1);
+        }
+
+        /* Historical photos panel */
+        .rubric-page {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 2rem;
+          max-width: 1400px;
+        }
+
+        .rubric-page > *:not(.rubric-photos-panel) {
+          flex: 1;
+          min-width: 300px;
+        }
+
+        .rubric-photos-panel {
+          width: 320px;
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          position: sticky;
+          top: 2rem;
+          height: fit-content;
+        }
+
+        .rubric-photo-card {
+          border-radius: 8px;
+          overflow: hidden;
+        }
+
+        .rubric-historical-photo {
+          filter: sepia(0.25) contrast(1.1) brightness(0.9);
+        }
+
+        .rubric-historical-photo .historical-photo-caption {
+          position: relative;
+          transform: none;
+          background: rgba(10, 14, 26, 0.9);
+          padding: 0.5rem;
+          font-size: 0.7rem;
+        }
+
+        @media (max-width: 1024px) {
+          .rubric-photos-panel {
+            display: none;
+          }
         }
 
         @media print {
