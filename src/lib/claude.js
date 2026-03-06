@@ -17,18 +17,22 @@ export async function askClaude(systemPrompt, userMessage) {
   }
 
   try {
+    // Merge system prompt and user message (Gemini free tier doesn't support system_instruction the same way)
+    const combinedText = systemPrompt + "\n\n" + userMessage;
+
     const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        system_instruction: {
-          parts: [{ text: systemPrompt }]
-        },
-        contents: [{
-          parts: [{ text: userMessage }]
-        }]
+        contents: [
+          {
+            parts: [
+              { text: combinedText }
+            ]
+          }
+        ]
       })
     });
 

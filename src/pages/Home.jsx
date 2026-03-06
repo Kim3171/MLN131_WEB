@@ -15,9 +15,9 @@ const typewriterTexts = [
 ];
 
 const stats = [
-  { label: '21 NĂM / 21 Years', sublabel: 'Kháng chiến / of Resistance' },
+  { label: '21 NĂM', sublabel: 'Kháng chiến / of Resistance' },
   { label: '543,000', sublabel: 'Quân Mỹ / US Troops (1969)' },
-  { label: '30/4/1975', sublabel: 'Ngày Giải Phóng / Liberation Day' },
+  { label: '30/4/1975', sublabel: 'Ngày Giải Phóng / liberation Day' },
   { label: 'Paris 1973', sublabel: 'Hiệp định Hòa Bình / Peace Accords' }
 ];
 
@@ -80,9 +80,9 @@ export default function Home() {
         {/* Gradient overlay */}
         <div className="hero-gradient" />
 
-        {/* Animated stars background */}
+        {/* Red star particles - 15 particles */}
         <div className="hero-stars">
-          {[...Array(20)].map((_, i) => (
+          {[...Array(15)].map((_, i) => (
             <motion.div
               key={i}
               className="hero-star"
@@ -93,16 +93,20 @@ export default function Home() {
               }}
               animate={{
                 y: -100 + '%',
-                opacity: [0, 1, 0]
+                opacity: [0, 0.4, 0]
               }}
               transition={{
-                duration: Math.random() * 3 + 2,
+                duration: Math.random() * 4 + 3,
                 repeat: Infinity,
-                delay: Math.random() * 2,
+                delay: Math.random() * 3,
                 ease: 'linear'
               }}
+              style={{
+                left: Math.random() * 100 + '%',
+                fontSize: Math.random() * 12 + 8 + 'px'
+              }}
             >
-              <RedStar size={12} animated={false} />
+              <RedStar size={Math.random() * 12 + 8} animated={false} />
             </motion.div>
           ))}
         </div>
@@ -126,22 +130,7 @@ export default function Home() {
             </span>
           </div>
 
-          {/* Hero Image */}
-          <motion.div
-            className="hero-image"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            <HistoricalPhoto
-              imageKey="hoChiMinhPortrait"
-              alt="Hồ Chí Minh"
-              caption="Hồ Chí Minh — Chủ tịch nước Việt Nam Dân chủ Cộng hòa"
-              className="hero-photo"
-            />
-          </motion.div>
-
-          {/* Group branding */}
+          {/* LABUBU credit */}
           <div className="hero-branding">
             Nhóm thực hiện: LABUBU ★
           </div>
@@ -172,7 +161,7 @@ export default function Home() {
       <section className="cq6-section">
         <div className="cq6-box">
           <div className="cq6-header">
-            <RedStar size={20} />
+            <RedStar size={18} />
             <span>CQ6 ASSIGNMENT</span>
           </div>
           <h2 className="cq6-question">
@@ -182,7 +171,7 @@ export default function Home() {
             Was the resistance war against American imperialism (1954-1975) Vietnam's national endeavor or part of the global revolutionary movement?
           </p>
           <p className="cq6-hint">
-            💡 Gợi ý: Khám phá các trang bên dưới để tìm hiểu về vai trò lãnh đạo của Đảng Cộng sản Việt Nam và bối cảnh quốc tế trong cuộc chiến này.
+            Gợi ý: Khám phá các trang bên dưới để tìm hiểu về vai trò lãnh đạo của Đảng Cộng sản Việt Nam và bối cảnh quốc tế trong cuộc chiến này.
           </p>
         </div>
       </section>
@@ -221,10 +210,10 @@ export default function Home() {
           min-height: 100vh;
         }
 
-        /* Hero */
+        /* Hero - Full viewport height */
         .hero {
           position: relative;
-          min-height: 80vh;
+          min-height: 100vh;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -254,6 +243,7 @@ export default function Home() {
           position: absolute;
           inset: 0;
           pointer-events: none;
+          overflow: hidden;
         }
 
         .hero-star {
@@ -275,31 +265,33 @@ export default function Home() {
 
         .hero-branding {
           font-family: var(--font-mono);
-          font-size: 0.75rem;
+          font-size: 11px;
           color: var(--gold);
-          margin-top: 1.5rem;
-          opacity: 0.7;
+          margin-top: 2rem;
+          opacity: 0.5;
         }
 
+        /* Title - Playfair Display 900 weight */
         .hero-title {
           font-family: var(--font-heading);
-          font-size: clamp(2.5rem, 8vw, 6rem);
-          letter-spacing: 0.2em;
+          font-weight: 900;
+          font-size: 88px;
+          letter-spacing: 0.12em;
           color: var(--parchment);
           margin: 0;
-          text-shadow: 0 0 40px rgba(192, 57, 43, 0.3);
+          text-shadow: 0 0 60px rgba(192, 57, 43, 0.4);
         }
 
+        /* Subtitle - IBM Plex Mono 16px */
         .hero-subtitle-container {
           min-height: 2rem;
-          margin-top: 1rem;
+          margin-top: 1.5rem;
         }
 
         .hero-subtitle {
-          font-family: var(--font-heading);
-          font-size: 1.5rem;
+          font-family: var(--font-mono);
+          font-size: 16px;
           color: var(--gold);
-          font-style: italic;
         }
 
         .cursor {
@@ -310,21 +302,7 @@ export default function Home() {
           50% { opacity: 0; }
         }
 
-        .hero-image {
-          position: absolute;
-          right: 5%;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 300px;
-        }
-
-        .hero-photo {
-          width: 100%;
-          border-radius: 8px;
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Stats */
+        /* Stats - 4 cards in a row */
         .stats-section {
           padding: 3rem 2rem;
           background: var(--smoke);
@@ -339,27 +317,34 @@ export default function Home() {
         }
 
         .stat-card {
-          background: rgba(212, 168, 83, 0.1);
-          border: 1px solid rgba(212, 168, 83, 0.2);
-          border-radius: 12px;
-          padding: 1.5rem;
+          background: rgba(255, 255, 255, 0.02);
+          border: 1px solid rgba(212, 168, 83, 0.15);
+          border-radius: 8px;
+          padding: 2rem 1.5rem;
           text-align: center;
+          transition: all 0.2s ease;
+        }
+
+        .stat-card:hover {
+          border-color: rgba(212, 168, 83, 0.4);
+          transform: translateY(-2px);
         }
 
         .stat-value {
-          font-family: var(--font-mono);
-          font-size: 1.5rem;
-          font-weight: bold;
+          font-family: var(--font-heading);
+          font-size: 48px;
+          font-weight: 700;
           color: var(--gold);
         }
 
         .stat-label {
-          font-size: 0.8rem;
+          font-family: var(--font-body);
+          font-size: 12px;
           color: var(--ash);
           margin-top: 0.5rem;
         }
 
-        /* CQ6 Section */
+        /* CQ6 Box */
         .cq6-section {
           padding: 4rem 2rem;
           background: linear-gradient(180deg, var(--smoke) 0%, var(--ink) 100%);
@@ -368,10 +353,10 @@ export default function Home() {
         .cq6-box {
           max-width: 900px;
           margin: 0 auto;
-          background: var(--parchment);
-          border-radius: 12px;
-          padding: 2.5rem;
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+          background: rgba(242, 232, 213, 0.04);
+          border: 1px solid rgba(212, 168, 83, 0.2);
+          border-radius: 4px;
+          padding: 24px;
         }
 
         .cq6-header {
@@ -379,15 +364,16 @@ export default function Home() {
           align-items: center;
           gap: 0.75rem;
           font-family: var(--font-mono);
-          font-size: 0.75rem;
-          color: var(--crimson);
+          font-size: 11px;
+          color: var(--gold);
           margin-bottom: 1.5rem;
+          letter-spacing: 0.1em;
         }
 
         .cq6-question {
           font-family: var(--font-heading);
           font-size: 1.5rem;
-          color: var(--ink);
+          color: var(--parchment);
           line-height: 1.5;
           margin: 0 0 1rem;
         }
@@ -395,21 +381,21 @@ export default function Home() {
         .cq6-question-en {
           font-family: var(--font-body);
           font-size: 1rem;
-          color: #555;
+          color: var(--ash);
           font-style: italic;
           margin: 0 0 1.5rem;
         }
 
         .cq6-hint {
           font-size: 0.9rem;
-          color: #666;
+          color: var(--ash);
           padding: 1rem;
           background: rgba(192, 57, 43, 0.1);
-          border-radius: 8px;
+          border-radius: 4px;
           margin: 0;
         }
 
-        /* Navigation Cards */
+        /* Navigation Cards - 3 columns */
         .nav-cards-section {
           padding: 4rem 2rem;
           max-width: 1200px;
@@ -426,7 +412,7 @@ export default function Home() {
 
         .nav-cards-grid {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(3, 1fr);
           gap: 1.5rem;
         }
 
@@ -436,15 +422,17 @@ export default function Home() {
           align-items: center;
           padding: 2rem 1.5rem;
           background: var(--smoke);
-          border: 1px solid rgba(212, 168, 83, 0.2);
-          border-radius: 12px;
+          border: 1px solid rgba(212, 168, 83, 0.15);
+          border-radius: 8px;
           text-decoration: none;
-          transition: all 0.3s;
+          transition: all 0.2s ease;
+          min-height: 160px;
+          justify-content: center;
         }
 
         .nav-card:hover {
-          border-color: var(--crimson);
-          box-shadow: 0 0 20px rgba(192, 57, 43, 0.3);
+          border-color: var(--gold);
+          box-shadow: 0 0 20px rgba(212, 168, 83, 0.2);
           transform: translateY(-4px);
         }
 
@@ -455,7 +443,7 @@ export default function Home() {
 
         .nav-card-label {
           font-family: var(--font-heading);
-          font-size: 1.1rem;
+          font-size: 1rem;
           color: var(--parchment);
           margin-bottom: 0.25rem;
         }
@@ -491,14 +479,8 @@ export default function Home() {
 
         /* Responsive */
         @media (max-width: 768px) {
-          .hero-image {
-            position: relative;
-            right: auto;
-            top: auto;
-            transform: none;
-            width: 100%;
-            max-width: 300px;
-            margin: 2rem auto 0;
+          .hero-title {
+            font-size: 48px;
           }
 
           .stats-grid {
@@ -507,6 +489,10 @@ export default function Home() {
 
           .nav-cards-grid {
             grid-template-columns: repeat(2, 1fr);
+          }
+
+          .stat-value {
+            font-size: 36px;
           }
 
           .cq6-question {
