@@ -106,11 +106,29 @@ export default function MapExplorer() {
         {/* Map */}
         <motion.div
           className="map-container"
+          style={{ minHeight: '700px', width: '100%' }}
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
         >
-          <VietnamMap onZoneClick={setActiveZone} activeZone={activeZone} layer={layer} />
+          <div
+            style={{
+              position: 'relative',
+              width: '100%',
+              height: '70vh',
+              minHeight: '500px',
+              backgroundColor: 'var(--smoke)',
+              borderRadius: '8px',
+              overflow: 'hidden',
+              flex: 'none'
+            }}
+          >
+            <VietnamMap
+              activeLayer={layer}
+              onZoneClick={setActiveZone}
+              activeZone={activeZone}
+            />
+          </div>
         </motion.div>
 
         {/* Info Panel */}
@@ -354,6 +372,7 @@ export default function MapExplorer() {
           padding: 1.5rem;
           position: relative;
           overflow: hidden;
+          min-height: 500px;
         }
 
         .map-container::before {

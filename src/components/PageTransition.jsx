@@ -5,9 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 
 const variants = {
-  initial: { opacity: 0, x: 20 },
-  animate: { opacity: 1, x: 0, transition: { duration: 0.35, ease: 'easeOut' } },
-  exit: { opacity: 0, x: -20, transition: { duration: 0.2 } }
+  initial: { opacity: 0 },
+  animate: { opacity: 1, transition: { duration: 0.15 } }
 };
 
 export default function PageTransition({ children }) {
@@ -20,7 +19,6 @@ export default function PageTransition({ children }) {
         variants={variants}
         initial="initial"
         animate="animate"
-        exit="exit"
       >
         {children}
       </motion.div>

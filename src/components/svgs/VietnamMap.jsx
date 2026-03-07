@@ -1,21 +1,35 @@
 // src/components/svgs/VietnamMap.jsx
-// Detailed SVG map of Vietnam with historical context
+// Accurate Vietnam Map with layer-based visibility
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 
-export default function VietnamMap({ onZoneClick, activeZone, layer = 'military' }) {
+export default function VietnamMap({ onZoneClick, activeZone, layer = 'military', activeLayer }) {
   const [hoveredZone, setHoveredZone] = useState(null);
 
-  // City coordinates for the map with enhanced data
+  // Support both layer and activeLayer prop names
+  const currentLayer = activeLayer || layer;
+
+  // Cities with precise positions
   const cities = [
-    { id: 'hanoi', name: 'Hà Nội', x: 200, y: 120, label: 'Hanoi' },
-    { id: 'hcm-trail', name: 'Đường mòn Hồ Chí Minh', x: 280, y: 350, label: 'HCM Trail' },
-    { id: 'hue', name: 'Huế', x: 210, y: 260, label: 'Hue' },
-    { id: 'danang', name: 'Đà Nẵng', x: 225, y: 280, label: 'Da Nang' },
-    { id: 'saigon', name: 'Sài Gòn', x: 190, y: 420, label: 'Saigon' },
-    { id: 'mekong', name: 'Cần Thơ', x: 150, y: 460, label: 'Mekong' },
-    { id: 'dak-to', name: 'Đắk Tô', x: 240, y: 320, label: 'Dak To' },
+    { id: 'hanoi', name: 'Hà Nội', x: 248, y: 118, labelPos: 'above', bold: true },
+    { id: 'hue', name: 'Huế', x: 288, y: 238, labelPos: 'right' },
+    { id: 'danang', name: 'Đà Nẵng', x: 305, y: 262, labelPos: 'right' },
+    { id: 'dak-to', name: 'Đắk Tô', x: 318, y: 305, labelPos: 'right' },
+    { id: 'saigon', name: 'Sài Gòn', x: 252, y: 428, labelPos: 'above', bold: true },
+    { id: 'cantho', name: 'Cần Thơ', x: 242, y: 465, labelPos: 'left' },
+    { id: 'camau', name: 'Cà Mau', x: 278, y: 510, labelPos: 'right' },
+  ];
+
+  // Battle markers - military layer only
+  const battles = [
+    { id: 'khe-sanh', name: 'Khe Sanh', x: 262, y: 195 },
+    { id: 'dak-to', name: 'Đắk Tô', x: 318, y: 305 },
+  ];
+
+  // Command centers - political layer only
+  const commandCenters = [
+    { id: 'hanoi-hq', name: 'TRUNG ƯƠNG ĐẢNG', x: 248, y: 132 },
+    { id: 'cosvn', name: 'COSVN', x: 248, y: 385 },
   ];
 
   const handleCityClick = (cityId) => {
@@ -24,325 +38,208 @@ export default function VietnamMap({ onZoneClick, activeZone, layer = 'military'
     }
   };
 
+  const isActive = (id) => activeZone === id;
+  const isHovered = (id) => hoveredZone === id;
+
+  // Calculate label position
+  const getLabelPos = (city) => {
+    const padding = 4;
+    const textWidth = city.name.length * 6;
+    const textHeight = 10;
+    let tx, ty, textAnchor;
+
+    if (city.labelPos === 'above') {
+      tx = city.x;
+      ty = city.y - 14;
+      textAnchor = 'middle';
+    } else if (city.labelPos === 'left') {
+      tx = city.x - 8;
+      ty = city.y + 4;
+      textAnchor = 'end';
+    } else {
+      tx = city.x + 10;
+      ty = city.y + 4;
+      textAnchor = 'start';
+    }
+
+    return { tx, ty, textAnchor, textWidth, textHeight, padding };
+  };
+
   return (
-    <div className="map-svg-wrapper">
+    <div style={{
+      width: '100%',
+      height: '100%',
+      minHeight: '500px',
+      position: 'relative',
+      display: 'block'
+    }}>
       <svg
-        viewBox="0 0 400 800"
-        width="100%"
-        height="auto"
-        className="vietnam-map"
-        style={{ maxWidth: '400px', margin: '0 auto' }}
+        viewBox="0 0 500 900"
+        style={{
+          display: 'block',
+          width: '100%',
+          height: '100%'
+        }}
+        preserveAspectRatio="xMidYMid meet"
       >
-        {/* Background - Laos and Cambodia */}
+        {/* Background */}
+        <rect x="0" y="0" width="500" height="900" fill="#0a0f1a" />
+
+        {/* Neighbor countries */}
+        <path d="M150,260 L80,300 L60,380 L100,420 L160,380 L180,300 Z" fill="#151d2b" />
+        <path d="M130,380 L80,420 L90,480 L150,500 L180,440 Z" fill="#151d2b" />
+
+        {/* North Vietnam */}
         <path
-          d="M280 200 L360 180 L380 280 L360 400 L320 480 L280 440 L260 360 L280 280 Z"
-          fill="#1A1E2A"
-          opacity="0.5"
+          d="M 215,85 L 245,78 L 278,82 L 298,95 L 308,118 L 305,148 L 292,168 L 270,178 L 248,182 L 228,178 L 210,162 L 200,140 L 202,112 Z"
+          fill="#1C3D2A"
+          stroke="#2E6B45"
+          strokeWidth="1.5"
         />
 
-        {/* 17th Parallel / DMZ Line */}
-        <line
-          x1="120"
-          y1="210"
-          x2="260"
-          y2="210"
-          stroke="#D4A853"
-          strokeWidth="2"
-          strokeDasharray="8 4"
-          opacity="0.7"
-        />
-        <text x="130" y="205" fill="#D4A853" fontSize="10" fontFamily="IBM Plex Mono">
-          Vĩ tuyến 17 / 17th Parallel
-        </text>
-
-        {/* North Vietnam (darker green) */}
+        {/* South Vietnam */}
         <path
-          d="M140 100
-             L200 80
-             L260 100
-             L280 150
-             L260 200
-             L220 230
-             L180 220
-             L140 180
-             L120 140
-             Z"
-          fill="#1E3A2F"
-          stroke="#2A4A3F"
-          strokeWidth="1"
+          d="M 210,195 L 248,188 L 270,183 L 292,172 L 308,152 L 318,175 L 322,205 L 318,238 L 308,268 L 295,295 L 278,318 L 260,338 L 245,355 L 235,372 L 228,390 L 225,410 L 228,428 L 238,442 L 248,450 L 255,445 L 258,432 L 252,418 L 248,402 L 252,388 L 262,378 L 272,375 L 282,382 L 288,395 L 285,412 L 275,425 L 268,438 L 270,450 L 280,458 L 292,452 L 298,438 L 295,422 L 288,408 L 290,392 L 300,382 L 312,382 L 320,392 L 318,410 L 308,425 L 302,440 L 305,452 L 315,458 L 325,450 L 328,432 L 322,415 L 322,398 L 330,385 L 342,382 L 350,392 L 348,412 L 338,428 L 332,445 L 335,458 L 345,462 L 355,452 L 355,432 L 348,415 L 345,398 L 350,382 L 360,372 L 368,360 L 365,342 L 355,328 L 352,308 L 355,285 L 350,260 L 342,235 L 330,215 L 318,198 L 298,188 L 270,185 Z"
+          fill="#2E1A0E"
+          stroke="#5C3820"
+          strokeWidth="1.5"
         />
 
-        {/* South Vietnam (darker brown) */}
-        <path
-          d="M140 230
-             L220 230
-             L260 200
-             L280 250
-             L270 320
-             L250 380
-             L220 420
-             L180 450
-             L140 440
-             L120 380
-             L130 300
-             L140 230
-             Z"
-          fill="#2D1810"
-          stroke="#3D2818"
-          strokeWidth="1"
-        />
+        {/* 17th Parallel Line */}
+        <line x1="195" y1="190" x2="335" y2="190" stroke="#D4A853" strokeWidth="1.5" strokeDasharray="8 4" />
 
-        {/* Ho Chi Minh Trail - Animated dashed path */}
-        {layer !== 'political' && (
-          <g className="ho-chi-minh-trail">
-            <path
-              d="M200 130
-                 Q220 180 240 220
-                 Q260 260 280 300
-                 Q300 340 320 380
-                 Q340 420 300 450
-                 Q260 480 220 440"
-              fill="none"
-              stroke="#D4A853"
-              strokeWidth="3"
-              strokeDasharray="10 5"
-              className="trail-path"
-            />
+        {/* Ho Chi Minh Trail - military + international */}
+        {(currentLayer === 'military' || currentLayer === 'international') && (
+          <path
+            d="M 208,175 L 185,210 L 170,255 L 162,305 L 158,355 L 162,405 L 170,445 L 182,478 L 200,458"
+            fill="none"
+            stroke="#D4A853"
+            strokeWidth="2"
+            strokeDasharray="6 3"
+            opacity="0.7"
+          />
+        )}
+
+        {/* Military Layer - Battle Markers (red triangles) */}
+        {currentLayer === 'military' && (
+          <g>
+            {battles.map((battle) => (
+              <g key={battle.id}>
+                {/* Triangle pointing up */}
+                <polygon points={`${battle.x},${battle.y - 8} ${battle.x - 5},${battle.y + 4} ${battle.x + 5},${battle.y + 4}`} fill="#C0392B" />
+                {/* Label to the right */}
+                <text x={battle.x + 12} y={battle.y + 4} fill="#F2E8D5" fontSize="9" fontFamily="serif" fontWeight="bold">
+                  {battle.name}
+                </text>
+              </g>
+            ))}
           </g>
         )}
 
-        {/* Military layer - Battle markers with premium styling */}
-        {layer === 'military' && (
-          <g className="battle-markers">
-            {/* Ia Drang - First major battle */}
-            <motion.circle
-              cx="240"
-              cy="310"
-              r="8"
-              fill="#C0392B"
-              initial={{ opacity: 0.8, scale: 1 }}
-              animate={{ opacity: [0.4, 0.8, 0.4], scale: [1, 1.2, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              <title>Trận Ia Drang (1965) - First major battle of the war</title>
-            </motion.circle>
-            <text x="248" y="314" fill="#F2E8D5" fontSize="9" fontFamily="IBM Plex Mono" fontWeight="bold">Ia Drang '65</text>
-
-            {/* Dak To - Major 1967 battles */}
-            <motion.circle
-              cx="240"
-              cy="320"
-              r="6"
-              fill="#C0392B"
-              initial={{ opacity: 0.6 }}
-              animate={{ opacity: [0.3, 0.6, 0.3] }}
-              transition={{ duration: 2.5, repeat: Infinity, delay: 0.3 }}
-            >
-              <title>Trận Đắk Tô (1967)</title>
-            </motion.circle>
-            <text x="248" y="324" fill="#F2E8D5" fontSize="8" fontFamily="IBM Plex Mono">Dak To '67</text>
-
-            {/* Hue - Tet Offensive */}
-            <motion.circle
-              cx="210"
-              cy="260"
-              r="7"
-              fill="#C0392B"
-              initial={{ opacity: 0.7 }}
-              animate={{ opacity: [0.3, 0.7, 0.3] }}
-              transition={{ duration: 3, repeat: Infinity, delay: 0.6 }}
-            >
-              <title>Trận Huế (1968) - Tet Offensive</title>
-            </motion.circle>
-            <text x="218" y="264" fill="#F2E8D5" fontSize="9" fontFamily="IBM Plex Mono" fontWeight="bold">Huế '68</text>
-
-            {/* Saigon - Liberation */}
-            <motion.circle
-              cx="190"
-              cy="420"
-              r="9"
-              fill="#C0392B"
-              initial={{ opacity: 0.9, scale: 1 }}
-              animate={{ opacity: [0.5, 0.9, 0.5], scale: [1, 1.3, 1] }}
-              transition={{ duration: 2, repeat: Infinity, delay: 0.9 }}
-            >
-              <title>Giải phóng Sài Gòn (1975)</title>
-            </motion.circle>
-            <text x="200" y="424" fill="#F2E8D5" fontSize="9" fontFamily="IBM Plex Mono" fontWeight="bold">30/4/1975</text>
+        {/* Political Layer - Command Boxes (olive) */}
+        {currentLayer === 'political' && (
+          <g>
+            {commandCenters.map((center) => (
+              <g key={center.id}>
+                <rect x={center.x - 36} y={center.y - 6.5} width="72" height="13" rx="2" fill="rgba(107,122,58,0.25)" stroke="#6B7A3A" strokeWidth="1" />
+                <text x={center.x} y={center.y + 3} fill="#F2E8D5" fontSize="7" fontFamily="serif" textAnchor="middle" fontWeight="bold">
+                  {center.name}
+                </text>
+              </g>
+            ))}
           </g>
         )}
 
-        {/* Political layer - Party command centers with premium styling */}
-        {layer === 'political' && (
-          <g className="command-centers">
-            {/* Hanoi - Party HQ */}
-            <motion.rect
-              x="190"
-              y="105"
-              width="20"
-              height="15"
-              fill="#C0392B"
-              initial={{ opacity: 0.8 }}
-              animate={{ opacity: [0.5, 0.8, 0.5] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              <title>Trung ương Đảng - Party Central HQ</title>
-            </motion.rect>
-            <text x="170" y="135" fill="#D4A853" fontSize="8" fontFamily="IBM Plex Mono" fontWeight="bold">TRUNG ƯƠNG ĐẢNG</text>
+        {/* International Layer - Arrows */}
+        {currentLayer === 'international' && (
+          <g>
+            {/* China arrow - from north */}
+            <line x1="248" y1="42" x2="248" y2="78" stroke="#C0392B" strokeWidth="1.5" strokeDasharray="4 2" markerEnd="url(#arrowdown)" />
+            <text x="255" y="58" fill="#C0392B" fontSize="9" fontFamily="serif">CN Trung Quốc</text>
 
-            {/* COSVN - Central Office for South Vietnam */}
-            <motion.rect
-              x="240"
-              y="380"
-              width="25"
-              height="18"
-              fill="#C0392B"
-              initial={{ opacity: 0.6 }}
-              animate={{ opacity: [0.3, 0.6, 0.3] }}
-              transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
-            >
-              <title>Cơ quan Thường trực Trung ương tại miền Nam (COSVN)</title>
-            </motion.rect>
-            <text x="215" y="410" fill="#D4A853" fontSize="8" fontFamily="IBM Plex Mono">COSVN</text>
+            {/* USSR arrow - from west */}
+            <line x1="48" y1="118" x2="195" y2="118" stroke="#3498DB" strokeWidth="1.5" strokeDasharray="4 2" markerEnd="url(#arrowright)" />
+            <text x="52" y="113" fill="#3498DB" fontSize="9" fontFamily="serif">RU Liên Xô</text>
           </g>
         )}
 
-        {/* International layer - Supply routes */}
-        {layer === 'international' && (
-          <g className="supply-routes">
-            {/* USSR/China supply lines - Northern route */}
-            <motion.line
-              x1="200"
-              y1="120"
-              x2="200"
-              y2="60"
-              stroke="#6B7A3A"
-              strokeWidth="2"
-              strokeDasharray="5 3"
-              initial={{ opacity: 0.6 }}
-              animate={{ opacity: [0.3, 0.6, 0.3] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-            <polygon points="200,55 195,65 205,65" fill="#6B7A3A" opacity="0.6" />
-            <text x="205" y="80" fill="#6B7A3A" fontSize="7" fontFamily="IBM Plex Mono">USSR / PRC</text>
+        {/* Arrow markers */}
+        <defs>
+          <marker id="arrowdown" markerWidth="8" markerHeight="8" refX="4" refY="7" orient="auto">
+            <polygon points="0 0, 8 7, 0 7" fill="#C0392B" />
+          </marker>
+          <marker id="arrowright" markerWidth="8" markerHeight="8" refX="0" refY="3.5" orient="auto">
+            <polygon points="0 0, 8 3.5, 0 7" fill="#3498DB" />
+          </marker>
+        </defs>
 
-            {/* China route through Laos - Southern route */}
-            <motion.path
-              d="M200 130 Q250 200 280 300"
-              stroke="#6B7A3A"
-              strokeWidth="2"
-              strokeDasharray="5 3"
-              fill="none"
-              initial={{ opacity: 0.5 }}
-              animate={{ opacity: [0.2, 0.5, 0.2] }}
-              transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
-            />
-            <polygon points="280,300 275,310 285,305" fill="#6B7A3A" opacity="0.5" />
-            <text x="285" y="250" fill="#6B7A3A" fontSize="7" fontFamily="IBM Plex Mono">Sông Hồng</text>
-          </g>
-        )}
+        {/* Sea Labels - always visible */}
+        <text x="370" y="155" fill="#1E4060" fontSize="10" fontFamily="serif" fontStyle="italic">Vịnh Bắc Bộ</text>
+        <text x="380" y="420" fill="#1E4060" fontSize="10" fontFamily="serif" fontStyle="italic">Biển Đông</text>
 
-        {/* City dots and labels with premium hover effects */}
-        {cities.map((city) => (
-          <g
-            key={city.id}
-            className="city-marker"
-            onClick={() => handleCityClick(city.id)}
-            onMouseEnter={() => setHoveredZone(city.id)}
-            onMouseLeave={() => setHoveredZone(null)}
-            style={{ cursor: 'pointer' }}
-          >
-            {/* Outer glow ring */}
-            <motion.circle
-              cx={city.x}
-              cy={city.y}
-              r={activeZone === city.id || hoveredZone === city.id ? 10 : 6}
-              fill="none"
-              stroke={activeZone === city.id ? '#C0392B' : '#D4A853'}
-              strokeWidth="1"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: activeZone === city.id || hoveredZone === city.id ? 0.5 : 0 }}
-              transition={{ duration: 0.3 }}
-            />
-            {/* Main dot */}
-            <motion.circle
-              cx={city.x}
-              cy={city.y}
-              r={activeZone === city.id || hoveredZone === city.id ? 6 : 4}
-              fill={activeZone === city.id ? '#C0392B' : '#D4A853'}
-              animate={{
-                r: activeZone === city.id || hoveredZone === city.id ? [4, 6, 4] : 4,
-              }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            />
-            {/* Label */}
-            <text
-              x={city.x + 10}
-              y={city.y + 4}
-              fill={activeZone === city.id ? '#C0392B' : '#F2E8D5'}
-              fontSize="11"
-              fontFamily="IBM Plex Mono"
-              fontWeight={activeZone === city.id ? 'bold' : 'normal'}
+        {/* Country Labels - always visible */}
+        <text x="148" y="280" fill="rgba(139,149,168,0.3)" fontSize="11" fontFamily="serif">Lào</text>
+        <text x="148" y="420" fill="rgba(139,149,168,0.3)" fontSize="10" fontFamily="serif">Campuchia</text>
+
+        {/* Region Labels - always visible */}
+        <text x="248" y="142" fill="rgba(242,232,213,0.25)" fontSize="9" fontFamily="serif" fontStyle="italic" textAnchor="middle">Miền Bắc</text>
+        <text x="280" y="320" fill="rgba(242,232,213,0.2)" fontSize="9" fontFamily="serif" fontStyle="italic" textAnchor="middle">Miền Nam</text>
+
+        {/* Cities - always visible */}
+        {cities.map((city) => {
+          const labelInfo = getLabelPos(city);
+          return (
+            <g
+              key={city.id}
+              onClick={() => handleCityClick(city.id)}
+              onMouseEnter={() => setHoveredZone(city.id)}
+              onMouseLeave={() => setHoveredZone(null)}
+              style={{ cursor: 'pointer' }}
             >
-              {city.name}
-            </text>
-          </g>
-        ))}
+              {/* Hover/active ring */}
+              {(isActive(city.id) || isHovered(city.id)) && (
+                <circle cx={city.x} cy={city.y} r="14" fill="none" stroke="#D4A853" strokeWidth="1" opacity="0.5" />
+              )}
+              {/* City dot - larger for bold cities */}
+              <circle
+                cx={city.x}
+                cy={city.y}
+                r={city.bold || isActive(city.id) || isHovered(city.id) ? 5 : 3}
+                fill={isActive(city.id) ? '#C0392B' : '#D4A853'}
+              />
+              {/* Label background rect */}
+              <rect
+                x={labelInfo.tx - labelInfo.padding - (labelInfo.textWidth / 2)}
+                y={labelInfo.ty - labelInfo.padding - labelInfo.textHeight + 2}
+                width={labelInfo.textWidth + (labelInfo.padding * 2)}
+                height={labelInfo.textHeight + (labelInfo.padding * 2)}
+                rx="2"
+                fill="rgba(10,14,26,0.8)"
+              />
+              {/* City name */}
+              <text
+                x={labelInfo.tx}
+                y={labelInfo.ty}
+                fill="#F2E8D5"
+                fontSize="9"
+                fontFamily="serif"
+                textAnchor={labelInfo.textAnchor}
+                fontWeight={city.bold ? 'bold' : 'normal'}
+              >
+                {city.name}
+              </text>
+            </g>
+          );
+        })}
 
-        {/* Gulf of Tonkin label */}
-        <text x="260" y="90" fill="#8B95A8" fontSize="10" fontFamily="Noto Serif" fontStyle="italic">
-          Vịnh Bắc Bộ
-        </text>
-        <text x="260" y="102" fill="#8B95A8" fontSize="9" fontFamily="IBM Plex Mono" fontStyle="italic">
-          Gulf of Tonkin
-        </text>
-
-        {/* South China Sea label */}
-        <text x="300" y="500" fill="#8B95A8" fontSize="10" fontFamily="Noto Serif" fontStyle="italic">
-          Biển Đông
-        </text>
-        <text x="300" y="512" fill="#8B95A8" fontSize="9" fontFamily="IBM Plex Mono" fontStyle="italic">
-          South China Sea
-        </text>
-
-        {/* Layer indicator */}
-        <g className="layer-indicator">
-          <rect x="10" y="760" width="80" height="20" rx="4" fill="rgba(0,0,0,0.6)" />
-          <text x="50" y="774" fill="#D4A853" fontSize="9" fontFamily="IBM Plex Mono" textAnchor="middle" fontWeight="bold">
-            {layer === 'military' ? 'QUÂN SỰ' : layer === 'political' ? 'CHÍNH TRỊ' : 'QUỐC TẾ'}
+        {/* Layer badge */}
+        <g transform="translate(10, 860)">
+          <rect width="70" height="20" rx="4" fill="rgba(0,0,0,0.7)" />
+          <text x="35" y="14" fill="#D4A853" fontSize="8" fontFamily="serif" textAnchor="middle" fontWeight="bold">
+            {currentLayer === 'military' ? 'QUÂN SỰ' : currentLayer === 'political' ? 'CHÍNH TRỊ' : 'QUỐC TẾ'}
           </text>
         </g>
       </svg>
-
-      <style>{`
-        .map-svg-wrapper {
-          position: relative;
-        }
-
-        .trail-path {
-          animation: dashMove 20s linear infinite;
-        }
-
-        @keyframes dashMove {
-          to {
-            stroke-dashoffset: -1000;
-          }
-        }
-
-        .vietnam-map {
-          display: block;
-        }
-
-        .city-marker text {
-          transition: fill 0.2s, font-weight 0.2s;
-        }
-
-        .battle-markers text,
-        .command-centers text,
-        .supply-routes text {
-          pointer-events: none;
-        }
-      `}</style>
     </div>
   );
 }

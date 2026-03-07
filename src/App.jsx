@@ -66,7 +66,7 @@ function AppContent() {
         </aside>
 
         {/* Main content */}
-        <main className="app-main">
+        <main className="app-main" style={{ flex: 1, minHeight: '100vh' }}>
           <PageTransition>
             <Routes>
               <Route path="/" element={<Home />} />
