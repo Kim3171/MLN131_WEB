@@ -37,8 +37,8 @@ export const rubricData = {
         nameVi: 'Ứng dụng AI có trách nhiệm — minh bạch — sáng tạo — liêm chính học thuật',
         nameEn: 'AI Application: Responsible — Transparent — Creative — Academic Integrity',
         points: 2,
-        detailVi: '4.1 Minh bạch: Có slide AI Usage. 0.5đ | 4.2 Có trách nhiệm: Kiểm chứng thông tin AI. 0.5đ | 4.3 Sáng tạo: AI chỉ đóng vai trò hỗ trợ. 0.5đ | 4.4 Liêm chính: Cam kết không để AI làm thay. 0.5đ',
-        detailEn: '4.1 Transparency: Has AI Usage slide. 0.5pts | 4.2 Responsible: Verifies AI information. 0.5pts | 4.3 Creative: AI only plays supporting role. 0.5pts | 4.4 Integrity: Commits to not letting AI do work. 0.5pts'
+        detailVi: 'Xem chi tiết trong phần "AI Usage" trong Phụ Lục. Chấm điểm: 0.5đ minh bạch + 0.5đ kiểm chứng + 0.5đ cam kết + 0.5đ ứng dụng sáng tạo.',
+        detailEn: 'See details in "AI Usage" section in Appendix. Scoring: 0.5pts transparency + 0.5pts verification + 0.5pts commitment + 0.5pts creative application.'
       },
       {
         id: '1-5',

@@ -28,12 +28,60 @@ export default function Rubric() {
         {/* Header */}
         <div className="rubric-header">
           <div className="rubric-title-row">
-            <h1>Tiêu Chí Đánh Giá</h1>
+            <h1>Phụ Lục</h1>
             <button className="print-btn" onClick={handlePrint}>
               🖨️ In / Print
             </button>
           </div>
-          <p>Grading Rubric — CQ6 Assignment</p>
+          <p>Tiêu Chí Đánh Giá & Hướng Dẫn / Grading Rubric & Guidelines</p>
+        </div>
+
+        {/* AI Usage Section - Moved to Appendix */}
+        <div className="rubric-section ai-usage-section">
+          <div className="section-header purple">
+            <div className="section-title">
+              <span>🤖</span>
+              <span>AI Usage — Ứng dụng AI</span>
+            </div>
+          </div>
+
+          <div className="ai-usage-content">
+            <div className="ai-usage-item">
+              <div className="ai-usage-icon">4.1</div>
+              <div className="ai-usage-text">
+                <h4>Minh bạch / Transparency</h4>
+                <p>Có slide hoặc phụ lục "AI Usage" liệt kê: công cụ AI đã sử dụng, mục đích sử dụng, prompt chính, kết quả đạt được, và phần đã chỉnh sửa.</p>
+                <p className="en">Has slide or "AI Usage" appendix listing: AI tools used, purpose, main prompts, results, and edited sections.</p>
+              </div>
+            </div>
+
+            <div className="ai-usage-item">
+              <div className="ai-usage-icon">4.2</div>
+              <div className="ai-usage-text">
+                <h4>Có trách nhiệm / Responsible</h4>
+                <p>Kiểm chứng thông tin AI bằng giáo trình Lịch sử Đảng, nghị quyết, văn bản chính thống. Chịu trách nhiệm về nội dung cuối cùng.</p>
+                <p className="en">Verifies AI information using CPV History textbooks, resolutions, official documents. Takes responsibility for final content.</p>
+              </div>
+            </div>
+
+            <div className="ai-usage-item">
+              <div className="ai-usage-icon">4.3</div>
+              <div className="ai-usage-text">
+                <h4>Sáng tạo / Creative</h4>
+                <p>AI chỉ đóng vai trò hỗ trợ (tạo sơ đồ, quiz, video, chatbot, gợi ý...). Không thay thế hoàn toàn công việc của nhóm.</p>
+                <p className="en">AI only plays supporting role (creating diagrams, quizzes, videos, chatbots, suggestions...). Does not replace group's work entirely.</p>
+              </div>
+            </div>
+
+            <div className="ai-usage-item">
+              <div className="ai-usage-icon">4.4</div>
+              <div className="ai-usage-text">
+                <h4>Liêm chính học thuật / Academic Integrity</h4>
+                <p>Có cam kết bằng văn bản (slide/phụ lục) khẳng định không để AI làm thay hoàn toàn. Có phân định rõ AI output và phần sinh viên chỉnh sửa. Có đối chiếu nguồn chính thống.</p>
+                <p className="en">Has written commitment (slide/appendix) affirming AI did not do entire work. Clearly distinguishes AI output from student edits. Compares with authoritative sources.</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Part 1 - Crimson */}
@@ -228,6 +276,80 @@ export default function Rubric() {
 
         .section-header.gold {
           border-left: 4px solid var(--gold);
+        }
+
+        .section-header.purple {
+          border-left: 4px solid #9b59b6;
+          background: linear-gradient(135deg, rgba(155, 89, 182, 0.15) 0%, rgba(30, 37, 53, 0.6) 100%);
+        }
+
+        /* AI Usage Section */
+        .ai-usage-section {
+          margin-bottom: 2rem;
+        }
+
+        .ai-usage-section .section-header {
+          border-radius: 12px;
+        }
+
+        .ai-usage-content {
+          background: rgba(30, 37, 53, 0.5);
+          border: 1px solid rgba(155, 89, 182, 0.3);
+          border-top: none;
+          border-radius: 0 0 12px 12px;
+          padding: 1.5rem;
+          display: grid;
+          gap: 1rem;
+        }
+
+        .ai-usage-item {
+          display: flex;
+          gap: 1rem;
+          padding: 1rem;
+          background: rgba(155, 89, 182, 0.08);
+          border-radius: 8px;
+          border: 1px solid rgba(155, 89, 182, 0.15);
+        }
+
+        .ai-usage-item:hover {
+          background: rgba(155, 89, 182, 0.12);
+        }
+
+        .ai-usage-icon {
+          width: 36px;
+          height: 36px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+          color: var(--parchment);
+          border-radius: 8px;
+          font-family: var(--font-mono);
+          font-weight: bold;
+          font-size: 0.85rem;
+          flex-shrink: 0;
+        }
+
+        .ai-usage-text h4 {
+          font-family: var(--font-heading);
+          font-size: 1rem;
+          color: var(--parchment);
+          margin: 0 0 0.5rem;
+        }
+
+        .ai-usage-text p {
+          font-family: var(--font-body);
+          font-size: 0.85rem;
+          color: var(--ash);
+          margin: 0;
+          line-height: 1.5;
+        }
+
+        .ai-usage-text p.en {
+          font-size: 0.75rem;
+          font-style: italic;
+          opacity: 0.8;
+          margin-top: 0.5rem;
         }
 
         .section-title {
