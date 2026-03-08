@@ -252,7 +252,8 @@ input:focus, textarea:focus {
   padding: 2rem;
   min-width: 0;
   margin-left: 0;
-  min-height: 100vh;
+  min-height: auto;
+  overflow: visible;
 }
 
 /* Navigation styles */
@@ -446,9 +447,11 @@ input:focus, textarea:focus {
 
   .app-main {
     padding: 1rem;
-    padding-bottom: 5rem;
+    padding-bottom: 80px;
     margin-left: 0;
-    min-height: 100vh;
+    min-height: auto;
+    height: auto;
+    overflow-y: auto;
   }
 
   .game-card {

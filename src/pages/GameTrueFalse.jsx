@@ -20,6 +20,11 @@ export default function GameTrueFalse() {
   const cardRef = useRef(null);
   const { updateScore } = useApp();
 
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const question = trueFalseQuestions[currentQuestion];
 
   // Timer with large countdown display
@@ -264,6 +269,7 @@ export default function GameTrueFalse() {
       <style>{`
         .game-truefalse-page {
           min-height: 100vh;
+          padding-bottom: 1rem;
         }
 
         /* Sticky Timer Bar */

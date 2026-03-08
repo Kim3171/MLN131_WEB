@@ -33,6 +33,11 @@ export default function Resources() {
   const { handleLabubuClick, labubuClicks, resetLabubuClicks } = useApp();
   const [showConfetti, setShowConfetti] = useState(false);
 
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -82,7 +87,7 @@ export default function Resources() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <h1>PASS ĐỒ ÁN! 🎉</h1>
+            <h1>PASS TẤT CẢ CÁC MÔN! 🎉</h1>
             <canvas id="confetti-canvas" />
           </motion.div>
         )}
@@ -624,6 +629,17 @@ export default function Resources() {
         @media (max-width: 1024px) {
           .resources-grid {
             grid-template-columns: 1fr;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .glossary-table {
+            overflow-x: auto;
+          }
+
+          .glossary-header,
+          .glossary-row {
+            min-width: 500px;
           }
         }
       `}</style>

@@ -1,7 +1,19 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm run build)"
+      "Bash(npm run build)",
+      "WebFetch(domain:localhost)",
+      "Bash(cat /c/Users/Acer/AppData/Local/Temp/claude/c--Users-Acer-OneDrive---SM-CPA-Desktop-HCM202-WEB/tasks/*.output)",
+      "Bash(npm run dev)",
+      "Bash(curl -s -X POST \"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyAjQmvWNc8bYf9oAAWHnaVy9MaSDN3BqgM\" -H \"Content-Type: application/json\" -d '{\"\"contents\"\":[{\"\"parts\"\":[{\"\"text\"\":\"\"Say hello in 5 words\"\"}]}]}')",
+      "Bash(curl -s \"https://generativelanguage.googleapis.com/v1beta/models?key=AIzaSyAjQmvWNc8bYf9oAAWHnaVy9MaSDN3BqgM\")",
+      "Bash(curl -s -X POST \"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAjQmvWNc8bYf9oAAWHnaVy9MaSDN3BqgM\" -H \"Content-Type: application/json\" -d '{\"\"contents\"\":[{\"\"parts\"\":[{\"\"text\"\":\"\"Say hello in 5 words\"\"}]}]}')",
+      "Bash(curl -s -X POST \"https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash:generateContent?key=AIzaSyAjQmvWNc8bYf9oAAWHnaVy9MaSDN3BqgM\" -H \"Content-Type: application/json\" -d '{\"\"contents\"\":[{\"\"parts\"\":[{\"\"text\"\":\"\"Say hello in 3 words\"\"}]}]}')",
+      "Bash(curl -s -X POST \"https://generativelanguage.googleapis.com/v1/models/gemini-3-flash:generateContent?key=AIzaSyAjQmvWNc8bYf9oAAWHnaVy9MaSDN3BqgM\" -H \"Content-Type: application/json\" -d '{\"\"contents\"\":[{\"\"parts\"\":[{\"\"text\"\":\"\"Say hello in 3 words\"\"}]}]}')",
+      "Bash(curl -s \"https://generativelanguage.googleapis.com/v1/models?key=AIzaSyAjQmvWNc8bYf9oAAWHnaVy9MaSDN3BqgM\")",
+      "Bash(curl -s -X POST \"https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=AIzaSyAjQmvWNc8bYf9oAAWHnaVy9MaSDN3BqgM\" -H \"Content-Type: application/json\" -d '{\"\"contents\"\":[{\"\"parts\"\":[{\"\"text\"\":\"\"Say hello in 3 words\"\"}]}]}')",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)"
     ]
   }
 }

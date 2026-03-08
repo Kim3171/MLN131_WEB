@@ -41,6 +41,11 @@ export default function GameTimeline() {
   const { updateScore } = useApp();
   const containerRef = useRef(null);
 
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Initialize game
   const initGame = () => {
     // Step 1: Get 8 random events
