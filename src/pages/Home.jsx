@@ -192,39 +192,53 @@ export default function Home() {
             </span>
           </div>
 
-          {/* LAB202 credit */}
+          {/* LABUBU credit */}
           <div style={{
             fontSize: '11px',
-            color: 'rgba(242,232,213,0.35)',
+            color: 'rgba(242,232,213,0.5)',
             fontFamily: "'IBM Plex Mono', monospace",
             letterSpacing: '0.2em',
             marginTop: 24
           }}>
-            Nhóm thực hiện: LAB202
+            Nhóm thực hiện: LABUBU
           </div>
 
-          {/* Scroll Indicator */}
-          <div style={{
-            marginTop: 48,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: 6,
-            opacity: 0.4
-          }}>
+          {/* Scroll Indicator - Clickable */}
+          <motion.button
+            onClick={() => {
+              document.querySelector('.stats-section')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            style={{
+              marginTop: 48,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 6,
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              opacity: 0.7,
+              padding: '10px 20px',
+              borderRadius: '8px',
+              transition: 'all 0.3s ease'
+            }}
+            whileHover={{ opacity: 1, scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
             <span style={{
-              fontSize: 10,
+              fontSize: 12,
               color: '#D4A853',
               letterSpacing: '0.3em',
-              fontFamily: 'monospace'
+              fontFamily: 'monospace',
+              textShadow: '0 0 10px rgba(212,168,83,0.5)'
             }}>CUỘN XUỐNG</span>
             <div style={{
-              width: 1,
-              height: 40,
+              width: 2,
+              height: 50,
               background: 'linear-gradient(to bottom, #D4A853, transparent)',
               animation: 'scrollPulse 2s ease-in-out infinite'
             }}/>
-          </div>
+          </motion.button>
         </div>
       </section>
 
@@ -292,8 +306,10 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="home-footer">
-        <p>© 2024 Ký Ức Dân Tộc — Dự án giáo dục lịch sử / Educational History Project</p>
-        <a href="/secret" className="secret-link">x</a>
+        <p>© 2026 Ký Ức Dân Tộc — Dự án giáo dục lịch sử / Educational History Project</p>
+        <a href="/secret" className="secret-link" aria-label="Thơ - Poetry">
+          <span style={{ fontSize: '18px' }}>📝</span>
+        </a>
       </footer>
 
       <style>{`

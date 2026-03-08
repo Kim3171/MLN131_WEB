@@ -56,17 +56,23 @@ export default function GameQuotes() {
     return () => clearInterval(timer);
   }, [gameState, showResult, currentQuote, currentData]);
 
-  // Get 4 speaker options
+  // Get 4 unique speaker options
   const getOptions = () => {
     if (!currentData) return [];
     const correctSpeaker = currentData.speakerVi;
-    const otherSpeakers = quotes
-      .filter(q => q.speakerVi !== correctSpeaker)
-      .map(q => q.speakerVi)
-      .sort(() => Math.random() - 0.5)
-      .slice(0, 3);
 
-    return [...otherSpeakers, correctSpeaker].sort(() => Math.random() - 0.5);
+    // Get unique speaker names (excluding correct speaker)
+    const uniqueSpeakers = [...new Set(
+      quotes
+        .filter(q => q.speakerVi !== correctSpeaker)
+        .map(q => q.speakerVi)
+    )];
+
+    // Shuffle and pick 3 unique wrong answers
+    const shuffledOthers = uniqueSpeakers.sort(() => Math.random() - 0.5).slice(0, 3);
+
+    // Combine with correct answer and shuffle
+    return [...shuffledOthers, correctSpeaker].sort(() => Math.random() - 0.5);
   };
 
   const [options, setOptions] = useState([]);
