@@ -1,7 +1,7 @@
 // src/pages/MapExplorer.jsx
 // Interactive map with battle zones - Premium version
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import VietnamMap from '../components/svgs/VietnamMap';
 import battleZones from '../data/battleZones';
@@ -35,6 +35,23 @@ const layerInfo = {
 export default function MapExplorer() {
   const [activeZone, setActiveZone] = useState(null);
   const [layer, setLayer] = useState('military');
+  const [focusMode, setFocusMode] = useState(() => {
+    return localStorage.getItem('focusMode') === 'true';
+  });
+
+  // Sync focus mode with global state
+  useEffect(() => {
+    const handleStorage = () => {
+      setFocusMode(localStorage.getItem('focusMode') === 'true');
+    };
+    const interval = setInterval(handleStorage, 100);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Cleanup focus mode on unmount
+  useEffect(() => {
+    return () => localStorage.setItem('focusMode', 'false');
+  }, []);
 
   const zone = battleZones.find(z => z.id === activeZone);
 

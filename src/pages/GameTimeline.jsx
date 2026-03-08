@@ -1,7 +1,7 @@
 // src/pages/GameTimeline.jsx
 // Drag-to-order timeline game (Game 1) - Premium version with intro modal and 2 rounds
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, Reorder } from 'framer-motion';
 import events from '../data/events';
 import GameCard from '../components/GameCard';
@@ -38,8 +38,19 @@ export default function GameTimeline() {
   const [round, setRound] = useState(1);
   const [totalScore, setTotalScore] = useState(0);
   const [showCorrectOrder, setShowCorrectOrder] = useState(false);
+  const [focusMode, setFocusMode] = useState(() => {
+    return localStorage.getItem('focusMode') === 'true';
+  });
   const { updateScore } = useApp();
-  const containerRef = useRef(null);
+
+  // Sync focus mode with global state
+  useEffect(() => {
+    const handleStorage = () => {
+      setFocusMode(localStorage.getItem('focusMode') === 'true');
+    };
+    const interval = setInterval(handleStorage, 100);
+    return () => clearInterval(interval);
+  }, []);
 
   // Scroll to top on mount
   useEffect(() => {
@@ -165,6 +176,11 @@ export default function GameTimeline() {
     setGameState('playing');
   };
 
+  // Cleanup focus mode on unmount
+  useEffect(() => {
+    return () => localStorage.setItem('focusMode', 'false');
+  }, []);
+
   const getCardStatus = (card, index) => {
     if (!showCorrectOrder && gameState !== 'submitted') return 'neutral';
 
@@ -175,7 +191,67 @@ export default function GameTimeline() {
   };
 
   return (
-    <div className="game-timeline-page">
+    <div style={{ position: 'relative', minHeight: 'auto', paddingBottom: '80px' }}>
+      <style>{`
+        .game-dragon {
+          display: block;
+        }
+        @media (max-width: 768px) {
+          .game-dragon { display: none !important; }
+        }
+        .focus-exit-btn {
+          display: block;
+        }
+        @media (max-width: 768px) {
+          .focus-exit-btn { display: none !important; }
+        }
+      `}</style>
+
+      {/* Left Dragon */}
+      <img
+        src="/dragon_left.jpg"
+        alt=""
+        className="game-dragon"
+        style={{
+          position: 'fixed',
+          left: focusMode ? 0 : '220px',
+          top: '50%',
+          transform: 'translateY(-50%)',
+          height: '90vh',
+          width: 'auto',
+          opacity: 0.35,
+          mixBlendMode: 'screen',
+          pointerEvents: 'none',
+          zIndex: 0,
+          userSelect: 'none',
+          transition: 'left 0.3s ease'
+        }}
+      />
+
+      {/* Right Dragon */}
+      <img
+        src="/dragon_right.jpg"
+        alt=""
+        className="game-dragon"
+        style={{
+          position: 'fixed',
+          right: 0,
+          top: '50%',
+          transform: 'translateY(-50%)',
+          height: '90vh',
+          width: 'auto',
+          opacity: 0.35,
+          mixBlendMode: 'screen',
+          pointerEvents: 'none',
+          zIndex: 0,
+          userSelect: 'none'
+        }}
+      />
+
+      {/* Existing page content wrapped in z-index */}
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        <div className="game-timeline-page">
+
       {/* Intro Modal */}
       <AnimatePresence>
         {showIntro && (
@@ -217,7 +293,9 @@ export default function GameTimeline() {
         )}
       </AnimatePresence>
 
-      <GameCard title="Sắp Xếp Lịch Sử" titleEn="Timeline Order Game" gameKey="timeline">
+      {/* Game Board - hidden during intro */}
+      {!showIntro && (
+        <GameCard title="Sắp Xếp Lịch Sử" titleEn="Timeline Order Game" gameKey="timeline">
         {/* Round and Score Info */}
         <div className="game-info">
           <div className="round-indicator">
@@ -245,7 +323,7 @@ export default function GameTimeline() {
         </p>
 
         {/* Cards */}
-        <Reorder.Group axis="y" values={cards} onReorder={handleReorder} className="timeline-cards">
+        <Reorder.Group axis="y" values={cards} onReorder={handleReorder} className="timeline-cards" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
           <AnimatePresence>
             {cards.map((card, index) => (
               <Reorder.Item
@@ -254,11 +332,12 @@ export default function GameTimeline() {
                 className={`timeline-card ${getCardStatus(card, index)}`}
                 drag="y"
                 dragConstraints={{ top: 0, bottom: 0 }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
+                whileDrag={{ scale: 1.04, rotate: 1, boxShadow: '0 16px 40px rgba(0,0,0,0.6)', opacity: 0.92 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <ClassifiedStamp size={60} className="card-stamp" />
                 <div className="card-position-wrapper">
@@ -326,8 +405,37 @@ export default function GameTimeline() {
           </motion.div>
         )}
       </GameCard>
+      )}
 
       <style>{`
+        /* Decorative side elements */
+        .decorative-side {
+          position: fixed;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 1;
+          pointer-events: none;
+        }
+
+        .decorative-side.left {
+          left: 0;
+        }
+
+        .decorative-side.right {
+          right: 0;
+        }
+
+        .decorative-side svg {
+          opacity: 0.15;
+        }
+
+        /* Game panel width constraint */
+        .game-timeline-page .game-card {
+          max-width: ${focusMode ? '860px' : '600px'};
+          margin: 0 auto;
+          transition: max-width 0.3s ease;
+        }
+
         .intro-overlay {
           position: fixed;
           inset: 0;
@@ -510,14 +618,14 @@ export default function GameTimeline() {
         .timeline-card {
           display: flex;
           align-items: center;
-          gap: 1rem;
-          padding: 1rem;
+          gap: 0.75rem;
+          padding: 10px 14px;
           background: var(--smoke);
           border: 2px solid rgba(212, 168, 83, 0.3);
           border-radius: 8px;
           cursor: grab;
           position: relative;
-          transition: all 0.3s;
+          transition: all 0.2s ease;
         }
 
         .timeline-card:active {
@@ -527,11 +635,26 @@ export default function GameTimeline() {
         .timeline-card.correct {
           border-color: #22c55e;
           background: rgba(34, 197, 94, 0.1);
+          animation: correctFlash 0.5s ease;
         }
 
         .timeline-card.incorrect {
           border-color: #ef4444;
           background: rgba(239, 68, 68, 0.1);
+          animation: wrongShake 0.5s ease;
+        }
+
+        @keyframes correctFlash {
+          0%, 100% { box-shadow: 0 0 0 rgba(34, 197, 94, 0); }
+          50% { box-shadow: 0 0 20px rgba(34, 197, 94, 0.8); }
+        }
+
+        @keyframes wrongShake {
+          0%, 100% { transform: translateX(0); }
+          20% { transform: translateX(-8px); }
+          40% { transform: translateX(8px); }
+          60% { transform: translateX(-8px); }
+          80% { transform: translateX(8px); }
         }
 
         .card-stamp {
@@ -553,13 +676,14 @@ export default function GameTimeline() {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 32px;
-          height: 32px;
+          width: 28px;
+          height: 28px;
           background: var(--crimson);
           color: var(--parchment);
           border-radius: 50%;
           font-family: var(--font-mono);
           font-weight: bold;
+          font-size: 12px;
           flex-shrink: 0;
         }
 
@@ -577,13 +701,13 @@ export default function GameTimeline() {
 
         .card-year {
           font-family: var(--font-mono);
-          font-size: 0.85rem;
+          font-size: 11px;
           color: var(--gold);
         }
 
         .card-title {
           font-family: var(--font-heading);
-          font-size: 1rem;
+          font-size: 13px;
           color: var(--parchment);
         }
 
@@ -672,7 +796,47 @@ export default function GameTimeline() {
           0%, 100% { opacity: 1; }
           50% { opacity: 0.7; }
         }
+
+        /* Smooth card transitions for drag */
+        .timeline-card {
+          transition: transform 0.18s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                      box-shadow 0.18s ease,
+                      opacity 0.18s ease,
+                      border 0.18s ease;
+          will-change: transform;
+        }
+
+        .timeline-card.dragging {
+          transform: scale(1.04) rotate(1deg);
+          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+          opacity: 0.92;
+          cursor: grabbing;
+        }
+
+        .timeline-card.drag-over {
+          transform: scale(0.97);
+          border: 1px solid rgba(212, 168, 83, 0.6);
+        }
+
+        .timeline-card.correct-flash {
+          background: rgba(34, 197, 94, 0.2) !important;
+          border: 1px solid rgba(34, 197, 94, 0.6) !important;
+        }
+
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          20% { transform: translateX(-6px); }
+          40% { transform: translateX(6px); }
+          60% { transform: translateX(-4px); }
+          80% { transform: translateX(4px); }
+        }
+
+        .timeline-card.card-shake {
+          animation: shake 0.4s ease;
+        }
       `}</style>
+      </div>
+      </div>
     </div>
   );
 }

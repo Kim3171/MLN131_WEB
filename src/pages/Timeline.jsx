@@ -16,7 +16,24 @@ export default function Timeline() {
   const [showSummary, setShowSummary] = useState(false);
   const [summary, setSummary] = useState('');
   const [loadingSummary, setLoadingSummary] = useState(false);
+  const [focusMode, setFocusMode] = useState(() => {
+    return localStorage.getItem('focusMode') === 'true';
+  });
   const { visitedEvents, addVisitedEvent } = useApp();
+
+  // Sync focus mode with global state
+  useEffect(() => {
+    const handleStorage = () => {
+      setFocusMode(localStorage.getItem('focusMode') === 'true');
+    };
+    const interval = setInterval(handleStorage, 100);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Cleanup focus mode on unmount
+  useEffect(() => {
+    return () => localStorage.setItem('focusMode', 'false');
+  }, []);
 
   // Scroll to top on mount
   useEffect(() => {

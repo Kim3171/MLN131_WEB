@@ -1,7 +1,7 @@
 // src/pages/Rubric.jsx
 // Assignment grading rubric page
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import rubricData from '../data/rubricData';
 import RedStar from '../components/svgs/RedStar';
@@ -9,6 +9,23 @@ import HistoricalPhoto from '../components/HistoricalPhoto';
 
 export default function Rubric() {
   const [expandedCriteria, setExpandedCriteria] = useState({});
+  const [focusMode, setFocusMode] = useState(() => {
+    return localStorage.getItem('focusMode') === 'true';
+  });
+
+  // Sync focus mode with global state
+  useEffect(() => {
+    const handleStorage = () => {
+      setFocusMode(localStorage.getItem('focusMode') === 'true');
+    };
+    const interval = setInterval(handleStorage, 100);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Cleanup focus mode on unmount
+  useEffect(() => {
+    return () => localStorage.setItem('focusMode', 'false');
+  }, []);
 
   const toggleCriteria = (id) => {
     setExpandedCriteria(prev => ({

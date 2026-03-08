@@ -1,7 +1,7 @@
 // src/pages/GameQuotes.jsx
 // Quote matching game (Game 2)
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import quotes from '../data/quotes';
 import GameCard from '../components/GameCard';
@@ -17,7 +17,19 @@ export default function GameQuotes() {
   const [timeLeft, setTimeLeft] = useState(15);
   const [gameState, setGameState] = useState('playing');
   const [shuffledQuotes, setShuffledQuotes] = useState([]);
+  const [focusMode, setFocusMode] = useState(() => {
+    return localStorage.getItem('focusMode') === 'true';
+  });
   const { updateScore } = useApp();
+
+  // Sync focus mode with global state
+  useEffect(() => {
+    const handleStorage = () => {
+      setFocusMode(localStorage.getItem('focusMode') === 'true');
+    };
+    const interval = setInterval(handleStorage, 100);
+    return () => clearInterval(interval);
+  }, []);
 
   const currentData = shuffledQuotes[currentQuote] || quotes[0];
 
@@ -100,6 +112,11 @@ export default function GameQuotes() {
     setGameState('playing');
   };
 
+  // Cleanup focus mode on unmount
+  useEffect(() => {
+    return () => localStorage.setItem('focusMode', 'false');
+  }, []);
+
   // Get speaker initials for watermark
   const getSpeakerInitials = (name) => {
     return name.split(' ').map(w => w[0]).join('');
@@ -110,10 +127,72 @@ export default function GameQuotes() {
     return SPEAKER_IMAGES[speakerName] || null;
   };
 
+  // Mobile check
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
   if (!currentData) return null;
 
   return (
-    <div className="game-quotes-page">
+    <div style={{ position: 'relative', minHeight: 'auto', paddingBottom: isMobile ? '100px' : '80px' }}>
+      <style>{`
+        .game-dragon {
+          display: block;
+        }
+        @media (max-width: 768px) {
+          .game-dragon { display: none !important; }
+        }
+        .focus-exit-btn {
+          display: block;
+        }
+        @media (max-width: 768px) {
+          .focus-exit-btn { display: none !important; }
+        }
+      `}</style>
+
+      {/* Left Dragon */}
+      <img
+        src="/dragon_left.jpg"
+        alt=""
+        className="game-dragon"
+        style={{
+          position: 'fixed',
+          left: focusMode ? 0 : '220px',
+          top: '50%',
+          transform: 'translateY(-50%)',
+          height: '90vh',
+          width: 'auto',
+          opacity: 0.35,
+          mixBlendMode: 'screen',
+          pointerEvents: 'none',
+          zIndex: 0,
+          userSelect: 'none',
+          transition: 'left 0.3s ease'
+        }}
+      />
+
+      {/* Right Dragon */}
+      <img
+        src="/dragon_right.jpg"
+        alt=""
+        className="game-dragon"
+        style={{
+          position: 'fixed',
+          right: 0,
+          top: '50%',
+          transform: 'translateY(-50%)',
+          height: '90vh',
+          width: 'auto',
+          opacity: 0.35,
+          mixBlendMode: 'screen',
+          pointerEvents: 'none',
+          zIndex: 0,
+          userSelect: 'none'
+        }}
+      />
+
+      {/* Existing page content wrapped in z-index */}
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        <div className="game-quotes-page">
       <GameCard title="Ai Nói Điều Này?" titleEn="Who Said It?" gameKey="quotes">
         {/* Progress */}
         <div className="quiz-progress">
@@ -141,10 +220,10 @@ export default function GameQuotes() {
           <span>{timeLeft}s</span>
         </div>
 
-        {/* Speaker initials watermark (when not showing result) */}
+        {/* Speaker initials watermark (when not showing result) - replaced with neutral decorative element */}
         {!showResult && (
           <div className="speaker-watermark">
-            {getSpeakerInitials(currentData.speakerVi)}
+            ★
           </div>
         )}
 
@@ -252,6 +331,11 @@ export default function GameQuotes() {
           min-height: 100vh;
         }
 
+        .game-quotes-page .game-card {
+          max-width: ${focusMode ? '860px' : '680px'};
+          transition: max-width 0.3s ease;
+        }
+
         .quiz-progress {
           display: flex;
           align-items: center;
@@ -338,8 +422,8 @@ export default function GameQuotes() {
           left: 50%;
           transform: translateX(-50%);
           font-family: var(--font-heading);
-          font-size: 200px;
-          color: var(--parchment);
+          font-size: 120px;
+          color: #C9A84C;
           opacity: 0.04;
           pointer-events: none;
           user-select: none;
@@ -422,13 +506,15 @@ export default function GameQuotes() {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 40px;
-          height: 40px;
-          background: var(--olive);
-          color: var(--parchment);
+          width: 48px;
+          height: 48px;
+          background: rgba(212, 168, 83, 0.2);
+          border: 1px solid #C9A84C;
           border-radius: 50%;
           font-family: var(--font-mono);
           font-weight: bold;
+          font-size: 16px;
+          color: #C9A84C;
           flex-shrink: 0;
         }
 
@@ -541,7 +627,41 @@ export default function GameQuotes() {
           0%, 100% { opacity: 1; }
           50% { opacity: 0.5; }
         }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+          .game-quotes-page {
+            padding: 16px;
+            width: 100%;
+          }
+
+          .game-quotes-page .game-card {
+            width: 100%;
+            max-width: 100%;
+            padding: 16px;
+          }
+
+          .quote-container {
+            padding: 16px;
+          }
+
+          .quote {
+            font-size: clamp(14px, 3vw, 20px);
+          }
+
+          .options-grid {
+            grid-template-columns: 1fr;
+            gap: 12px;
+          }
+
+          .option-btn {
+            padding: 12px 16px;
+            width: 100%;
+          }
+        }
       `}</style>
+      </div>
+      </div>
     </div>
   );
 }

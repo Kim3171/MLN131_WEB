@@ -18,7 +18,19 @@ export default function GameStrategy() {
   const [aiHint, setAiHint] = useState('');
   const [loadingHint, setLoadingHint] = useState(false);
   const [gameState, setGameState] = useState('playing');
+  const [focusMode, setFocusMode] = useState(() => {
+    return localStorage.getItem('focusMode') === 'true';
+  });
   const { updateScore } = useApp();
+
+  // Sync focus mode with global state
+  useEffect(() => {
+    const handleStorage = () => {
+      setFocusMode(localStorage.getItem('focusMode') === 'true');
+    };
+    const interval = setInterval(handleStorage, 100);
+    return () => clearInterval(interval);
+  }, []);
 
   const scenario = scenarios[currentScenario];
 
@@ -69,8 +81,72 @@ export default function GameStrategy() {
     setGameState('playing');
   };
 
+  // Cleanup focus mode on unmount
+  useEffect(() => {
+    return () => localStorage.setItem('focusMode', 'false');
+  }, []);
+
   return (
-    <div className="game-strategy-page">
+    <div style={{ position: 'relative', minHeight: 'auto', paddingBottom: '80px' }}>
+      <style>{`
+        .game-dragon {
+          display: block;
+        }
+        @media (max-width: 768px) {
+          .game-dragon { display: none !important; }
+        }
+        .focus-exit-btn {
+          display: block;
+        }
+        @media (max-width: 768px) {
+          .focus-exit-btn { display: none !important; }
+        }
+      `}</style>
+
+      {/* Left Dragon */}
+      <img
+        src="/dragon_left.jpg"
+        alt=""
+        className="game-dragon"
+        style={{
+          position: 'fixed',
+          left: focusMode ? 0 : '220px',
+          top: '50%',
+          transform: 'translateY(-50%)',
+          height: '90vh',
+          width: 'auto',
+          opacity: 0.35,
+          mixBlendMode: 'screen',
+          pointerEvents: 'none',
+          zIndex: 0,
+          userSelect: 'none',
+          transition: 'left 0.3s ease'
+        }}
+      />
+
+      {/* Right Dragon */}
+      <img
+        src="/dragon_right.jpg"
+        alt=""
+        className="game-dragon"
+        style={{
+          position: 'fixed',
+          right: 0,
+          top: '50%',
+          transform: 'translateY(-50%)',
+          height: '90vh',
+          width: 'auto',
+          opacity: 0.35,
+          mixBlendMode: 'screen',
+          pointerEvents: 'none',
+          zIndex: 0,
+          userSelect: 'none'
+        }}
+      />
+
+      {/* Existing page content wrapped in z-index */}
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        <div className="game-strategy-page">
       <GameCard title="Chiến Lược Gia" titleEn="Strategist" gameKey="strategy">
         {/* Classified header */}
         <div className="classified-header">
@@ -195,6 +271,11 @@ export default function GameStrategy() {
       <style>{`
         .game-strategy-page {
           min-height: 100vh;
+        }
+
+        .game-strategy-page .game-card {
+          max-width: ${focusMode ? '860px' : '680px'};
+          transition: max-width 0.3s ease;
         }
 
         .classified-header {
@@ -447,6 +528,8 @@ export default function GameStrategy() {
           margin: 0 0 1.5rem;
         }
       `}</style>
+      </div>
+      </div>
     </div>
   );
 }

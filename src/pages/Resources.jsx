@@ -32,6 +32,23 @@ export default function Resources() {
   const messagesEndRef = useRef(null);
   const { handleLabubuClick, labubuClicks, resetLabubuClicks } = useApp();
   const [showConfetti, setShowConfetti] = useState(false);
+  const [focusMode, setFocusMode] = useState(() => {
+    return localStorage.getItem('focusMode') === 'true';
+  });
+
+  // Sync focus mode with global state
+  useEffect(() => {
+    const handleStorage = () => {
+      setFocusMode(localStorage.getItem('focusMode') === 'true');
+    };
+    const interval = setInterval(handleStorage, 100);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Cleanup focus mode on unmount
+  useEffect(() => {
+    return () => localStorage.setItem('focusMode', 'false');
+  }, []);
 
   // Scroll to top on mount
   useEffect(() => {

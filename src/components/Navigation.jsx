@@ -1,6 +1,7 @@
 // src/components/Navigation.jsx
 // Left sidebar navigation with icons and labels
 
+import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import RedStar from './svgs/RedStar';
@@ -65,6 +66,21 @@ const StarIcon = () => (
 
 export default function Navigation() {
   const { totalScore } = useApp();
+  const [focusMode, setFocusMode] = useState(() => {
+    return localStorage.getItem('focusMode') === 'true';
+  });
+
+  // Listen for focus mode changes
+  useEffect(() => {
+    const handleStorage = () => {
+      setFocusMode(localStorage.getItem('focusMode') === 'true');
+    };
+    const interval = setInterval(handleStorage, 100);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Don't render navigation in focus mode
+  if (focusMode) return null;
 
   const navItems = [
     { id: 'home', label: 'Tổng Quan', labelEn: 'Overview', icon: HomeIcon, path: '/' },
@@ -85,73 +101,81 @@ export default function Navigation() {
   ];
 
   return (
-    <nav className="navigation">
-      {/* Logo */}
-      <div className="nav-logo">
-        <RedStar size={16} />
-        <span className="nav-logo-text">KÝ ỨC DÂN TỘC</span>
-      </div>
+    <>
+      <nav
+        className="navigation"
+        style={{
+          width: '220px',
+          zIndex: 100
+        }}
+      >
+        {/* Logo */}
+        <div className="nav-logo">
+          <RedStar size={16} />
+          <span className="nav-logo-text">KÝ ỨC DÂN TỘC</span>
+        </div>
 
-      <div className="nav-divider" />
+        <div className="nav-divider" />
 
-      {/* Main navigation */}
-      <ul className="nav-list">
-        {navItems.map((item) => (
-          <li key={item.id}>
-            <NavLink
-              to={item.path}
-              className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
-            >
-              <item.icon />
-              <span>{item.label}</span>
-            </NavLink>
-          </li>
-        ))}
-      </ul>
+        {/* Main navigation */}
+        <ul className="nav-list">
+          {navItems.map((item) => (
+            <li key={item.id}>
+              <NavLink
+                to={item.path}
+                className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+              >
+                <item.icon />
+                <span>{item.label}</span>
+              </NavLink>
+            </li>
+          ))}
+        </ul>
 
-      <div className="nav-divider" />
+        <div className="nav-divider" />
 
-      {/* Games section */}
-      <div className="nav-section-label">
-        <span>TRÒ CHƠI</span>
-      </div>
-      <ul className="nav-list games">
-        {gameItems.map((item) => (
-          <li key={item.id}>
-            <NavLink
-              to={item.path}
-              className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
-            >
-              <span className="nav-link-arrow">↳</span>
-              <span>{item.label}</span>
-            </NavLink>
-          </li>
-        ))}
-      </ul>
+        {/* Games section */}
+        <div className="nav-section-label">
+          <span>TRÒ CHƠI</span>
+        </div>
+        <ul className="nav-list games">
+          {gameItems.map((item) => (
+            <li key={item.id}>
+              <NavLink
+                to={item.path}
+                className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+              >
+                <span className="nav-link-arrow">↳</span>
+                <span>{item.label}</span>
+              </NavLink>
+            </li>
+          ))}
+        </ul>
 
-      <div className="nav-divider" />
+        <div className="nav-divider" />
 
-      {/* Bottom navigation */}
-      <ul className="nav-list">
-        {bottomItems.map((item) => (
-          <li key={item.id}>
-            <NavLink
-              to={item.path}
-              className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
-            >
-              <item.icon />
-              <span>{item.label}</span>
-            </NavLink>
-          </li>
-        ))}
-      </ul>
+        {/* Bottom navigation */}
+        <ul className="nav-list">
+          {bottomItems.map((item) => (
+            <li key={item.id}>
+              <NavLink
+                to={item.path}
+                className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+              >
+                <item.icon />
+                <span>{item.label}</span>
+              </NavLink>
+            </li>
+          ))}
+        </ul>
 
-      {/* Score tracker */}
-      <div className="nav-score">
-        <StarIcon />
-        <span className="nav-score-label">Điểm số</span>
-        <span className="nav-score-value">{totalScore}</span>
-      </div>
-    </nav>
+        {/* Score tracker */}
+        <div className="nav-score">
+          <StarIcon />
+          <span className="nav-score-label">Điểm số</span>
+          <span className="nav-score-value">{totalScore}</span>
+        </div>
+      </nav>
+    </>
   );
 }

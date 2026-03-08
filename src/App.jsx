@@ -28,6 +28,23 @@ import './index.css';
 
 function AppContent() {
   const { showLoading, setShowLoading, handleKeyPress, showKonamiEasterEgg } = useApp();
+  const [focusMode, setFocusMode] = useState(() => {
+    return localStorage.getItem('focusMode') === 'true';
+  });
+
+  // Sync focus mode with localStorage
+  useEffect(() => {
+    localStorage.setItem('focusMode', String(focusMode));
+  }, [focusMode]);
+
+  // Listen for focus mode changes from other components
+  useEffect(() => {
+    const handleStorage = () => {
+      setFocusMode(localStorage.getItem('focusMode') === 'true');
+    };
+    const interval = setInterval(handleStorage, 100);
+    return () => clearInterval(interval);
+  }, []);
 
   // Handle Konami code
   useEffect(() => {
@@ -39,6 +56,9 @@ function AppContent() {
   const handleLoadingComplete = () => {
     setShowLoading(false);
   };
+
+  const enterFocusMode = () => setFocusMode(true);
+  const exitFocusMode = () => setFocusMode(false);
 
   return (
     <div className="app">
@@ -58,15 +78,80 @@ function AppContent() {
         </div>
       )}
 
+      {/* Focus Mode Button - shown when not in focus mode */}
+      {!focusMode && window.innerWidth >= 768 && (
+        <button
+          onClick={enterFocusMode}
+          style={{
+            position: 'fixed',
+            top: 16,
+            left: 240,
+            zIndex: 100,
+            background: 'rgba(212,168,83,0.15)',
+            border: '1px solid rgba(212,168,83,0.4)',
+            color: '#D4A853',
+            padding: '6px 12px',
+            borderRadius: 6,
+            cursor: 'pointer',
+            fontSize: 12,
+            fontFamily: 'monospace'
+          }}
+        >
+          ⛶ Tập trung / Focus
+        </button>
+      )}
+
+      {/* Exit Focus Button - shown when in focus mode */}
+      {focusMode && (
+        <button
+          onClick={exitFocusMode}
+          style={{
+            position: 'fixed',
+            top: 16,
+            left: 16,
+            zIndex: 100,
+            background: 'rgba(212,168,83,0.15)',
+            border: '1px solid rgba(212,168,83,0.4)',
+            color: '#D4A853',
+            padding: '6px 12px',
+            borderRadius: 6,
+            cursor: 'pointer',
+            fontSize: 12,
+            fontFamily: 'monospace'
+          }}
+        >
+          ← Thoát / Exit
+        </button>
+      )}
+
       {/* Main layout */}
       <div className="app-layout">
         {/* Sidebar navigation */}
-        <aside className="app-sidebar">
-          <Navigation />
-        </aside>
+        {!focusMode && (
+          <aside
+            className="app-sidebar"
+            style={{
+              width: '220px',
+              minWidth: '220px',
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              height: '100vh',
+              zIndex: 100
+            }}
+          >
+            <Navigation />
+          </aside>
+        )}
 
         {/* Main content */}
-        <main className="app-main" style={{ flex: 1, minHeight: '100vh' }}>
+        <main
+          className="app-main"
+          style={{
+            flex: 1,
+            minHeight: '100vh'
+          }}
+        >
           <PageTransition>
             <Routes>
               <Route path="/" element={<Home />} />

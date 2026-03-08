@@ -64,24 +64,48 @@ export default function Home() {
   return (
     <div className="home-page">
       {/* Hero Section */}
-      <section className="hero">
-        {/* Video background with fallback */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="hero-video"
-          onError={(e) => { e.target.style.display = 'none'; }}
-        >
-          <source src="https://videos.pexels.com/video-files/2098827/2098827-uhd_2560_1440_25fps.mp4" type="video/mp4" />
-        </video>
+      <section
+        className="hero home-hero"
+        style={{
+          position: 'relative',
+          height: '100vh',
+          width: '100%',
+          overflow: 'hidden',
+          background: '#0A0E1A',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+      >
+        {/* Battlefield background image - centered, fully visible */}
+        <img
+          src="/battle_bg.png"
+          alt=""
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center 30%',
+            opacity: 0.92,
+            pointerEvents: 'none',
+            zIndex: 0
+          }}
+        />
 
         {/* Gradient overlay */}
-        <div className="hero-gradient" />
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(to bottom, rgba(10,14,26,0.75) 0%, rgba(10,14,26,0.35) 20%, rgba(10,14,26,0.05) 45%, rgba(10,14,26,0.3) 72%, rgba(10,14,26,0.95) 100%)',
+          zIndex: 1,
+          pointerEvents: 'none'
+        }}/>
 
-        {/* Red star particles - 15 particles */}
-        <div className="hero-stars">
+        {/* Red star particles - constrained to upper 30% */}
+        <div className="hero-stars" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '30%', pointerEvents: 'none', overflow: 'hidden', zIndex: 1 }}>
           {[...Array(15)].map((_, i) => (
             <motion.div
               key={i}
@@ -111,28 +135,95 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="hero-content">
+        {/* Text content wrapper */}
+        <div style={{
+          position: 'relative',
+          zIndex: 2,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          textAlign: 'center',
+          width: '100%',
+          marginTop: '-18vh'
+        }}>
           {/* Title */}
           <motion.h1
             className="hero-title"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            style={{
+              fontSize: 'clamp(48px, 7vw, 96px)',
+              fontFamily: "'Playfair Display', serif",
+              fontWeight: 700,
+              color: '#F2E8D5',
+              letterSpacing: '0.18em',
+              textShadow: '0 0 60px rgba(212,168,83,0.4), 0 4px 30px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.9)',
+              margin: 0,
+              lineHeight: 1.1,
+              whiteSpace: 'nowrap'
+            }}
           >
             KÝ ỨC DÂN TỘC
           </motion.h1>
 
+          {/* Premium Gold Divider */}
+          <div style={{
+            width: 60,
+            height: 2,
+            background: 'linear-gradient(to right, transparent, #D4A853, transparent)',
+            margin: '16px auto',
+            border: 'none'
+          }}/>
+
           {/* Typewriter subtitle */}
-          <div className="hero-subtitle-container">
-            <span className="hero-subtitle">
+          <div className="hero-subtitle-container" style={{ marginTop: 8 }}>
+            <span className="hero-subtitle" style={{
+              fontSize: '14px',
+              fontFamily: "'IBM Plex Mono', monospace",
+              color: 'rgba(212,168,83,0.85)',
+              letterSpacing: '0.25em',
+              textTransform: 'uppercase',
+              textShadow: '0 2px 12px rgba(0,0,0,0.9)'
+            }}>
               {displayText}
               <span className="cursor">|</span>
             </span>
           </div>
 
-          {/* LABUBU credit */}
-          <div className="hero-branding">
-            Nhóm thực hiện: LABUBU ★
+          {/* LAB202 credit */}
+          <div style={{
+            fontSize: '11px',
+            color: 'rgba(242,232,213,0.35)',
+            fontFamily: "'IBM Plex Mono', monospace",
+            letterSpacing: '0.2em',
+            marginTop: 24
+          }}>
+            Nhóm thực hiện: LAB202
+          </div>
+
+          {/* Scroll Indicator */}
+          <div style={{
+            marginTop: 48,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 6,
+            opacity: 0.4
+          }}>
+            <span style={{
+              fontSize: 10,
+              color: '#D4A853',
+              letterSpacing: '0.3em',
+              fontFamily: 'monospace'
+            }}>CUỘN XUỐNG</span>
+            <div style={{
+              width: 1,
+              height: 40,
+              background: 'linear-gradient(to bottom, #D4A853, transparent)',
+              animation: 'scrollPulse 2s ease-in-out infinite'
+            }}/>
           </div>
         </div>
       </section>
@@ -206,6 +297,11 @@ export default function Home() {
       </footer>
 
       <style>{`
+        @keyframes scrollPulse {
+          0%, 100% { opacity: 0.3; transform: scaleY(1); }
+          50% { opacity: 0.8; transform: scaleY(1.1); }
+        }
+
         .home-page {
           min-height: 100vh;
         }
@@ -218,7 +314,6 @@ export default function Home() {
           align-items: center;
           justify-content: center;
           overflow: hidden;
-          background: linear-gradient(180deg, var(--ink) 0%, #0d1220 100%);
         }
 
         .hero-video {
@@ -259,8 +354,6 @@ export default function Home() {
           padding: 2rem;
           max-width: 1200px;
           width: 100%;
-          position: relative;
-          z-index: 10;
         }
 
         .hero-branding {

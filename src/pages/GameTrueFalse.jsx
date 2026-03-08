@@ -17,8 +17,20 @@ export default function GameTrueFalse() {
   const [gameState, setGameState] = useState('playing');
   const [combo, setCombo] = useState(1);
   const [lastAnswerCorrect, setLastAnswerCorrect] = useState(null);
+  const [focusMode, setFocusMode] = useState(() => {
+    return localStorage.getItem('focusMode') === 'true';
+  });
   const cardRef = useRef(null);
   const { updateScore } = useApp();
+
+  // Sync focus mode with global state
+  useEffect(() => {
+    const handleStorage = () => {
+      setFocusMode(localStorage.getItem('focusMode') === 'true');
+    };
+    const interval = setInterval(handleStorage, 100);
+    return () => clearInterval(interval);
+  }, []);
 
   // Scroll to top on mount
   useEffect(() => {
@@ -110,6 +122,11 @@ export default function GameTrueFalse() {
     setLastAnswerCorrect(null);
   };
 
+  // Cleanup focus mode on unmount
+  useEffect(() => {
+    return () => localStorage.setItem('focusMode', 'false');
+  }, []);
+
   const handleKeyDown = (e) => {
     if (gameState !== 'playing' || showResult) return;
 
@@ -126,7 +143,66 @@ export default function GameTrueFalse() {
   });
 
   return (
-    <div className="game-truefalse-page">
+    <div style={{ position: 'relative', minHeight: 'auto', paddingBottom: '80px' }}>
+      <style>{`
+        .game-dragon {
+          display: block;
+        }
+        @media (max-width: 768px) {
+          .game-dragon { display: none !important; }
+        }
+        .focus-exit-btn {
+          display: block;
+        }
+        @media (max-width: 768px) {
+          .focus-exit-btn { display: none !important; }
+        }
+      `}</style>
+
+      {/* Left Dragon */}
+      <img
+        src="/dragon_left.jpg"
+        alt=""
+        className="game-dragon"
+        style={{
+          position: 'fixed',
+          left: focusMode ? 0 : '220px',
+          top: '50%',
+          transform: 'translateY(-50%)',
+          height: '90vh',
+          width: 'auto',
+          opacity: 0.35,
+          mixBlendMode: 'screen',
+          pointerEvents: 'none',
+          zIndex: 0,
+          userSelect: 'none',
+          transition: 'left 0.3s ease'
+        }}
+      />
+
+      {/* Right Dragon */}
+      <img
+        src="/dragon_right.jpg"
+        alt=""
+        className="game-dragon"
+        style={{
+          position: 'fixed',
+          right: 0,
+          top: '50%',
+          transform: 'translateY(-50%)',
+          height: '90vh',
+          width: 'auto',
+          opacity: 0.35,
+          mixBlendMode: 'screen',
+          pointerEvents: 'none',
+          zIndex: 0,
+          userSelect: 'none'
+        }}
+      />
+
+      {/* Existing page content wrapped in z-index */}
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        <div className="game-truefalse-page">
       <GameCard title="Nhanh Như Chớp" titleEn="Quick True/False" gameKey="trueFalse">
         {gameState === 'playing' && (
           <>
@@ -268,8 +344,17 @@ export default function GameTrueFalse() {
 
       <style>{`
         .game-truefalse-page {
-          min-height: 100vh;
-          padding-bottom: 1rem;
+          min-height: auto;
+          padding-bottom: 80px;
+        }
+
+        .game-truefalse-page .game-card {
+          width: 100%;
+          max-width: ${focusMode ? '860px' : '680px'};
+          margin: 0 auto;
+          height: auto;
+          padding-bottom: 2rem;
+          transition: max-width 0.3s ease;
         }
 
         /* Sticky Timer Bar */
@@ -589,6 +674,8 @@ export default function GameTrueFalse() {
           }
         }
       `}</style>
+      </div>
+      </div>
     </div>
   );
 }
