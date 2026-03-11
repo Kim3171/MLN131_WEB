@@ -312,25 +312,7 @@ export default function Home() {
         </a>
       </footer>
 
-      {/* Mobile Bottom Game Navigation */}
-      <div className="mobile-bottom-nav">
-        <Link to="/game/timeline" className="mobile-nav-game">
-          <span className="mobile-nav-icon">🎮</span>
-          <span className="mobile-nav-label">Timeline</span>
-        </Link>
-        <Link to="/game/quotes" className="mobile-nav-game">
-          <span className="mobile-nav-icon">💬</span>
-          <span className="mobile-nav-label">Quotes</span>
-        </Link>
-        <Link to="/game/strategy" className="mobile-nav-game">
-          <span className="mobile-nav-icon">♟️</span>
-          <span className="mobile-nav-label">Strategy</span>
-        </Link>
-        <Link to="/game/truefalse" className="mobile-nav-game">
-          <span className="mobile-nav-icon">⚡</span>
-          <span className="mobile-nav-label">True/False</span>
-        </Link>
-      </div>
+
 
       <style>{`
         @keyframes scrollPulse {
@@ -707,73 +689,14 @@ export default function Home() {
           }
 
           .home-footer {
-            padding-bottom: 100px;
+            padding-bottom: 120px;
             padding-left: 1rem;
             padding-right: 1rem;
           }
 
-          /* Mobile Bottom Navigation */
-          .mobile-bottom-nav {
-            display: flex;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(10, 14, 26, 0.98);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-top: 1px solid rgba(212, 168, 83, 0.25);
-            padding: 6px 2px;
-            padding-bottom: max(6px, env(safe-area-inset-bottom));
-            z-index: 1000;
-            justify-content: space-around;
-            gap: 2px;
-          }
-
-          .mobile-nav-game {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 6px 2px;
-            text-decoration: none;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-            min-height: 48px;
-          }
-
-          .mobile-nav-icon {
-            font-size: clamp(1rem, 3vw, 1.35rem);
-          }
-
-          .mobile-nav-label {
-            font-family: var(--font-mono);
-            font-size: clamp(0.5rem, 1.5vw, 0.65rem);
-            color: var(--parchment);
-            margin-top: 2px;
-          }
-
-          .mobile-nav-game:active {
-            background: rgba(212, 168, 83, 0.15);
-          }
-        }
-
-        @media (min-width: 769px) {
-          .mobile-bottom-nav {
-            display: none;
-          }
         }
 
         @media (max-width: 400px) {
-          .mobile-nav-label {
-            font-size: 0.5rem;
-          }
-
-          .mobile-nav-icon {
-            font-size: 1rem;
-          }
-
           .stats-grid,
           .nav-cards-grid {
             gap: 0.35rem;

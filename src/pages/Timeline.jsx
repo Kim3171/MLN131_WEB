@@ -350,7 +350,7 @@ export default function Timeline() {
           width: 100%;
           height: 100%;
           display: flex;
-          align-items: stretch;
+          align-items: center;
           box-sizing: border-box;
         }
 
@@ -361,8 +361,8 @@ export default function Timeline() {
           gap: clamp(10px, 1.5vw, 18px);
           padding: 8px clamp(8px, 2vw, 24px);
           width: max-content;
-          height: 100%;
-          align-items: stretch;
+          height: auto;
+          align-items: center;
         }
 
         /* ── Card ── */
@@ -464,16 +464,15 @@ export default function Timeline() {
           width: clamp(240px, calc(19vw + 20px), 330px);
         }
 
-        /* ── Card content — fully scrollable, no overlap ── */
+        /* ── Card content — fits content, scrolls only if needed ── */
         .timeline-content {
           padding: clamp(0.5rem, 1vw, 0.85rem) clamp(0.6rem, 1.2vw, 1rem);
-          flex: 1;
+          flex: none;
           display: flex;
           flex-direction: column;
           gap: 0.4rem;
           overflow-y: auto;
           overflow-x: hidden;
-          min-height: 0;
           scrollbar-width: thin;
           scrollbar-color: rgba(212,168,83,0.2) transparent;
         }
@@ -520,11 +519,13 @@ export default function Timeline() {
           gap: 0.2rem;
           font-size: clamp(0.62rem, 0.82vw, 0.75rem);
           color: var(--ash);
-          padding: 0.35rem 0.55rem;
-          background: rgba(192, 57, 43, 0.12);
+          padding: 0.3rem 0.5rem;
+          background: rgba(192, 57, 43, 0.08);
           border-radius: 6px;
-          border: 2px solid rgba(192, 57, 43, 0.9);
-          box-shadow: 0 0 8px rgba(192, 57, 43, 0.2);
+          border-left: 3px solid rgba(192, 57, 43, 0.7);
+          border-top: 1px solid rgba(192, 57, 43, 0.2);
+          border-bottom: 1px solid rgba(192, 57, 43, 0.2);
+          border-right: 1px solid rgba(192, 57, 43, 0.2);
           flex-shrink: 0;
         }
 
@@ -704,13 +705,14 @@ export default function Timeline() {
         /* ── Tablet portrait / large phone (≤ 768px) ── */
         @media (max-width: 768px) {
           .timeline-page {
-            height: 100vh;
-            max-height: 100vh;
-            padding: 0.5rem 0 0;
+            height: calc(100vh - 65px);
+            max-height: calc(100vh - 65px);
+            padding: 0;
           }
 
           .timeline-header {
             margin-bottom: 0.5rem;
+            margin-top: 12vh;
           }
 
           .timeline-header h1 {
@@ -739,7 +741,7 @@ export default function Timeline() {
           /* ~1.5 cards visible so user knows they can swipe */
           .timeline-card {
             width: clamp(240px, 70vw, 320px);
-            max-height: calc(100vh - 130px);
+            max-height: calc(100vh - 240px);
           }
 
           .timeline-content {
@@ -747,7 +749,7 @@ export default function Timeline() {
           }
 
           .summary-button {
-            bottom: 0.75rem;
+            bottom: calc(65px + 0.75rem);
             right: 0.75rem;
             font-size: 0.7rem;
             padding: 0.4rem 0.8rem;
@@ -778,7 +780,13 @@ export default function Timeline() {
         /* ── Mobile (≤ 480px) ── */
         @media (max-width: 480px) {
           .timeline-page {
-            padding: 0.35rem 0 0;
+            height: calc(100vh - 65px);
+            max-height: calc(100vh - 65px);
+            padding: 0;
+          }
+
+          .timeline-header {
+            margin-top: 10vh;
           }
 
           .timeline-header h1 {
@@ -793,7 +801,7 @@ export default function Timeline() {
           /* Almost full-width single card */
           .timeline-card {
             width: calc(88vw);
-            max-height: calc(100vh - 115px);
+            max-height: calc(100vh - 255px);
           }
 
           .timeline-track {
@@ -844,7 +852,7 @@ export default function Timeline() {
           }
 
           .summary-button {
-            bottom: 0.75rem;
+            bottom: calc(65px + 0.75rem);
             right: 0.75rem;
             font-size: 0.68rem;
             padding: 0.4rem 0.7rem;

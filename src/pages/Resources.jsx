@@ -223,6 +223,7 @@ export default function Resources() {
         .resources-page {
           min-height: 100vh;
           position: relative;
+          padding: 2rem 1.25rem 6rem;
         }
 
         .confetti-overlay {
@@ -271,13 +272,16 @@ export default function Resources() {
           gap: 1.5rem;
           max-width: 1400px;
           margin: 0 auto;
+          padding: 0 0.5rem;
         }
 
         .resource-column {
           background: var(--smoke);
-          border: 1px solid rgba(212, 168, 83, 0.2);
+          border: 1px solid rgba(212, 168, 83, 0.25);
+          border-top: 3px solid rgba(212, 168, 83, 0.55);
           border-radius: 12px;
           padding: 1.5rem;
+          box-shadow: 0 4px 24px rgba(0,0,0,0.3);
         }
 
         .resource-column h2 {
@@ -285,6 +289,8 @@ export default function Resources() {
           font-size: 1.25rem;
           color: var(--parchment);
           margin: 0 0 0.25rem;
+          padding-bottom: 0.5rem;
+          border-bottom: 1px solid rgba(212, 168, 83, 0.2);
         }
 
         .column-subtitle {
@@ -306,8 +312,11 @@ export default function Resources() {
           align-items: center;
           gap: 1rem;
           padding: 0.75rem;
-          background: rgba(212, 168, 83, 0.1);
+          background: rgba(212, 168, 83, 0.07);
           border-radius: 8px;
+          border-left: 3px solid rgba(212, 168, 83, 0.5);
+          border: 1px solid rgba(212, 168, 83, 0.15);
+          border-left: 3px solid var(--gold);
         }
 
         .textbook-pages {
@@ -650,13 +659,65 @@ export default function Resources() {
         }
 
         @media (max-width: 768px) {
-          .glossary-table {
-            overflow-x: auto;
+          .resources-header h1 {
+            font-size: 1.6rem;
           }
 
-          .glossary-header,
+          .resources-grid {
+            padding: 0;
+          }
+
+          .resource-column {
+            padding: 1rem;
+            border-top-width: 2px;
+          }
+
+          .resource-column h2 {
+            font-size: 1.1rem;
+          }
+
+          /* Glossary: swap to card list, no overflow table */
+          .glossary-header {
+            display: none;
+          }
+
           .glossary-row {
-            min-width: 500px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            padding: 0.75rem;
+            background: rgba(30,37,53,0.5);
+            border-radius: 8px;
+            border: 1px solid rgba(212,168,83,0.12);
+            min-width: unset;
+          }
+
+          .term-vi {
+            font-size: 0.95rem;
+            color: var(--parchment);
+          }
+
+          .term-en {
+            font-size: 0.8rem;
+            color: var(--gold);
+          }
+
+          .term-def {
+            font-size: 0.78rem;
+            color: var(--ash);
+            line-height: 1.5;
+            border-top: 1px solid rgba(212,168,83,0.1);
+            padding-top: 0.35rem;
+            margin-top: 0.25rem;
+          }
+
+          /* Chat: max height */
+          .chat-container {
+            min-height: 320px;
+          }
+
+          .labubu-btn, .labubu-hint {
+            bottom: 5rem;
           }
         }
       `}</style>

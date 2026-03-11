@@ -242,38 +242,37 @@ const ResourcesIcon = () => (
 
 // Mobile navigation component
 function MobileNav() {
-  const [showMore, setShowMore] = useState(false);
+  const [showGames, setShowGames] = useState(false);
   const location = useLocation();
 
-  // Close "more" menu on route change
   useEffect(() => {
-    setShowMore(false);
+    setShowGames(false);
   }, [location.pathname]);
 
-  const moreItems = [
-    { path: '/game/timeline', label: 'Sắp Xếp Lịch Sử', icon: '🎮' },
-    { path: '/game/quotes',   label: 'Ai Nói Điều Này?', icon: '💬' },
-    { path: '/game/strategy', label: 'Chiến Lược Gia',   icon: '♟️' },
-    { path: '/game/truefalse',label: 'Nhanh Như Chớp',   icon: '⚡' },
-    { path: '/rubric',        label: 'Tiêu Chí',         icon: '📋' },
-    { path: '/resources',     label: 'Tài Liệu',         icon: '📚' },
+  const gameItems = [
+    { path: '/game/timeline',  label: 'Sắp Xếp Lịch Sử', icon: '🎮' },
+    { path: '/game/quotes',    label: 'Ai Nói Điều Này?', icon: '💬' },
+    { path: '/game/strategy',  label: 'Chiến Lược Gia',   icon: '♟️' },
+    { path: '/game/truefalse', label: 'Nhanh Như Chớp',   icon: '⚡' },
   ];
 
-  const isMoreActive = moreItems.some(i => location.pathname === i.path);
+  const isGameActive = gameItems.some(i => location.pathname === i.path);
 
   return (
     <>
-      {/* Expandable "more" sheet */}
-      {showMore && (
+      {/* Game sub-menu popup */}
+      {showGames && (
         <div style={{
-          position: 'fixed', bottom: '65px', left: 0, right: 0, zIndex: 99,
+          position: 'fixed', bottom: '65px', left: 0, right: 0, zIndex: 999,
           background: 'rgba(10,14,26,0.97)',
           borderTop: '1px solid rgba(212,168,83,0.25)',
           padding: '0.75rem',
           display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem',
-          backdropFilter: 'blur(12px)'
+          backdropFilter: 'blur(12px)',
+          maxHeight: 'calc(100vh - 80px)',
+          overflowY: 'auto'
         }}>
-          {moreItems.map(item => (
+          {gameItems.map(item => (
             <NavLink
               key={item.path}
               to={item.path}
@@ -295,12 +294,9 @@ function MobileNav() {
         </div>
       )}
 
-      {/* Bottom bar */}
+      {/* Bottom bar: [Thời Gian] [Bản Đồ] [● Tổng Quan ●] [Game] [Tiêu Chí] [Tài Liệu] */}
       <nav className="mobile-nav">
-        <NavLink to="/" end className={({ isActive }) => `mobile-nav-item${isActive ? ' active' : ''}`}>
-          <span className="mobile-nav-icon"><HomeIcon /></span>
-          <span>Tổng Quan</span>
-        </NavLink>
+        {/* Left side */}
         <NavLink to="/timeline" className={({ isActive }) => `mobile-nav-item${isActive ? ' active' : ''}`}>
           <span className="mobile-nav-icon"><TimelineIcon /></span>
           <span>Thời Gian</span>
@@ -309,18 +305,32 @@ function MobileNav() {
           <span className="mobile-nav-icon"><MapIcon /></span>
           <span>Bản Đồ</span>
         </NavLink>
+
+        {/* Center home — elevated */}
+        <NavLink to="/" end className={({ isActive }) => `mobile-nav-item mobile-nav-home${isActive ? ' active' : ''}`}>
+          <span className="mobile-nav-home-btn">
+            <HomeIcon />
+          </span>
+          <span>Tổng Quan</span>
+        </NavLink>
+
+        {/* Right side */}
         <button
-          className={`mobile-nav-item${(showMore || isMoreActive) ? ' active' : ''}`}
-          onClick={() => setShowMore(v => !v)}
+          className={`mobile-nav-item${(showGames || isGameActive) ? ' active' : ''}`}
+          onClick={() => setShowGames(v => !v)}
           style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit' }}
         >
-          <span className="mobile-nav-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="5" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="12" cy="19" r="1.2" fill="currentColor"/>
-            </svg>
-          </span>
-          <span>Thêm</span>
+          <span className="mobile-nav-icon"><GamesIcon /></span>
+          <span>Game</span>
         </button>
+        <NavLink to="/rubric" className={({ isActive }) => `mobile-nav-item${isActive ? ' active' : ''}`}>
+          <span className="mobile-nav-icon"><RubricIcon /></span>
+          <span>Tiêu Chí</span>
+        </NavLink>
+        <NavLink to="/resources" className={({ isActive }) => `mobile-nav-item${isActive ? ' active' : ''}`}>
+          <span className="mobile-nav-icon"><ResourcesIcon /></span>
+          <span>Tài Liệu</span>
+        </NavLink>
       </nav>
     </>
   );

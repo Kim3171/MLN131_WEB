@@ -553,8 +553,17 @@ export default function Rubric() {
             gap: 1rem;
           }
 
+          /* Show photos as a horizontal row at the bottom on mobile */
           .rubric-photos-col {
-            display: none;
+            flex: unset;
+            width: 100%;
+            flex-direction: row;
+            gap: 0.5rem;
+            position: static;
+          }
+
+          .rubric-photos-col > * {
+            flex: 1;
           }
 
           .rubric-header h1 {
