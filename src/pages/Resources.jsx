@@ -231,16 +231,23 @@ export default function Resources() {
           inset: 0;
           background: var(--ink);
           display: flex;
+          flex-direction: column;
           align-items: center;
           justify-content: center;
           z-index: 99999;
+          padding: 1.5rem;
+          box-sizing: border-box;
+          text-align: center;
         }
 
         .confetti-overlay h1 {
           font-family: var(--font-heading);
-          font-size: 4rem;
+          font-size: clamp(2rem, 8vw, 4rem);
           color: var(--crimson);
           animation: pulse 1s infinite;
+          word-break: break-word;
+          line-height: 1.2;
+          margin: 0;
         }
 
         @keyframes pulse {

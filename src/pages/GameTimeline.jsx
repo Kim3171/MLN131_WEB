@@ -445,6 +445,7 @@ export default function GameTimeline() {
           justify-content: center;
           z-index: 100;
           padding: 1rem;
+          box-sizing: border-box;
         }
 
         .intro-modal {
@@ -455,6 +456,30 @@ export default function GameTimeline() {
           max-width: 500px;
           width: 100%;
           text-align: center;
+          overflow-y: auto;
+          box-sizing: border-box;
+        }
+
+        @media (max-width: 768px) {
+          .intro-overlay {
+            inset: 0 0 65px 0;
+            align-items: flex-start;
+            overflow-y: auto;
+            padding: 1rem 1rem 1rem;
+          }
+          .intro-modal {
+            max-height: none;
+            padding: 1.25rem 1rem;
+            margin: auto 0;
+          }
+          .intro-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+          .intro-modal h2 { font-size: 1.5rem; }
+          .intro-modal h3 { font-size: 0.85rem; margin-bottom: 1rem; }
+          .intro-desc { font-size: 0.9rem; }
+          .intro-desc-en { font-size: 0.8rem; margin-bottom: 1rem; }
+          .intro-rules { padding: 0.75rem; margin-bottom: 1rem; }
+          .intro-rules li { font-size: 0.82rem; padding: 0.35rem 0; }
+          .start-btn { padding: 0.75rem; font-size: 1rem; }
         }
 
         .intro-icon {
