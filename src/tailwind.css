@@ -179,7 +179,14 @@
 }
 
 .mobile-nav-icon {
-  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-nav-icon svg {
+  width: 20px;
+  height: 20px;
 }
 
 /* Loading Screen */

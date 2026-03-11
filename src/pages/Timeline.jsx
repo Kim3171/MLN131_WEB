@@ -50,7 +50,10 @@ export default function Timeline() {
     if (scrollRef.current) {
       const card = scrollRef.current.querySelector('.timeline-card');
       if (card) {
-        return card.offsetWidth + 20;
+        // Use the actual computed gap between cards
+        const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+        const gap = isMobile ? 8 : 20;
+        return card.offsetWidth + gap;
       }
     }
     return 360;
@@ -94,7 +97,9 @@ export default function Timeline() {
     }
   }, [activeIndex]);
 
-  const showSummaryButton = visitedEvents.length >= 3;
+  // Show summary button when at least 1 event has been visited, or always on mobile
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const showSummaryButton = isMobile ? true : visitedEvents.length >= 3;
 
   const handleGetSummary = async () => {
     setShowSummary(true);
@@ -192,6 +197,7 @@ export default function Timeline() {
         </div>
       </div>
 
+      {/* Summary button - placed after dots wrapper so it appears below dots */}
       <AnimatePresence>
         {showSummaryButton && !showSummary && (
           <motion.button
@@ -324,6 +330,7 @@ export default function Timeline() {
           scrollbar-width: none;
           -ms-overflow-style: none;
           padding: 12px 4px 16px 4px;
+          padding-right: 48px;
           position: relative;
           width: 100%;
           display: flex;
@@ -644,35 +651,307 @@ export default function Timeline() {
         }
 
         @media (max-width: 768px) {
-          .timeline-header h1 { font-size: 1.75rem; }
-          .timeline-track { padding: 1rem 1rem; }
-          .timeline-card { width: 280px; min-width: 280px; }
-          .summary-button { bottom: 1rem; right: 1rem; left: 1rem; width: auto; }
-          .timeline-header { padding: 0 1rem; }
-          .timeline-header h1 { font-size: 1.5rem; }
-          .nav-arrow { width: 36px; height: 36px; font-size: 14px; }
+          .timeline-page {
+            padding: 0.5rem 0.25rem;
+            padding-bottom: 7rem;
+            padding-right: max(0.5rem, env(safe-area-inset-right));
+            margin-left: 0 !important;
+            width: 100% !important;
+            max-width: 100vw !important;
+            overflow-x: visible !important;
+          }
+
+          .timeline-header {
+            padding: 0 0.5rem;
+            padding-right: max(0.5rem, env(safe-area-inset-right));
+            margin-bottom: 0.5rem;
+          }
+
+          .timeline-header h1 {
+            font-size: 1rem;
+            letter-spacing: 1px;
+          }
+
+          .timeline-header p {
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            margin-top: 0.25rem;
+          }
+
+          /* Summary button - fixed position, centered between dots and nav bar */
+          .summary-button {
+            position: fixed;
+            bottom: calc(85px + 8vw) !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            width: 200px;
+            padding: 0.45rem 0.85rem;
+            font-size: 0.65rem;
+            border-radius: 10px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            z-index: 10;
+          }
+
+          .summary-button:hover {
+            box-shadow: 0 6px 18px rgba(102, 126, 234, 0.5);
+          }
+
+          .summary-button:active {
+            opacity: 0.9;
+          }
+
+          .timeline-cards-wrapper {
+            padding: 0 4px;
+            gap: 0;
+            width: 100%;
+            max-width: 100vw;
+            box-sizing: border-box;
+          }
+
+          .timeline-wrapper {
+            max-width: 100vw;
+            overflow: visible;
+          }
+
+          .timeline-cards-wrapper .nav-arrow {
+            display: none;
+          }
+
+          .timeline-container {
+            padding: 0.25rem 0;
+            padding-right: max(1rem, env(safe-area-inset-right));
+            overflow-x: scroll;
+            overflow-y: visible;
+            -webkit-overflow-scrolling: touch;
+            width: 100%;
+            box-sizing: border-box;
+            scroll-snap-type: x mandatory;
+          }
+
+          .timeline-track {
+            padding: 0.25rem 16px;
+            padding-right: max(80px, calc(env(safe-area-inset-right) + 80px));
+            gap: 8px;
+            width: max-content;
+          }
+
+          /* TALLER and WIDER cards (but not too wide) */
+          .timeline-card {
+            width: 220px;
+            min-width: 220px;
+            max-width: 220px;
+            min-height: 400px;
+            border-radius: 10px;
+            scroll-snap-align: center;
+            border: 1px solid rgba(212, 168, 83, 0.25);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+          }
+
+          .timeline-year {
+            padding: 0.3rem 0.5rem;
+          }
+
+          .timeline-year .year {
+            font-size: 0.9rem;
+          }
+
+          .timeline-year .month {
+            font-size: 0.6rem;
+          }
+
+          /* Taller image */
+          .timeline-image {
+            height: 100px;
+            min-height: 100px;
+          }
+
+          .timeline-content {
+            padding: 0.35rem 0.5rem;
+          }
+
+          .timeline-content h3 {
+            font-size: 0.75rem;
+            margin-bottom: 0.1rem;
+            line-height: 1.2;
+          }
+
+          .timeline-content .title-en {
+            font-size: 0.55rem;
+            margin-bottom: 0.25rem;
+          }
+
+          .timeline-content .description {
+            font-size: 0.65rem;
+            line-height: 1.3;
+            margin-bottom: 0.3rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+
+          .significance {
+            font-size: 0.55rem;
+            padding: 0.15rem 0.35rem;
+            margin-bottom: 0.3rem;
+          }
+
+          .significance .stars {
+            gap: 0.1rem;
+          }
+
+          .significance .stars svg {
+            width: 10px;
+            height: 10px;
+          }
+
+          .bullet-points {
+            font-size: 0.6rem;
+            margin-top: 4px;
+            padding-left: 0.65rem;
+          }
+
+          .bullet-points li {
+            margin-bottom: 0.1rem;
+          }
+
+          .timeline-dots-wrapper {
+            padding: 0 0.5rem;
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+          }
+
+          .timeline-dots-wrapper::-webkit-scrollbar {
+            display: none;
+          }
+
           .timeline-progress {
             flex-wrap: nowrap;
             overflow-x: auto;
-            justify-content: flex-start;
+            justify-content: center;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
-            gap: 0.5rem;
-            padding: 0 1rem;
-            margin-top: 1rem;
+            gap: 6px;
+            padding: 0 0.5rem;
+            margin-top: 0;
+            width: 100%;
+            box-sizing: border-box;
           }
-          .timeline-progress::-webkit-scrollbar { display: none; }
-          .progress-dot { flex-shrink: 0; }
-          .timeline-container { padding: 1rem 2rem; }
+
+          .timeline-progress::-webkit-scrollbar {
+            display: none;
+          }
+
+          .progress-dot {
+            width: 6px;
+            height: 6px;
+            min-width: 6px;
+            min-height: 6px;
+            flex-shrink: 0;
+          }
         }
 
         @media (max-width: 480px) {
-          .timeline-card { width: 280px; min-width: 280px; }
-          .timeline-page { padding: 1rem 1rem 2rem 1rem; }
-          .timeline-image { height: 140px; }
-          .timeline-content { padding: 1rem; }
-          .timeline-content h3 { font-size: 1rem; }
-          .timeline-content .description { font-size: 0.85rem; }
+          /* Taller and wider cards on small screens */
+          .timeline-card {
+            width: 200px;
+            min-width: 200px;
+            max-width: 200px;
+            min-height: 380px;
+          }
+
+          .timeline-page {
+            padding: 0.5rem 0.25rem 7rem 0.25rem;
+          }
+
+          /* Add right padding so last card can be selected */
+          .timeline-container {
+            padding-right: max(60px, env(safe-area-inset-right));
+          }
+
+          .timeline-track {
+            padding-right: max(80px, calc(env(safe-area-inset-right) + 80px));
+          }
+
+          /* Premium AI Summary button at bottom - centered between dots and nav bar */
+          .summary-button {
+            bottom: calc(85px + 8vw) !important;
+            width: calc(100% - 1.5rem);
+            max-width: 260px;
+            padding: 0.4rem 0.75rem;
+            font-size: 0.6rem;
+            border-radius: 8px;
+          }
+
+          .timeline-image {
+            height: 90px;
+            min-height: 90px;
+          }
+
+          .timeline-content {
+            padding: 0.3rem 0.5rem;
+          }
+
+          .timeline-content h3 {
+            font-size: 0.75rem;
+          }
+
+          .timeline-content .title-en {
+            font-size: 0.55rem;
+          }
+
+          .timeline-content .description {
+            font-size: 0.65rem;
+          }
+
+          .timeline-cards-wrapper {
+            padding: 0 4px;
+            overflow: visible;
+          }
+
+          .timeline-wrapper {
+            overflow: visible;
+            max-width: 100vw;
+          }
+
+          .timeline-header h1 {
+            font-size: 0.9rem;
+          }
+
+          .timeline-progress {
+            margin-top: 0.5rem;
+            gap: 4px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+          }
+
+          .timeline-progress::-webkit-scrollbar {
+            display: none;
+          }
+
+          .progress-dot {
+            width: 5px;
+            height: 5px;
+            min-width: 5px;
+            min-height: 5px;
+          }
         }
       `}</style>
     </div>

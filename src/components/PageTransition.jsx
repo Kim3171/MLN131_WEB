@@ -19,6 +19,8 @@ export default function PageTransition({ children }) {
         variants={variants}
         initial="initial"
         animate="animate"
+        style={{ width: '100%', maxWidth: '100%' }}
+        className="page-content"
       >
         {children}
       </motion.div>

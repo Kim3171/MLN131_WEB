@@ -54,7 +54,7 @@ export default function Secret() {
         </div>
 
         <Link to="/" className="back-link">
-          ← Quay về / Go Back
+          ←
         </Link>
       </div>
 
@@ -65,11 +65,13 @@ export default function Secret() {
           align-items: center;
           justify-content: center;
           padding: 2rem;
+          padding-bottom: 6rem;
           background: linear-gradient(180deg, var(--ink) 0%, #0d1220 100%);
         }
 
         .secret-content {
           max-width: 600px;
+          width: 100%;
           text-align: center;
         }
 
@@ -124,6 +126,82 @@ export default function Secret() {
 
         .back-link:hover {
           background: rgba(212, 168, 83, 0.1);
+        }
+
+        /* Mobile styles */
+        @media (max-width: 768px) {
+          .secret-page {
+            min-height: 100vh;
+            min-height: 100dvh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            padding: 0.5rem 0.5rem 6rem 0.5rem;
+            background: linear-gradient(180deg, var(--ink) 0%, #0d1220 100%);
+            display: block;
+          }
+
+          .secret-content {
+            max-width: 100%;
+            text-align: center;
+          }
+
+          .secret-content h1 {
+            font-size: clamp(0.75rem, 2vw, 0.9rem);
+            margin-bottom: 0.5rem;
+          }
+
+          .poem-vi {
+            font-size: clamp(0.55rem, 1.5vw, 0.7rem);
+            line-height: 1.4;
+            margin-bottom: 0.3rem;
+          }
+
+          .poem-en p {
+            font-size: clamp(0.45rem, 1.2vw, 0.55rem);
+            line-height: 1.2;
+            margin-bottom: 0.2rem;
+          }
+
+          hr {
+            margin: 0.5rem 0;
+          }
+
+          .back-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            padding: 0;
+            font-size: 0.7rem;
+            position: absolute;
+            top: 0.4rem;
+            left: 0.4rem;
+            background: rgba(30, 37, 53, 0.9);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 50%;
+            border: 1px solid rgba(212, 168, 83, 0.3);
+          }
+        }
+
+        @media (max-width: 480px) {
+          .secret-page {
+            padding: 0.75rem;
+          }
+
+          .secret-content h1 {
+            font-size: 1.1rem;
+          }
+
+          .poem-vi {
+            font-size: 0.8rem;
+          }
+
+          .poem-en p {
+            font-size: 0.7rem;
+          }
         }
       `}</style>
     </div>

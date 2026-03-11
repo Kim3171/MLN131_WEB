@@ -312,6 +312,26 @@ export default function Home() {
         </a>
       </footer>
 
+      {/* Mobile Bottom Game Navigation */}
+      <div className="mobile-bottom-nav">
+        <Link to="/game/timeline" className="mobile-nav-game">
+          <span className="mobile-nav-icon">🎮</span>
+          <span className="mobile-nav-label">Timeline</span>
+        </Link>
+        <Link to="/game/quotes" className="mobile-nav-game">
+          <span className="mobile-nav-icon">💬</span>
+          <span className="mobile-nav-label">Quotes</span>
+        </Link>
+        <Link to="/game/strategy" className="mobile-nav-game">
+          <span className="mobile-nav-icon">♟️</span>
+          <span className="mobile-nav-label">Strategy</span>
+        </Link>
+        <Link to="/game/truefalse" className="mobile-nav-game">
+          <span className="mobile-nav-icon">⚡</span>
+          <span className="mobile-nav-label">True/False</span>
+        </Link>
+      </div>
+
       <style>{`
         @keyframes scrollPulse {
           0%, 100% { opacity: 0.3; transform: scaleY(1); }
@@ -586,26 +606,192 @@ export default function Home() {
           opacity: 1;
         }
 
+        /* Mobile secret link - above bottom nav */
+        @media (max-width: 768px) {
+          .secret-link {
+            position: fixed;
+            right: 1rem;
+            bottom: 85px;
+            opacity: 0.4;
+            z-index: 100;
+            font-size: 1.25rem;
+            background: rgba(10, 14, 26, 0.8);
+            padding: 8px 12px;
+            border-radius: 8px;
+            backdrop-filter: blur(4px);
+          }
+
+          .secret-link:active {
+            opacity: 0.8;
+            background: rgba(192, 57, 43, 0.3);
+          }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
           .hero-title {
-            font-size: 48px;
+            font-size: clamp(28px, 8vw, 48px) !important;
+            letter-spacing: 0.08em;
+            padding: 0 16px;
+            white-space: normal;
+            word-break: break-word;
+            text-align: center;
+          }
+
+          .hero-subtitle {
+            font-size: clamp(10px, 2.5vw, 14px) !important;
+            padding: 0 16px;
+          }
+
+          .hero-subtitle-container {
+            padding: 0 16px;
           }
 
           .stats-grid {
             grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            padding: 0 0.5rem;
+          }
+
+          .stat-card {
+            padding: 0.75rem 0.5rem;
           }
 
           .nav-cards-grid {
             grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            padding: 0 0.5rem;
           }
 
           .stat-value {
-            font-size: 36px;
+            font-size: clamp(18px, 5vw, 28px);
+          }
+
+          .stat-label {
+            font-size: clamp(8px, 2vw, 11px);
           }
 
           .cq6-question {
-            font-size: 1.25rem;
+            font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+          }
+
+          .cq6-question-en {
+            font-size: clamp(0.75rem, 2vw, 0.9rem);
+          }
+
+          .cq6-box {
+            padding: 12px;
+            margin: 0 0.5rem;
+          }
+
+          .section-title {
+            font-size: clamp(1.25rem, 4vw, 1.75rem);
+          }
+
+          .nav-card {
+            padding: 0.75rem 0.5rem;
+            min-height: 90px;
+          }
+
+          .nav-card-icon {
+            font-size: clamp(1.25rem, 4vw, 1.75rem);
+            margin-bottom: 0.35rem;
+          }
+
+          .nav-card-label {
+            font-size: clamp(0.75rem, 2vw, 0.9rem);
+          }
+
+          .nav-card-label-en {
+            font-size: clamp(0.5rem, 1.5vw, 0.65rem);
+          }
+
+          .home-footer {
+            padding-bottom: 100px;
+            padding-left: 1rem;
+            padding-right: 1rem;
+          }
+
+          /* Mobile Bottom Navigation */
+          .mobile-bottom-nav {
+            display: flex;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 14, 26, 0.98);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(212, 168, 83, 0.25);
+            padding: 6px 2px;
+            padding-bottom: max(6px, env(safe-area-inset-bottom));
+            z-index: 1000;
+            justify-content: space-around;
+            gap: 2px;
+          }
+
+          .mobile-nav-game {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 2px;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            min-height: 48px;
+          }
+
+          .mobile-nav-icon {
+            font-size: clamp(1rem, 3vw, 1.35rem);
+          }
+
+          .mobile-nav-label {
+            font-family: var(--font-mono);
+            font-size: clamp(0.5rem, 1.5vw, 0.65rem);
+            color: var(--parchment);
+            margin-top: 2px;
+          }
+
+          .mobile-nav-game:active {
+            background: rgba(212, 168, 83, 0.15);
+          }
+        }
+
+        @media (min-width: 769px) {
+          .mobile-bottom-nav {
+            display: none;
+          }
+        }
+
+        @media (max-width: 400px) {
+          .mobile-nav-label {
+            font-size: 0.5rem;
+          }
+
+          .mobile-nav-icon {
+            font-size: 1rem;
+          }
+
+          .stats-grid,
+          .nav-cards-grid {
+            gap: 0.35rem;
+          }
+
+          .stat-card,
+          .nav-card {
+            padding: 0.5rem 0.35rem;
+          }
+        }
+
+        @media (max-width: 320px) {
+          .nav-cards-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .stats-grid {
+            grid-template-columns: 1fr;
           }
         }
       `}</style>
