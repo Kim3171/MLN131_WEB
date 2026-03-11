@@ -230,19 +230,24 @@
   overflow: hidden;
   border-radius: 8px;
   background: var(--smoke);
+  height: auto;
+  display: block;
 }
 
 .historical-photo-container {
   position: relative;
-  overflow: hidden;
+  width: 100%;
+  height: auto;
 }
 
 .historical-photo-img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  min-height: unset;
+  object-fit: unset;
   filter: sepia(0.2) contrast(1.1);
   transition: transform 0.3s ease;
+  display: block;
 }
 
 .historical-photo-img.loaded {

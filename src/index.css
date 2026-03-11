@@ -256,14 +256,21 @@ input:focus, textarea:focus {
   top: 0;
   height: 100vh;
   overflow-y: auto;
+  transform: translateX(0);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.app-sidebar.sidebar-hidden {
+  transform: translateX(-220px);
+  pointer-events: none;
 }
 
 .app-main {
   flex: 1;
-  padding: 2rem;
+  padding: 0;
   min-width: 0;
   margin-left: 0;
-  min-height: auto;
+  min-height: 100vh;
   overflow: visible;
 }
 

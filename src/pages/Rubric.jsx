@@ -53,7 +53,7 @@ export default function Rubric() {
           <p>Tiêu Chí Đánh Giá & Hướng Dẫn / Grading Rubric & Guidelines</p>
         </div>
 
-        {/* AI Usage Section - Moved to Appendix */}
+        {/* AI Usage Section */}
         <div className="rubric-section ai-usage-section">
           <div className="section-header purple">
             <div className="section-title">
@@ -197,7 +197,7 @@ export default function Rubric() {
       </div>
 
       {/* Right Column - Historical Photos */}
-      <div className="rubric-photos-panel">
+      <div className="rubric-photos-col">
         <HistoricalPhoto
           imageKey="hoChiMinhPortrait"
           alt="Hồ Chí Minh"
@@ -222,13 +222,14 @@ export default function Rubric() {
         .rubric-page {
           display: flex;
           gap: 2rem;
-          max-width: 1400px;
+          align-items: flex-start;
+          max-width: 1300px;
           margin: 0 auto;
           padding: 2rem;
         }
 
         .rubric-content {
-          flex: 0 0 65%;
+          flex: 1;
           min-width: 0;
         }
 
@@ -479,45 +480,68 @@ export default function Rubric() {
           opacity: 0.8;
         }
 
-        /* Right Column - Photos */
-        .rubric-photos-panel {
-          flex: 0 0 35%;
+        /* Photos Column */
+        .rubric-photos-col {
+          flex: 0 0 170px;
           display: flex;
           flex-direction: column;
-          gap: 1.5rem;
+          gap: 0.75rem;
           position: sticky;
           top: 2rem;
           height: fit-content;
         }
 
+        .rubric-photos-row {
+          display: none;
+        }
+
         .rubric-historical-photo {
-          height: 180px;
+          height: auto;
+          overflow: hidden;
+          border-radius: 8px;
           filter: sepia(0.2) contrast(1.1);
         }
 
+        .rubric-historical-photo .historical-photo-container {
+          height: 100px;
+          overflow: hidden;
+          border-radius: 8px 8px 0 0;
+          background: #0a0e1a;
+        }
+
+        .rubric-historical-photo .historical-photo-img {
+          width: 100%;
+          height: 100px;
+          object-fit: contain;
+          min-height: unset;
+        }
+
         .rubric-historical-photo .historical-photo-caption {
+          display: block;
           position: relative;
           transform: none;
-          background: rgba(10, 14, 26, 0.9);
-          padding: 0.5rem;
+          bottom: unset;
+          left: unset;
+          right: unset;
+          background: rgba(10, 14, 26, 0.92);
+          padding: 0.4rem 0.6rem;
           font-family: var(--font-mono);
-          font-size: 0.7rem;
+          font-size: 0.68rem;
           color: var(--gold);
           text-align: center;
+          border-radius: 0 0 8px 8px;
+          border-top: 1px solid rgba(212, 168, 83, 0.2);
         }
 
         /* Responsive */
-        @media (max-width: 1024px) {
-          .rubric-page {
+        @media (max-width: 600px) {
+          .ai-usage-with-photos {
             flex-direction: column;
           }
-
-          .rubric-content {
-            flex: 1;
-          }
-
-          .rubric-photos-panel {
-            display: none;
+          .rubric-photos-col {
+            flex: unset;
+            flex-direction: row;
+            width: 100%;
           }
         }
 
@@ -548,7 +572,7 @@ export default function Rubric() {
             padding: 0;
           }
 
-          .rubric-photos-panel {
+          .rubric-photos-row {
             display: none;
           }
 

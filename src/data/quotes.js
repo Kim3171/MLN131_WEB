@@ -11,7 +11,8 @@ export const quotes = [
     speakerInitials: 'HCM',
     color: 'crimson',
     year: 1966,
-    context: 'Broadcast message to American people during escalation'
+    context: 'Broadcast message to American people during escalation',
+    contextVi: 'Thông điệp phát thanh gửi nhân dân Mỹ trong thời kỳ leo thang chiến tranh'
   },
   {
     id: 'hcm-revolution',
@@ -22,7 +23,8 @@ export const quotes = [
     speakerInitials: 'HCM',
     color: 'crimson',
     year: 1960,
-    context: "Speech at the 3rd National Congress of the Vietnamese People's Party"
+    context: "Speech at the 3rd National Congress of the Vietnamese People's Party",
+    contextVi: 'Phát biểu tại Đại hội Đảng Lao động Việt Nam lần thứ III'
   },
   {
     id: 'hcm-perseverance',
@@ -33,7 +35,8 @@ export const quotes = [
     speakerInitials: 'HCM',
     color: 'crimson',
     year: 1965,
-    context: 'Speech at the 2nd National Congress'
+    context: 'Speech at the 2nd National Congress',
+    contextVi: 'Phát biểu tại Đại hội Quốc dân lần thứ II'
   },
   {
     id: 'giap-strategy',
@@ -44,7 +47,8 @@ export const quotes = [
     speakerInitials: 'VNG',
     color: 'gold',
     year: 1965,
-    context: 'Military strategy document'
+    context: 'Military strategy document',
+    contextVi: 'Tài liệu chiến lược quân sự'
   },
   {
     id: 'giap-independence',
@@ -55,7 +59,8 @@ export const quotes = [
     speakerInitials: 'VNG',
     color: 'gold',
     year: 1967,
-    context: 'Interview with foreign press'
+    context: 'Interview with foreign press',
+    contextVi: 'Phỏng vấn báo chí nước ngoài'
   },
   {
     id: 'le-duan',
@@ -66,7 +71,8 @@ export const quotes = [
     speakerInitials: 'LD',
     color: 'olive',
     year: 1970,
-    context: 'Political report to the Party'
+    context: 'Political report to the Party',
+    contextVi: 'Báo cáo chính trị trước Đảng'
   },
   {
     id: 'mcnamara-mistake',
@@ -77,7 +83,8 @@ export const quotes = [
     speakerInitials: 'RM',
     color: 'ash',
     year: 1995,
-    context: 'Memoirs: "In Retrospect"'
+    context: 'Memoirs: "In Retrospect"',
+    contextVi: 'Hồi ký: “Nhìn lại quá khứ”'
   },
   {
     id: 'nixon-withdrawal',
@@ -88,7 +95,8 @@ export const quotes = [
     speakerInitials: 'RN',
     color: 'smoke',
     year: 1969,
-    context: 'Vietnamization policy speech'
+    context: 'Vietnamization policy speech',
+    contextVi: 'Bài phát biểu về chính sách Việt Nam hóa chiến tranh'
   },
   {
     id: 'nixon-peace',
@@ -99,7 +107,8 @@ export const quotes = [
     speakerInitials: 'RN',
     color: 'smoke',
     year: 1972,
-    context: 'Press conference on Paris negotiations'
+    context: 'Press conference on Paris negotiations',
+    contextVi: 'Họ p báo về đàm phán Paris'
   },
   {
     id: 'kissinger-peace',
@@ -110,7 +119,8 @@ export const quotes = [
     speakerInitials: 'HK',
     color: 'ash',
     year: 1973,
-    context: 'Press conference after Paris Accords signing'
+    context: 'Press conference after Paris Accords signing',
+    contextVi: 'Họ p báo sau lễ ký Hiệp định Paris'
   }
 ];
 

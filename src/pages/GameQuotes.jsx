@@ -314,7 +314,7 @@ export default function GameQuotes() {
                     <span className="placeholder-initials">{getSpeakerInitials(currentData.speakerVi)}</span>
                   </div>
                 )}
-                <p className="speaker-context">{currentData.context}</p>
+                <p className="speaker-context">{currentData.contextVi || currentData.context}</p>
               </motion.div>
             </motion.div>
           )}
@@ -566,10 +566,28 @@ export default function GameQuotes() {
           border-radius: 8px;
           overflow: hidden;
           margin-top: 1rem;
+          max-width: 280px;
+          margin-left: auto;
+          margin-right: auto;
         }
 
         .speaker-photo {
-          height: 150px;
+          height: 160px;
+          display: block;
+        }
+
+        .speaker-photo .historical-photo-container {
+          height: 160px;
+          width: 100%;
+          overflow: hidden;
+          background: #0a0e1a;
+        }
+
+        .speaker-photo .historical-photo-img {
+          width: 100%;
+          height: 160px;
+          object-fit: contain;
+          min-height: unset;
         }
 
         .speaker-placeholder {

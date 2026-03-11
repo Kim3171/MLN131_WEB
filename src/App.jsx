@@ -138,10 +138,10 @@ function AppContent() {
 
       {/* Main layout */}
       <div className="app-layout">
-        {/* Sidebar navigation - hidden on mobile */}
-        {!focusMode && !isMobile && (
+        {/* Sidebar navigation - always mounted for smooth animation, hidden via CSS on mobile */}
+        {!isMobile && (
           <aside
-            className="app-sidebar"
+            className={`app-sidebar${focusMode ? ' sidebar-hidden' : ''}`}
             style={{
               width: '220px',
               minWidth: '220px',
@@ -161,7 +161,9 @@ function AppContent() {
           className="app-main"
           style={{
             flex: 1,
-            minHeight: '100vh'
+            minHeight: '100vh',
+            marginLeft: (!focusMode && !isMobile) ? '220px' : 0,
+            transition: 'margin-left 0.35s cubic-bezier(0.4, 0, 0.2, 1)'
           }}
         >
           <PageTransition>

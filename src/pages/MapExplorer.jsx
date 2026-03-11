@@ -123,7 +123,6 @@ export default function MapExplorer() {
         {/* Map */}
         <motion.div
           className="map-container"
-          style={{ minHeight: '700px', width: '100%' }}
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
@@ -132,8 +131,7 @@ export default function MapExplorer() {
             style={{
               position: 'relative',
               width: '100%',
-              height: '70vh',
-              minHeight: '500px',
+              height: 'clamp(280px, 60vh, 900px)',
               backgroundColor: 'var(--smoke)',
               borderRadius: '8px',
               overflow: 'hidden',
@@ -389,7 +387,6 @@ export default function MapExplorer() {
           padding: 1.5rem;
           position: relative;
           overflow: hidden;
-          min-height: 500px;
         }
 
         .map-container::before {
@@ -509,9 +506,10 @@ export default function MapExplorer() {
 
         .zone-photo {
           width: 100%;
-          max-height: 220px;
+          height: clamp(140px, 20vw, 240px);
           object-fit: cover;
           border-radius: 12px;
+          display: block;
         }
 
         .zone-facts h4 {
@@ -613,12 +611,80 @@ export default function MapExplorer() {
             font-size: 1.75rem;
           }
 
+          .map-content {
+            gap: 1rem;
+          }
+
+          .map-container {
+            padding: 0.75rem;
+          }
+
+          .layer-toggles {
+            gap: 0.5rem;
+          }
+
           .layer-btn {
             padding: 0.75rem 1rem;
+            flex: 1 1 auto;
+            min-width: 0;
           }
 
           .layer-label-en {
             display: none;
+          }
+
+          .zone-info h2 {
+            font-size: 1.5rem;
+          }
+
+          .info-panel {
+            padding: 1.25rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .map-page {
+            padding: 0.75rem;
+          }
+
+          .map-header h1 {
+            font-size: 1.4rem;
+          }
+
+          .map-header p {
+            font-size: 0.8rem;
+          }
+
+          .map-container {
+            padding: 0.5rem;
+          }
+
+          .layer-btn {
+            padding: 0.6rem 0.5rem;
+          }
+
+          .layer-icon {
+            font-size: 1.2rem;
+          }
+
+          .layer-label {
+            font-size: 0.75rem;
+          }
+
+          .zone-info h2 {
+            font-size: 1.25rem;
+          }
+
+          .zone-info h3 {
+            font-size: 0.85rem;
+          }
+
+          .info-panel {
+            padding: 1rem;
+          }
+
+          .zone-photo {
+            height: clamp(120px, 40vw, 200px);
           }
         }
       `}</style>
