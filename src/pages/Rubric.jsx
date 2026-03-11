@@ -547,21 +547,36 @@ export default function Rubric() {
 
         @media (max-width: 768px) {
           .rubric-page {
+            flex-direction: column;
             padding: 1rem;
+            padding-bottom: 5rem;
+            gap: 1rem;
+          }
+
+          .rubric-photos-col {
+            display: none;
           }
 
           .rubric-header h1 {
-            font-size: 1.75rem;
+            font-size: 1.4rem;
           }
 
           .rubric-title-row {
             flex-direction: column;
             align-items: flex-start;
-            gap: 1rem;
+            gap: 0.75rem;
           }
 
           .criterion-details {
-            padding-left: 1rem;
+            padding-left: 0.75rem;
+          }
+
+          .ai-usage-content {
+            padding: 1rem;
+          }
+
+          .criterion-card {
+            padding: 0.75rem;
           }
         }
 

@@ -2,7 +2,7 @@
 // Main App component with router and global layout
 
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, NavLink, useLocation } from 'react-router-dom';
 import { AppProvider, useApp } from './context/AppContext';
 import Navigation from './components/Navigation';
 import PageTransition from './components/PageTransition';
@@ -233,31 +233,96 @@ const RubricIcon = () => (
   </svg>
 );
 
+const ResourcesIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+  </svg>
+);
+
 // Mobile navigation component
 function MobileNav() {
+  const [showMore, setShowMore] = useState(false);
+  const location = useLocation();
+
+  // Close "more" menu on route change
+  useEffect(() => {
+    setShowMore(false);
+  }, [location.pathname]);
+
+  const moreItems = [
+    { path: '/game/timeline', label: 'Sắp Xếp Lịch Sử', icon: '🎮' },
+    { path: '/game/quotes',   label: 'Ai Nói Điều Này?', icon: '💬' },
+    { path: '/game/strategy', label: 'Chiến Lược Gia',   icon: '♟️' },
+    { path: '/game/truefalse',label: 'Nhanh Như Chớp',   icon: '⚡' },
+    { path: '/rubric',        label: 'Tiêu Chí',         icon: '📋' },
+    { path: '/resources',     label: 'Tài Liệu',         icon: '📚' },
+  ];
+
+  const isMoreActive = moreItems.some(i => location.pathname === i.path);
+
   return (
-    <nav className="mobile-nav">
-      <a href="/" className="mobile-nav-item">
-        <span className="mobile-nav-icon"><HomeIcon /></span>
-        <span>Home</span>
-      </a>
-      <a href="/timeline" className="mobile-nav-item">
-        <span className="mobile-nav-icon"><TimelineIcon /></span>
-        <span>Timeline</span>
-      </a>
-      <a href="/map" className="mobile-nav-item">
-        <span className="mobile-nav-icon"><MapIcon /></span>
-        <span>Map</span>
-      </a>
-      <a href="/game/timeline" className="mobile-nav-item">
-        <span className="mobile-nav-icon"><GamesIcon /></span>
-        <span>Games</span>
-      </a>
-      <a href="/rubric" className="mobile-nav-item">
-        <span className="mobile-nav-icon"><RubricIcon /></span>
-        <span>Rubric</span>
-      </a>
-    </nav>
+    <>
+      {/* Expandable "more" sheet */}
+      {showMore && (
+        <div style={{
+          position: 'fixed', bottom: '65px', left: 0, right: 0, zIndex: 99,
+          background: 'rgba(10,14,26,0.97)',
+          borderTop: '1px solid rgba(212,168,83,0.25)',
+          padding: '0.75rem',
+          display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem',
+          backdropFilter: 'blur(12px)'
+        }}>
+          {moreItems.map(item => (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              style={({ isActive }) => ({
+                display: 'flex', alignItems: 'center', gap: '0.6rem',
+                padding: '0.7rem 0.75rem', borderRadius: '8px',
+                background: isActive ? 'rgba(212,168,83,0.18)' : 'rgba(255,255,255,0.04)',
+                color: isActive ? '#D4A853' : '#8B96A8',
+                textDecoration: 'none', fontSize: '0.78rem',
+                fontFamily: 'var(--font-mono)', border: '1px solid',
+                borderColor: isActive ? 'rgba(212,168,83,0.3)' : 'rgba(255,255,255,0.07)',
+                transition: 'all 0.15s'
+              })}
+            >
+              <span style={{ fontSize: '1.1rem' }}>{item.icon}</span>
+              <span>{item.label}</span>
+            </NavLink>
+          ))}
+        </div>
+      )}
+
+      {/* Bottom bar */}
+      <nav className="mobile-nav">
+        <NavLink to="/" end className={({ isActive }) => `mobile-nav-item${isActive ? ' active' : ''}`}>
+          <span className="mobile-nav-icon"><HomeIcon /></span>
+          <span>Tổng Quan</span>
+        </NavLink>
+        <NavLink to="/timeline" className={({ isActive }) => `mobile-nav-item${isActive ? ' active' : ''}`}>
+          <span className="mobile-nav-icon"><TimelineIcon /></span>
+          <span>Thời Gian</span>
+        </NavLink>
+        <NavLink to="/map" className={({ isActive }) => `mobile-nav-item${isActive ? ' active' : ''}`}>
+          <span className="mobile-nav-icon"><MapIcon /></span>
+          <span>Bản Đồ</span>
+        </NavLink>
+        <button
+          className={`mobile-nav-item${(showMore || isMoreActive) ? ' active' : ''}`}
+          onClick={() => setShowMore(v => !v)}
+          style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit' }}
+        >
+          <span className="mobile-nav-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="5" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="12" cy="19" r="1.2" fill="currentColor"/>
+            </svg>
+          </span>
+          <span>Thêm</span>
+        </button>
+      </nav>
+    </>
   );
 }
 
