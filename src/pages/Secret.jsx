@@ -8,6 +8,7 @@ export default function Secret() {
     <div className="secret-page">
       <div className="secret-content">
         <h1>Bài Thơ / Poem</h1>
+        <div className="poem-title-line"></div>
 
         <div className="poem">
           <p className="poem-vi">
@@ -30,7 +31,7 @@ export default function Secret() {
           </p>
         </div>
 
-        <hr />
+        <div className="poem-divider">✦ Translation ✦</div>
 
         <div className="poem-en">
           <p>
@@ -53,33 +54,62 @@ export default function Secret() {
           </p>
         </div>
 
-        <Link to="/" className="back-link">
-          ←
-        </Link>
+        <Link to="/" className="back-link">← Trang chủ</Link>
       </div>
 
       <style>{`
         .secret-page {
           min-height: 100vh;
+          min-height: 100dvh;
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 2rem;
-          padding-bottom: 6rem;
-          background: linear-gradient(180deg, var(--ink) 0%, #0d1220 100%);
+          padding: 3rem 2rem 5rem;
+          background: radial-gradient(ellipse at 50% 0%, rgba(192,57,43,0.08) 0%, transparent 60%),
+                      linear-gradient(180deg, var(--ink) 0%, #0d1220 100%);
+          position: relative;
+          overflow-x: hidden;
         }
 
         .secret-content {
-          max-width: 600px;
+          max-width: 560px;
           width: 100%;
           text-align: center;
+          position: relative;
+        }
+
+        /* Decorative corner lines */
+        .secret-content::before,
+        .secret-content::after {
+          content: '';
+          position: absolute;
+          width: 40px;
+          height: 40px;
+          border-color: rgba(212,168,83,0.35);
+          border-style: solid;
+        }
+        .secret-content::before {
+          top: -12px; left: -12px;
+          border-width: 2px 0 0 2px;
+        }
+        .secret-content::after {
+          bottom: -12px; right: -12px;
+          border-width: 0 2px 2px 0;
         }
 
         .secret-content h1 {
           font-family: var(--font-heading);
-          font-size: 2rem;
+          font-size: clamp(1.4rem, 4vw, 2rem);
           color: var(--crimson);
-          margin: 0 0 2rem;
+          margin: 0 0 0.3rem;
+          letter-spacing: 2px;
+        }
+
+        .poem-title-line {
+          width: 48px;
+          height: 2px;
+          background: linear-gradient(90deg, transparent, var(--gold), transparent);
+          margin: 0 auto 2rem;
         }
 
         .poem {
@@ -88,16 +118,36 @@ export default function Secret() {
 
         .poem-vi {
           font-family: var(--font-body);
-          font-size: 1.1rem;
+          font-size: clamp(1rem, 2.5vw, 1.15rem);
           color: var(--parchment);
-          line-height: 2;
-          margin: 0 0 1rem;
+          line-height: 2.1;
+          margin: 0 0 1.25rem;
+          padding: 1rem 1.5rem;
+          background: rgba(255,255,255,0.025);
+          border-left: 2px solid rgba(212,168,83,0.3);
+          border-radius: 0 6px 6px 0;
+          text-align: left;
         }
 
-        hr {
-          border: none;
-          border-top: 1px solid rgba(212, 168, 83, 0.2);
-          margin: 2rem 0;
+        .poem-divider {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          margin: 1.5rem 0;
+          color: rgba(212,168,83,0.5);
+          font-family: var(--font-mono);
+          font-size: 0.75rem;
+          letter-spacing: 3px;
+        }
+        .poem-divider::before,
+        .poem-divider::after {
+          content: '';
+          flex: 1;
+          height: 1px;
+          background: linear-gradient(90deg, transparent, rgba(212,168,83,0.3));
+        }
+        .poem-divider::after {
+          background: linear-gradient(270deg, transparent, rgba(212,168,83,0.3));
         }
 
         .poem-en {
@@ -106,102 +156,61 @@ export default function Secret() {
 
         .poem-en p {
           font-family: var(--font-body);
-          font-size: 1rem;
+          font-size: clamp(0.85rem, 2vw, 0.98rem);
           color: var(--ash);
           font-style: italic;
-          line-height: 1.8;
+          line-height: 2;
           margin: 0 0 1rem;
+          padding: 0.75rem 1.25rem;
+          opacity: 0.8;
         }
 
         .back-link {
-          display: inline-block;
-          padding: 0.75rem 1.5rem;
-          background: var(--smoke);
-          border: 1px solid var(--gold);
-          border-radius: 8px;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.4rem;
+          padding: 0.6rem 1.25rem;
+          background: rgba(212,168,83,0.08);
+          border: 1px solid rgba(212,168,83,0.35);
+          border-radius: 6px;
           color: var(--gold);
           text-decoration: none;
+          font-family: var(--font-mono);
+          font-size: 0.82rem;
+          letter-spacing: 1px;
           transition: all 0.2s;
         }
-
         .back-link:hover {
-          background: rgba(212, 168, 83, 0.1);
+          background: rgba(212,168,83,0.18);
+          border-color: var(--gold);
         }
 
-        /* Mobile styles */
+        /* Mobile */
         @media (max-width: 768px) {
           .secret-page {
-            min-height: 100vh;
-            min-height: 100dvh;
-            overflow-y: auto;
-            overflow-x: hidden;
-            -webkit-overflow-scrolling: touch;
-            padding: 0.5rem 0.5rem 6rem 0.5rem;
-            background: linear-gradient(180deg, var(--ink) 0%, #0d1220 100%);
-            display: block;
+            padding: 2rem 1.25rem calc(65px + 1.5rem);
+            align-items: flex-start;
           }
-
           .secret-content {
             max-width: 100%;
-            text-align: center;
+            margin-top: 1rem;
           }
-
-          .secret-content h1 {
-            font-size: clamp(0.75rem, 2vw, 0.9rem);
-            margin-bottom: 0.5rem;
-          }
-
           .poem-vi {
-            font-size: clamp(0.55rem, 1.5vw, 0.7rem);
-            line-height: 1.4;
-            margin-bottom: 0.3rem;
+            font-size: 0.95rem;
+            line-height: 1.9;
+            padding: 0.75rem 1rem;
           }
-
           .poem-en p {
-            font-size: clamp(0.45rem, 1.2vw, 0.55rem);
-            line-height: 1.2;
-            margin-bottom: 0.2rem;
-          }
-
-          hr {
-            margin: 0.5rem 0;
-          }
-
-          .back-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 24px;
-            height: 24px;
-            padding: 0;
-            font-size: 0.7rem;
-            position: absolute;
-            top: 0.4rem;
-            left: 0.4rem;
-            background: rgba(30, 37, 53, 0.9);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border-radius: 50%;
-            border: 1px solid rgba(212, 168, 83, 0.3);
+            font-size: 0.82rem;
+            line-height: 1.8;
+            padding: 0.5rem 0.75rem;
           }
         }
 
         @media (max-width: 480px) {
-          .secret-page {
-            padding: 0.75rem;
-          }
-
-          .secret-content h1 {
-            font-size: 1.1rem;
-          }
-
-          .poem-vi {
-            font-size: 0.8rem;
-          }
-
-          .poem-en p {
-            font-size: 0.7rem;
-          }
+          .secret-content h1 { font-size: 1.3rem; }
+          .poem-vi { font-size: 0.9rem; line-height: 1.85; }
+          .poem-en p { font-size: 0.78rem; }
         }
       `}</style>
     </div>

@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import VietnamMap from '../components/svgs/VietnamMap';
 import battleZones from '../data/battleZones';
-import HistoricalPhoto from '../components/HistoricalPhoto';
 import RedStar from '../components/svgs/RedStar';
 
 const layerInfo = {
@@ -131,11 +130,6 @@ export default function MapExplorer() {
             style={{
               position: 'relative',
               width: '100%',
-              height: 'clamp(280px, 60vh, 900px)',
-              backgroundColor: 'var(--smoke)',
-              borderRadius: '8px',
-              overflow: 'hidden',
-              flex: 'none'
             }}
           >
             <VietnamMap
@@ -183,19 +177,6 @@ export default function MapExplorer() {
                     <span>{zone.type.toUpperCase()}</span>
                   </div>
                 </div>
-
-                <motion.div
-                  className="zone-image"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.2 }}
-                >
-                  <HistoricalPhoto
-                    imageKey={zone.imageKey}
-                    alt={zone.nameEn}
-                    className="zone-photo"
-                  />
-                </motion.div>
 
                 <motion.div
                   className="zone-facts"
@@ -289,6 +270,7 @@ export default function MapExplorer() {
         .map-page {
           min-height: 100vh;
           padding: 2rem;
+          padding-bottom: calc(65px + 2rem);
         }
 
         .map-header {
@@ -498,20 +480,6 @@ export default function MapExplorer() {
           color: var(--crimson);
         }
 
-        .zone-image {
-          margin-bottom: 1.5rem;
-          border-radius: 12px;
-          overflow: hidden;
-        }
-
-        .zone-photo {
-          width: 100%;
-          height: clamp(140px, 20vw, 240px);
-          object-fit: cover;
-          border-radius: 12px;
-          display: block;
-        }
-
         .zone-facts h4 {
           display: flex;
           align-items: center;
@@ -604,7 +572,11 @@ export default function MapExplorer() {
 
         @media (max-width: 768px) {
           .map-page {
-            padding: 1rem;
+            padding: 0.75rem;
+            padding-bottom: calc(65px + 1rem);
+          }
+          .map-container {
+            padding: 0.5rem;
           }
 
           .map-header h1 {
@@ -681,10 +653,6 @@ export default function MapExplorer() {
 
           .info-panel {
             padding: 1rem;
-          }
-
-          .zone-photo {
-            height: clamp(120px, 40vw, 200px);
           }
         }
       `}</style>
