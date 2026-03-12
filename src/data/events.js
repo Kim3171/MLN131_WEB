@@ -156,23 +156,6 @@ export const events = [
     category: 'military'
   },
   {
-    id: 'paris-peace-accords',
-    year: 1973,
-    month: 'January',
-    titleVi: 'Hiệp định Paris',
-    titleEn: 'Paris Peace Accords',
-    imageKey: 'parisAccords',
-    significance: 5,
-    descriptionVi: 'Ngày 27 tháng 1 năm 1973, Hiệp định Hòa bình Paris được ký kết, chấm dứt sự tham gia trực tiếp của quân đội Mỹ trong chiến tranh Việt Nam. Tuy nhiên, chiến sự vẫn tiếp diễn giữa hai miền.',
-    descriptionEn: 'On January 27, 1973, the Paris Peace Accords were signed, ending direct U.S. military involvement in the Vietnam War. However, fighting continued between North and South Vietnam.',
-    bulletPoints: [
-      'Ký ngày 27/1/1973 / Signed January 27, 1973',
-      'Mỹ rút quân trong 60 ngày / U.S. withdrew within 60 days',
-      'Chấm dứt tham chiến trực tiếp của Mỹ / Ended direct U.S. combat involvement'
-    ],
-    category: 'diplomatic'
-  },
-  {
     id: 'christmas-bombing',
     year: 1972,
     month: 'December',
@@ -188,6 +171,23 @@ export const events = [
       'Thương vong dân sự lớn / Significant civilian casualties'
     ],
     category: 'military'
+  },
+  {
+    id: 'paris-peace-accords',
+    year: 1973,
+    month: 'January',
+    titleVi: 'Hiệp định Paris',
+    titleEn: 'Paris Peace Accords',
+    imageKey: 'parisAccords',
+    significance: 5,
+    descriptionVi: 'Ngày 27 tháng 1 năm 1973, Hiệp định Hòa bình Paris được ký kết, chấm dứt sự tham gia trực tiếp của quân đội Mỹ trong chiến tranh Việt Nam. Tuy nhiên, chiến sự vẫn tiếp diễn giữa hai miền.',
+    descriptionEn: 'On January 27, 1973, the Paris Peace Accords were signed, ending direct U.S. military involvement in the Vietnam War. However, fighting continued between North and South Vietnam.',
+    bulletPoints: [
+      'Ký ngày 27/1/1973 / Signed January 27, 1973',
+      'Mỹ rút quân trong 60 ngày / U.S. withdrew within 60 days',
+      'Chấm dứt tham chiến trực tiếp của Mỹ / Ended direct U.S. combat involvement'
+    ],
+    category: 'diplomatic'
   },
   {
     id: 'fall-of-saigon',
